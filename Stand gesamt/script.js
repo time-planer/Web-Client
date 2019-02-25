@@ -89,7 +89,7 @@ var register = function() {
 };
 
 $(document).ready(function () {
-    includeScript("linus.js");
+    includeScript("view.js");
     includeScript("Util.js");
     $("html").hide();
     cookieCheck();
