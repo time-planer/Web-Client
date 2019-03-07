@@ -91,9 +91,6 @@ var register = function() {
 };
 
 $(document).ready(function () {
-    includeScript("view.js");
-    includeScript("Util.js");
-    includeScript("listeners.js")
     M.AutoInit();
     $("html").hide();
     cookieCheck();
