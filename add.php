@@ -44,11 +44,11 @@ include 'header.php';
         </p>
     </form>
     <center>
-    <i class="medium material-icons">star</i>
-    <i class="medium material-icons">star</i>
-    <i class="medium material-icons">star_half</i>
-    <i class="medium material-icons">star_border</i>
-    <i class="medium material-icons">star_border</i>
+    <i class="medium material-icons" id="star1">star</i>
+    <i class="medium material-icons" id="star2">star</i>
+    <i class="medium material-icons" id="star3">star_half</i>
+    <i class="medium material-icons" id="star4">star_border</i>
+    <i class="medium material-icons" id="star5">star_border</i>
     </center>
     <p style="margin-left: 20px; margin-right: 20px; visibility: hidden">Gruppen:</p>
     <div class="chips chips-initial" style="margin-left: 20px; margin-right: 20px; visibility: hidden"></div>

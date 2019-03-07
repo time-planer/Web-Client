@@ -50,10 +50,10 @@ function stringtoDate(text) {
     if(text === "") {
         alert("Kein Datum eingegeben!")
     } else {
-        var montext = text.substring(0, text.indexOf(" "));
+        var montext = text.substring(0, 3);
         var monat = 0;
-        var tag = text.substring(text.indexOf(" ") + 1, text.indexOf(","));
-        var jahr = text.substring(text.indexOf(",") + 2);
+        var tag = text.substring(4,6);
+        var jahr = text.substring(7);
 
         //Macht montext --> monat
         switch (montext) {
@@ -183,4 +183,21 @@ function hasNumber(text) {
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+function longStringDateToShortStringDate(date) {
+    var tmp = stringtoDate(date.substr(4,11));
+    return tmp.getDate()+"."+(tmp.getMonth()+1)+"."+tmp.getFullYear();
+}
+
+function longStringtoDate(string) {
+    return stringtoDate(string.substr(4,11));
+}
+
+function difDateTag(date) {
+    //var date = stringtoDate(date.substr(4,11));
+    var now = new Date();
+    var secs = date-now;
+    var days = secs/1000/60/60/24;
+    return Math.round(days);
 }

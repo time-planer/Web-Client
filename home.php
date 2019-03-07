@@ -14,7 +14,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Home</title>
 </head>
-<body>
+<style>
+
+.style-4::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.style-4::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.style-4::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+.bottom-sheet{
+    max-height: 100% !important;
+}
+
+.bottom-sheet .modal.content{
+    width: 60%;
+    margin: 0px auto
+}
+</style>
+<body class="style-4">
 <?php
 include 'header2.php';
 ?>
@@ -33,14 +61,14 @@ include 'header2.php';
 
 <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-        <h1>Modulname</h1>
-        <i class="medium material-icons">star</i>
-        <i class="medium material-icons">star</i>
-        <i class="medium material-icons">star_half</i>
-        <i class="medium material-icons">star_border</i>
-        <i class="medium material-icons">star_border</i>
-        <h5>Ablaufdatum</h5>
-        <h5>Tage übrig/Abgelaufen</h5>
+        <h1 id="name">Modulname</h1>
+        <i class="medium material-icons" id="star1">star</i>
+        <i class="medium material-icons" id="star2">star</i>
+        <i class="medium material-icons" id="star3">star_half</i>
+        <i class="medium material-icons" id="star4">star_border</i>
+        <i class="medium material-icons" id="star5">star_border</i>
+        <h5 id="ablauf">Ablaufdatum</h5>
+        <h5 id="übrig">Tage übrig/Abgelaufen</h5>
         <div class="row">
             <form class="col s12">
                 <div class="row">
@@ -68,11 +96,10 @@ include 'header2.php';
     </div>
 </div>
 <br>
-<div style="margin-left: 2%;margin-right:2%;height: 850px;width: 96%; border-style: solid; border-radius: 25px" id="taskholder">
+<div class="style-4" style="margin-left: 2%;margin-right:2%;height: 850px;width: 96%; border-style: solid; border-radius: 25px; overflow: scroll;" id="taskholder">
    <!-- <div dayOffset="3" class="task">Test Task</div>
     <div dayOffset="-1">Test Task<div class="planexceed" duration="2">Plan exceed</div><div duration="2" class="deadlineexceed">Deadline</div></div>
     --><br><br>
-    <center><a class="btn-floating green btn modal-trigger"  href="#modal1"><i class="material-icons">remove_red_eye</i></a></center>
 </div>
 <br>
 <script>
