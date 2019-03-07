@@ -101,3 +101,11 @@ function receiveAllTasks(a, data, b) {
         show(data[i]);
     }
 }
+function logout() {
+    kill_cookie("name");
+    kill_cookie("api");
+    showLogin();
+}
+function login() {
+    auth.login($("#username").val(),$("#pw").val(),calllogin)
+}

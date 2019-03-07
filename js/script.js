@@ -15,7 +15,7 @@ var calllogin = function(error, response, context) {
         // For example a Task or an task Array
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
-        window.location.href = "index.php?=home";
+        showHome();
     }
     var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
@@ -28,7 +28,7 @@ var calladdtask = function(error, data, response) {
         console.log(JSON.stringify(data));
         M.toast({html: 'Task wurde erstellt'});
         setTimeout(function () {
-            window.location.href = "index.php?=home";
+            showHome();
         },2000);
     }
 };
@@ -41,7 +41,7 @@ var callreg = function(error, data, response) {
             if(!error) {
                 set_cookie("name", $("#rmail").val());
                 set_cookie("api", response.user_key);
-                window.location.href = "index.php?=home";
+                showHome();
             }
         });
     }
@@ -90,38 +90,6 @@ var register = function() {
     }
 };
 
-$(document).ready(function () {
-    M.AutoInit();
-    $("html").hide();
-    cookieCheck();
-    if(window.location.href.substr(window.location.href.lastIndexOf("/")+1,15) === "index.php?=home") {
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
-    }
-    $("html").show();
-    $("#out").click(function() {
-        kill_cookie("name");
-        kill_cookie("api");
-        window.location.href = "index.php";
-    });
-    $("#log").click(function() {
-        auth.login($("#username").val(),$("#pw").val(),calllogin)
-    });
-    $("#speichern").click(function() {
-        var username = get_cookie("name"); // String | The users name
-        var task = new timeplaner.InitialTask();
-        task.deadline = stringtoDate($("#dead").val());
-        task.planedDate = stringtoDate($("#plan").val());
-        task.description = $("#not").val();
-        task.name = $("#title").val();
-        task.importance = $("#imp").val();
-        var opts = {
-            'initialTask': task // InitialTask |
-        };
-        tasking.addTask(username, opts, calladdtask);
-    });
-    $("#reg").click(register);
-});
-
 function show(task) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
@@ -142,12 +110,9 @@ function show(task) {
     $("#taskholder").append(div);
     styleTask(div);
 }
-function includeScript(sc) {
-    $("head").append($("<script src='"+sc+"'></script>"));
-}
 function cookieCheck() {
     if (get_cookie("api") === null || get_cookie("api") === undefined) {
-        showHome();
+        showLogin();
     } else {
         var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
         User_Key.apiKey = get_cookie("api");
@@ -155,10 +120,9 @@ function cookieCheck() {
         tasking = new timeplaner.TaskingApi();
         mygroups = new timeplaner.MyGroupsApi();
         memgroup = new timeplaner.MemberingGroupsApi();
-    }
-    if(window.location.href.substr(window.location.href.lastIndexOf("/")+1) === "index.php") {
-        if (get_cookie("name") && get_cookie("api")) {
-            window.location.href = "index.php?=home";
-        }
+        showHome();
     }
 }
+
+
+$(document).ready(cookieCheck);
