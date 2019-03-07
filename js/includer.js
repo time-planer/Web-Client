@@ -14,10 +14,10 @@ function includeHead(head) {
 function showHome() {
     includeHead("header2");
     includeBody("home",function () {
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
         $("#speichern").click(saveTask);
         $("#reg").click(register);
         $("#out").click(logout);
+		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
 function showLogin() {
