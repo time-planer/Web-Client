@@ -109,3 +109,16 @@ function logout() {
 function login() {
     auth.login($("#username").val(),$("#pw").val(),calllogin)
 }
+function saveTask() {
+    var username = get_cookie("name"); // String | The users name
+    var task = new timeplaner.InitialTask();
+    task.deadline = stringtoDate($("#dead").val());
+    task.planedDate = stringtoDate($("#plan").val());
+    task.description = $("#not").val();
+    task.name = $("#title").val();
+    task.importance = $("#imp").val();
+    var opts = {
+        'initialTask': task // InitialTask |
+    };
+    tasking.addTask(username, opts, calladdtask);
+}
