@@ -146,17 +146,15 @@ function includeScript(sc) {
     $("head").append($("<script src='"+sc+"'></script>"));
 }
 function cookieCheck() {
-    if(window.location.href.substr(window.location.href.lastIndexOf("/")+1) !== "index.php" && window.location.href.substr(window.location.href.lastIndexOf("/")+1) !== "index.php?=register" && window.location.href.substr(window.location.href.lastIndexOf("/")+1) !== "index.php?=for") {
-        if (get_cookie("api") === null || get_cookie("api") === undefined) {
-            window.location.href = "index.php";
-        } else {
-            var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
-            User_Key.apiKey = get_cookie("api");
-            auth = new timeplaner.AuthenticationApi();
-            tasking = new timeplaner.TaskingApi();
-            mygroups = new timeplaner.MyGroupsApi();
-            memgroup = new timeplaner.MemberingGroupsApi();
-        }
+    if (get_cookie("api") === null || get_cookie("api") === undefined) {
+        showHome();
+    } else {
+        var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
+        User_Key.apiKey = get_cookie("api");
+        auth = new timeplaner.AuthenticationApi();
+        tasking = new timeplaner.TaskingApi();
+        mygroups = new timeplaner.MyGroupsApi();
+        memgroup = new timeplaner.MemberingGroupsApi();
     }
     if(window.location.href.substr(window.location.href.lastIndexOf("/")+1) === "index.php") {
         if (get_cookie("name") && get_cookie("api")) {
