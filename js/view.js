@@ -8,27 +8,54 @@ function styleTask(task,von,bis,span) {
     var planExceedDuration = task.children(".planexceed").attr("duration");
     var offset = task.attr("dayOffset");
     var name = span.text();
-   // task.append(name);
-    task.addClass("row");
-    var dL = $("<div class=\"col s6\">6-columns (one-half)</div>");
-    var dR = $("<div class=\"col s6\">6-columns (one-half)</div>");
+    var b = setWidth(task);
+    var dL = $("<div class=\"col s9\"></div>");
+    var dR = $("<div class=\"col s3\"></div>");
+
+
+
 
     dR.css("background-color", "white");
     dR.css("border", "1px black solid");
-    dL.css("border", "1px black solid");
-    //task.css("border", "1px black solid");
     dR.css("background-color", "red");
+    dR.css("height", "70px");
+    dR.css("z-index","0");
+
+
+    dL.css("border", "1px black solid");
+    dL.css("height", "70px");
+    dL.css("z-index","0");
+
+
+
+    task.addClass("row");
+    task.css("color", "red");
+    if(b < 100){
+        b = 100;
+        name = "...";
+    }
+    b = b + "px";
+    task.css("width", b);
+    task.css("height", "70px");
+    task.css("z-index","10");
+    task.css("background", "transparent");
+    task.css("margin-left", setAbstand(task,von));
+
+
+    dL.append(name);
+
+
     task.append(dL);
     task.append(dR);
-    task.css("color", "red");
-    task.css("width", setWidth(task));
-    task.css("margin-left", setAbstand(task,von));
+
+
+
     if(z==0){
         today(von);
         z++;
     }
-    //alert(name);
-    //style mit diesen Werten
+
+
 }
 function setWidth(task) {
     var start = longStringtoDate(task.attr("startdat"));
@@ -36,7 +63,7 @@ function setWidth(task) {
     var secs = ende-start;
     var days = Math.round(secs/1000/60/60/24);
     var breite = days*25;
-    breite = breite+"px";
+    breite = breite;
     console.log(breite);
     return breite;
 }
