@@ -103,8 +103,18 @@ function receiveAllTasks(a, data, b) {
         return a.deadline-b.deadline;
     });
     var length = data.length;
-    for(var i = 0;i<length;i++) {
-        show(data[i]);
+    if(length>0) {
+        var von = data[0].deadline;
+        var bis = new Date();
+        for (var i = 0; i < length; i++) {
+            if(data[i].deadline>bis)
+                bis = data[i].deadline;
+            if(von>data[i].entererAt)
+                von = data[i].entererAt;
+        }
+        for (var i = 0; i < length; i++) {
+            show(data[i],von,bis);
+        }
     }
 }
 function logout() {

@@ -91,7 +91,6 @@ var register = function() {
     }
 };
 
-function show(task) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
     var deadline = task.deadline;
@@ -108,10 +107,6 @@ function show(task) {
     var span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
-    var von = new Date();
-    von.setFullYear(2019, 0, 1);
-    var bis = new Date();
-    bis.setFullYear(2019, 11, 31);
     styleTask(div, von, bis, span);
 }
 function cookieCheck() {
