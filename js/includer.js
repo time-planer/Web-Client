@@ -14,7 +14,6 @@ function includeHead(head) {
 function showHome() {
     includeHead("header2");
     includeBody("home",function () {
-        $("#speichern").click(saveTask);
         $("#out").click(logout);
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
@@ -38,7 +37,9 @@ function includeScript(sc) {
 }
 function showAdd() {
     includeHead("header");
-    includeBody("add");
+    includeBody("add",function () {
+        $("#speichern").click(saveTask);
+    });
 }
 function showGroups() {
     includeHead("header3");

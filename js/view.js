@@ -9,6 +9,7 @@ var start;
 var ende;
 var farbe;
 var text;
+var plan;
 
 function styleTask(task1,von1,bis,span) {
     task = task1;
@@ -16,7 +17,8 @@ function styleTask(task1,von1,bis,span) {
     ende = longStringtoDate(task.attr("deadline"));
     start = longStringtoDate(task.attr("startdat"));
     var exceedDuration = task.children(".deadlineexceed").attr("duration");
-    var planExceedDuration = task.children(".planexceed").attr("duration");
+    var plan2 = task.children(".planexceed").attr("duration");
+    plan = longStringtoDate(task.attr("planed"));
     var offset = task.attr("dayOffset");
     var name = span.text();
     var b = setWidth();
@@ -27,23 +29,29 @@ function styleTask(task1,von1,bis,span) {
 
 
     span2.text(text);
-
-    dR.css("border", "1px black solid");
     dR.css("background-color", farbe);
     dR.css("height", "70px");
     dR.css("z-index","0");
     dR.css("color","white");
+    dR.addClass("valign-wrapper");
+    dR.addClass("flow-text");
+    dR.css("padding-right","5px");
 
 
 
-    dL.css("border", "1px black solid");
+
     dL.css("height", "70px");
     dL.css("z-index","0");
+    dL.addClass("valign-wrapper");
+    dL.addClass("flow-text");
 
 
 
     task.addClass("row");
+    task.css("border", "1px black solid");
     task.css("color", "red");
+    task.css("overflow","hidden");
+    task.css("box-sizing","content-box");
     if(b < 100){
         b = 100;
         name = "...";
@@ -58,6 +66,7 @@ function styleTask(task1,von1,bis,span) {
     task.css("background", "transparent");
     task.css("margin-left", setAbstand(von));
     task.css("color","black");
+    task.css("border-radius","20px");
 
     dR.append(span2);
     dL.append(name);
@@ -110,6 +119,10 @@ function setDead() {
     var ende = longStringtoDate(task.attr("deadline"));
     farbe = "green";
     text = ""
+    if(today > plan){
+        farbe = "orange";
+        text = "Planed exceeded";
+    }
     if(today > ende){
         text = "Deadline exceeded";
         farbe = "red";

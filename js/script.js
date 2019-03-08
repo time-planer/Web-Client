@@ -23,6 +23,7 @@ var calllogin = function(error, response, context) {
 var calladdtask = function(error, data, response) {
     if (error) {
         console.error(error);
+        console.log(response);
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
