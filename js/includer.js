@@ -11,6 +11,7 @@ function includeHead(head) {
         $("#headinclude").html($(data).html());
     });
 }
+
 function showHome() {
     includeHead("header2");
     includeBody("home",function () {
