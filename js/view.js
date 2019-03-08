@@ -13,6 +13,7 @@ var plan;
 
 function styleTask(task1,von1,bis,span) {
     task = task1;
+    text = span.text();
     von = von1;
     ende = longStringtoDate(task.attr("deadline"));
     start = longStringtoDate(task.attr("startdat"));
@@ -22,9 +23,9 @@ function styleTask(task1,von1,bis,span) {
     var offset = task.attr("dayOffset");
     var name = span.text();
     var b = setWidth();
-    var dL = $("<div class=\"col s9\"></div>");
-    var dR = $("<div class=\"col s3\"></div>");
-    var span2 = $("<span></span>");
+    var dL = $("<div class=\"col s8\"></div>");
+    var dR = $("<div class=\"col s4\"></div>");
+    var span2 = $("<span style='width: 90%; padding-right: 10%'></span>");
     setDead();
 
 
@@ -79,7 +80,7 @@ function styleTask(task1,von1,bis,span) {
 
 
     if(z==0){
-        today(von);
+        //today(von);
         z++;
     }
 
