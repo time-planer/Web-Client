@@ -15,11 +15,17 @@ function showHome() {
     includeHead("header2");
     includeBody("home",function () {
         $("#speichern").click(saveTask);
-        $("#reg").click(register);
         $("#out").click(logout);
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
+function showRegister() {
+    includeHead("header");
+    includeBody("register",function () {
+         $("#reg").click(register);
+    });
+}
+
 function showLogin() {
     includeHead("header");
     includeBody("login",function () {
