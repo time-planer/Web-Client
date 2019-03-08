@@ -106,9 +106,12 @@ function show(task) {
     div.attr("startdat", startdat);
     var span = $("<span></span>");
     span.text(name);
-    div.append(span);
     $("#taskholder").append(div);
-    styleTask(div);
+    var von = new Date();
+    von.setFullYear(2019, 0, 1);
+    var bis = new Date();
+    bis.setFullYear(2019, 11, 31);
+    styleTask(div, von, bis, span);
 }
 function cookieCheck() {
     if (get_cookie("api") === null || get_cookie("api") === undefined) {

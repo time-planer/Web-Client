@@ -3,19 +3,28 @@
  * @param task {div}
  */
 var z = 0;
-function styleTask(task) {
+function styleTask(task,von,bis,span) {
     var exceedDuration = task.children(".deadlineexceed").attr("duration");
     var planExceedDuration = task.children(".planexceed").attr("duration");
     var offset = task.attr("dayOffset");
-    var name = task.children("span").text();
+    var name = span.text();
+   // task.append(name);
+    task.addClass("row");
+    var dL = $("<div class=\"col s6\">6-columns (one-half)</div>");
+    var dR = $("<div class=\"col s6\">6-columns (one-half)</div>");
+
+    dR.css("background-color", "white");
+    dR.css("border", "1px black solid");
+    dL.css("border", "1px black solid");
+    //task.css("border", "1px black solid");
+    dR.css("background-color", "red");
+    task.append(dL);
+    task.append(dR);
     task.css("color", "red");
     task.css("width", setWidth(task));
-    task.css("height","70px");
-    task.css("background-color", "yellow");
-    task.css("border-radius","25px");
-    task.css("margin-left", setAbstand(task));
+    task.css("margin-left", setAbstand(task,von));
     if(z==0){
-        today();
+        today(von);
         z++;
     }
     //alert(name);
@@ -31,28 +40,27 @@ function setWidth(task) {
     console.log(breite);
     return breite;
 }
-function today() {
+function today(von) {
     var today = new Date();
+    var secs = today-von;
+    var days = Math.round(secs/1000/60/60/24);
+    var abstandLinks = days*25+"px";
     var div = $("<div></div>");
     div.addClass("todday");
-    div.css("z-index", "-10");
-    div.css("position", "relative");
-    div.css("left", "49%");
     div.css("width", "25px");
+    div.css("z-index","100");
+    div.css("margin-left", abstandLinks);
     div.css("height","850px");
     div.css("background-color","black");
     $("#taskholder").append(div);
 }
-function setAbstand(task) {
-    var today = new Date();
+function setAbstand(task,von) {
     var start = longStringtoDate(task.attr("startdat"));
-    console.log(start+" "+task.children("span").text());
-    var ende = longStringtoDate(task.attr("deadline"))
-    var secs = ende-start;
+    var secs = start-von;
     var days = Math.round(secs/1000/60/60/24);
-    var bla = today-start;
-    var blaDays = Math.round(bla/1000/60/60/24);
-    var x = days-blaDays;
-    var abstandLinks = x*25+"px";
+    var abstandLinks = days*25+"px";
     return abstandLinks;
+}
+function setDead() {
+
 }
