@@ -98,6 +98,11 @@ function openTask(data) {
     }
     M.Modal.getInstance($("#modal1")).open();
 }
+/**
+ * @param a
+ * @param data {Array}
+ * @param b {Request}
+ */
 function receiveAllTasks(a, data, b) {
     data.sort(function (a,b) {
         return a.deadline-b.deadline;

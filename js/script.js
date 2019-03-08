@@ -91,6 +91,12 @@ var register = function() {
     }
 };
 
+/**
+ * @param task {Task}
+ * @param von {Date}
+ * @param bis {Date}
+ */
+function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
     var deadline = task.deadline;
