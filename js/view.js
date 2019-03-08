@@ -3,22 +3,27 @@
  * @param task {div}
  */
 var z = 0;
+var task;
+var von;
+var start;
+var ende;
+var farbe;
+var text;
+
 function styleTask(task1,von1,bis,span) {
-    var task = task1;
-    var von = von1;
-    var start = longStringtoDate(task.attr("startdat"));
-    var ende = longStringtoDate(task.attr("deadline"));
+    task = task1;
+    von = von1;
+    ende = longStringtoDate(task.attr("deadline"));
+    start = longStringtoDate(task.attr("startdat"));
     var exceedDuration = task.children(".deadlineexceed").attr("duration");
     var planExceedDuration = task.children(".planexceed").attr("duration");
     var offset = task.attr("dayOffset");
     var name = span.text();
-    var b = setWidth(ende,start);
+    var b = setWidth();
     var dL = $("<div class=\"col s9\"></div>");
     var dR = $("<div class=\"col s3\"></div>");
     var span2 = $("<span></span>");
-    var farbe;
-    var text;
-    setDead(ende);
+    setDead();
 
 
     span2.text(text);
@@ -27,6 +32,7 @@ function styleTask(task1,von1,bis,span) {
     dR.css("background-color", farbe);
     dR.css("height", "70px");
     dR.css("z-index","0");
+    dR.css("color","white");
 
 
 
@@ -50,7 +56,8 @@ function styleTask(task1,von1,bis,span) {
     task.css("height", "70px");
     task.css("z-index","10");
     task.css("background", "transparent");
-    task.css("margin-left", setAbstand(start,von));
+    task.css("margin-left", setAbstand(von));
+    task.css("color","black");
 
     dR.append(span2);
     dL.append(name);
@@ -69,7 +76,7 @@ function styleTask(task1,von1,bis,span) {
 
 
 }
-function setWidth(ende,start) {
+function setWidth() {
     var secs = ende-start;
     var days = Math.round(secs/1000/60/60/24);
     var breite = days*25;
@@ -77,7 +84,7 @@ function setWidth(ende,start) {
     console.log(breite);
     return breite;
 }
-function today(von) {
+function today() {
     var today = new Date();
     var secs = today-von;
     var days = Math.round(secs/1000/60/60/24);
@@ -91,14 +98,16 @@ function today(von) {
     div.css("background-color","black");
     $("#taskholder").append(div);
 }
-function setAbstand(start,von) {
+function setAbstand() {
+    var start = longStringtoDate(task.attr("startdat"));
     var secs = start-von;
     var days = Math.round(secs/1000/60/60/24);
     var abstandLinks = days*25+"px";
     return abstandLinks;
 }
-function setDead(ende) {
+function setDead() {
     var today = new Date();
+    var ende = longStringtoDate(task.attr("deadline"));
     farbe = "green";
     text = ""
     if(today > ende){
