@@ -1,3 +1,6 @@
+/**
+ * @param data {Event}
+ */
 function openTask(data) {
     //Daten einlesen
     var elem = $(data.target);
@@ -96,6 +99,9 @@ function openTask(data) {
     M.Modal.getInstance($("#modal1")).open();
 }
 function receiveAllTasks(a, data, b) {
+    data.sort(function (a,b) {
+        return a.deadline-b.deadline;
+    });
     var length = data.length;
     for(var i = 0;i<length;i++) {
         show(data[i]);
