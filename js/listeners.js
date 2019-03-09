@@ -3,11 +3,11 @@
  */
 function openTask(data) {
     //Daten einlesen
-    var elem = $(data.target);
-    if(elem.get(0).tagName == "SPAN")
+    var elem = $(data.target).parent();
+    if(!elem.hasClass("task"))
         elem = elem.parent();
-    document.getElementById('ablauf').innerText = "Deadline: "+longStringDateToShortStringDate((elem.attr("deadline")));
-    document.getElementById('name').innerText = elem.children("span").text();
+    $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
+    $('#name').text(elem.children(".name_field").text());
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
         document.getElementById('übrig').innerText = "Tage verbleibend: "+difDateTag(longStringtoDate(elem.attr("deadline")));
     } else {

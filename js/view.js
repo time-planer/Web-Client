@@ -43,8 +43,7 @@ function styleTask(task1,von1,bis,span) {
 
     dL.css("height", "70px");
     dL.css("z-index","0");
-    dL.addClass("valign-wrapper");
-    dL.addClass("flow-text");
+    dL.addClass("valign-wrapper").addClass("flow-text").addClass("name_field");
 
 
 
