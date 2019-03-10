@@ -1,6 +1,19 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 /* LOGIN */
 #log{
     width: 100%;
+}
+#log-cont{
+    margin-top: 2%;
 }
 #regis{
     margin-left: 31px;
