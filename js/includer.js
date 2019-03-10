@@ -7,6 +7,7 @@ function includeBody(comp,ready) {
     });
     set_cookie("bcontext",comp);
     set_cookie("bfcontext",ready);
+    detectDeviceDesign();
 }
 function includeHead(head) {
     $.get("views/"+head+".html",function (data) {

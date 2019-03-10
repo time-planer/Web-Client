@@ -142,7 +142,6 @@ function startup() {
     else{
         showHome();
     }
-    detectDeviceDesign();
 }
 var isMobile = {
     Android: function () {
