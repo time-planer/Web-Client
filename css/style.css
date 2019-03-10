@@ -72,3 +72,8 @@
     padding: 15px !important;
     border-radius: 10px;
 }
+#footerinclude{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
