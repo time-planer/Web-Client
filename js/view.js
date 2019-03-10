@@ -135,7 +135,6 @@ function detectDevice() {
 };
 
 function designAndroidTask() {
-    alert("klappt");
 
 }
 
@@ -144,8 +143,7 @@ function designiOSTask() {
 }
 
 function designAndroid() {
-    alert("Design Android");
-    alert($('ueberschrift').text());
+    $('login-div').css("width","100%");
 
 
 }
