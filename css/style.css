@@ -1,3 +1,37 @@
+/* LOGIN */
+
+#login-div{
+    width: 20%;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin-left: 40%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+#ueberschrift{
+
+}
+
+#regis{
+    margin-left: 31px;
+    color: #00bfa5
+}
+#regis:hover{
+    cursor: pointer;
+}
+
+#verg{
+    margin-left: 31px;
+    color: #00bfa5;
+}
+
+#verg:hover{
+    cursor: pointer;
+}
+
+/* HOME */
+
 
 .style-4::-webkit-scrollbar-track
 {
@@ -23,16 +57,6 @@
 .bottom-sheet .modal.content{
     width: 60%;
     margin: 0px auto
-}
-
-#login-div{
-    width: 20%;
-    height: 500px;
-    border: solid;
-    border-radius: 25px;
-    margin-left: 40%;
-    margin-top: 10%;
-    margin-bottom: 10%;
 }
 
 #taskholder{
