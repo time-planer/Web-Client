@@ -119,7 +119,8 @@ function show(task,von,bis) {
     $("#taskholder").append(div);
     styleTask(div, v, b, span);
 }
-function cookieCheck() {
+function startup() {
+    $("#footerinclude").load("views/footer.html");
     var def = true;
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
@@ -141,7 +142,7 @@ function cookieCheck() {
     else{
         showHome();
     }
-
+    detectDeviceDesign();
 }
 var isMobile = {
     Android: function () {
@@ -187,4 +188,4 @@ function detectDeviceDesign() {
 };
 
 
-$(document).ready(cookieCheck);
+$(document).ready(startup);
