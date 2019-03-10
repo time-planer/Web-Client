@@ -143,9 +143,9 @@ function designiOSTask() {
 }
 
 function designAndroid() {
-    $('#login-div').css("width","90%");
-    $('#login-div').css("margin-left","5%");
-    $('#login-div').css("margin-bottom","10%");
+    //$('#login-div').css("width","90%");
+    //$('#login-div').css("margin-left","5%");
+    //$('#login-div').css("margin-bottom","10%");
 }
 
 function designiOS() {
