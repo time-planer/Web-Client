@@ -7,7 +7,7 @@
 
 .style-4::-webkit-scrollbar
 {
-    width: 10px;
+    width: 3px;
     background-color: #F5F5F5;
 }
 
@@ -33,4 +33,14 @@
     margin-left: 40%;
     margin-top: 10%;
     margin-bottom: 10%;
+}
+
+#taskholder{
+    margin-left: 2%;
+    margin-right:2%;
+    height: 850px;
+    width: 96%;
+    border: 1px black solid;
+    /* border-radius: 25px; */
+    overflow: scroll;
 }
