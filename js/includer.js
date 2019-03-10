@@ -48,7 +48,9 @@ function showAdd() {
 }
 function showGroups() {
     includeHead("header3");
-    includeBody("groups");
+    includeBody("groups",function () {
+        $("#include-add-group").load("views/gnew.html");
+    });
 }
 function showSettings(){
     includeHead("header");
