@@ -44,3 +44,7 @@
     /* border-radius: 25px; */
     overflow: scroll;
 }
+.grp{
+    padding: 15px !important;
+    border-radius: 10px;
+}
