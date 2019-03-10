@@ -135,6 +135,7 @@ function detectDevice() {
 };
 
 function designAndroidTask() {
+    alert("klappt");
 
 }
 
