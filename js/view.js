@@ -143,7 +143,7 @@ function designiOSTask() {
 }
 
 function designAndroid() {
-    $('login-div').css("width","100%");
+    $('#login-div').css("width","100%");
 }
 
 function designiOS() {
