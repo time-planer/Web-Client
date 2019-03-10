@@ -127,6 +127,28 @@ function detectDevice() {
 };
 
 function designAndroidTask() {
+    $('#taskholder').addClass("valign-wrapper");
+    task.css("width","200px");
+    task.addClass("center-align");
+    task.addClass("truncate");
+    var ab = setAbstand();
+    if(b <= 100){
+        ab = ab - (100-b);
+        b = 100;
+    }
+    ab = ab+"px";
+    b = b + "px";
+
+    task.css("height",b);
+    task.css("margin-top",ab);
+    //task.addClass("valign-wrapper");
+    task.addClass("flow-text");
+    task.css("margin-left","5px");
+    task.css("color","white");
+    task.css("background-color",farbe);
+    task.text(name);
+    task.css("border","0.1px black solid");
+    task.css("border-radius","20px");
 
 }
 
@@ -138,6 +160,7 @@ function designAndroid() {
     //$('#login-div').css("width","90%");
     //$('#login-div').css("margin-left","5%");
     //$('#login-div').css("margin-bottom","10%");
+
 }
 
 function designiOS() {
@@ -164,7 +187,8 @@ function designPC() {
     dL.css("z-index","0");
     dL.addClass("valign-wrapper").addClass("flow-text").addClass("name_field");
 
-
+    dL.addClass("truncate");
+    dR.addClass("truncate");
 
     task.addClass("row");
     task.css("border", "1px black solid");
@@ -175,10 +199,6 @@ function designPC() {
     if(b <= 100){
         ab = ab - (100-b);
         b = 100;
-        name = "...";
-        if(span2.text() != ""){
-            span2.text("...");
-        }
     }
     ab = ab+"px";
     b = b + "px";
