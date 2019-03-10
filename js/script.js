@@ -116,20 +116,25 @@ function show(task,von,bis) {
     styleTask(div, von, bis, span);
 }
 function cookieCheck() {
-    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined )
-        includeHead(get_cookie("hcontext") );
-
-    if(get_cookie("bcontext") !== null && get_cookie("bcontext")!== undefined )
-        includeHead(get_cookie("bcontext") );
-    if (get_cookie("api") === null || get_cookie("api") === undefined) {
-        showLogin();
-    } else {
+    var def = true;
+    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
         User_Key.apiKey = get_cookie("api");
         auth = new timeplaner.AuthenticationApi();
         tasking = new timeplaner.TaskingApi();
         mygroups = new timeplaner.MyGroupsApi();
         memgroup = new timeplaner.MemberingGroupsApi();
+    }else{
+        showLogin();
+        return;
+    }
+    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined  && get_cookie("bcontext") !== null && get_cookie("bcontext") !== undefined) {
+        eval("var x = "+get_cookie("bfcontext"));
+        includeBody(get_cookie("bcontext"),x);
+        includeHead(get_cookie("hcontext"));
+        def = false;
+    }
+    else{
         showHome();
     }
 

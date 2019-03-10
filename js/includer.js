@@ -6,6 +6,7 @@ function includeBody(comp,ready) {
             ready();
     });
     set_cookie("bcontext",comp);
+    set_cookie("bfcontext",ready);
 }
 function includeHead(head) {
     $.get("views/"+head+".html",function (data) {
