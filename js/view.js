@@ -144,6 +144,7 @@ function designiOSTask() {
 
 function designAndroid() {
     alert("Design Android");
+    alert($('ueberschrift').text());
 
 
 }
