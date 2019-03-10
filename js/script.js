@@ -104,6 +104,10 @@ function show(task,von,bis) {
     var priority = task.importance;
     var startdat = task.entererAt;
     var div = $("<div></div>");
+    var v = von;
+    var b = bis;
+    console.log(von);
+    console.log(bis);
     div.addClass("task");
     div.on("click",openTask);
     div.attr("planed", planend);
@@ -113,7 +117,7 @@ function show(task,von,bis) {
     var span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
-    styleTask(div, von, bis, span);
+    styleTask(div, v, b, span);
 }
 function cookieCheck() {
     var def = true;
