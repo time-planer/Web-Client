@@ -4,10 +4,10 @@ function includeBody(comp,ready) {
         M.AutoInit();
         if(ready != null && ready != undefined)
             ready();
+        detectDeviceDesign();
     });
     set_cookie("bcontext",comp);
     set_cookie("bfcontext",ready);
-    detectDeviceDesign();
 }
 function includeHead(head) {
     $.get("views/"+head+".html",function (data) {
