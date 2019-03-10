@@ -1,18 +1,7 @@
 /* LOGIN */
-
-#login-div{
-    width: 20%;
-    height: 500px;
-    border: 1px solid black;
-    border-radius: 25px;
-    margin-left: 40%;
-    margin-top: 10%;
-    margin-bottom: 10%;
+#log{
+    width: 100%;
 }
-#ueberschrift{
-
-}
-
 #regis{
     margin-left: 31px;
     color: #00bfa5
