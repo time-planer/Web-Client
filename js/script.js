@@ -104,8 +104,10 @@ function show(task,von,bis) {
     var priority = task.importance;
     var startdat = task.entererAt;
     var div = $("<div></div>");
-    var v = von;
-    var b = bis;
+    var v = new Date();
+    var b = new Date();
+    v.setFullYear(2019,0,1);
+    b.setFullYear(2019,11,1);
     console.log(von);
     console.log(bis);
     div.addClass("task");

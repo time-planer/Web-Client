@@ -9,6 +9,7 @@ var start;
 var ende;
 var farbe;
 var text;
+var ma = 0;
 var plan;
 var b;
 var name;
@@ -59,7 +60,7 @@ function styleTask(task1,von1,bis,span) {
 
 
     if(z==0){
-        //today(von);
+        //today();
         z++;
     }
 
@@ -76,15 +77,9 @@ function today() {
     var today = new Date();
     var secs = today-von;
     var days = Math.round(secs/1000/60/60/24);
-    var abstandLinks = days*25+"px";
-    var div = $("<div></div>");
-    div.addClass("todday");
-    div.css("width", "25px");
-    div.css("z-index","100");
-    div.css("margin-left", abstandLinks);
-    div.css("height","850px");
-    div.css("background-color","black");
-    $("#taskholder").append(div);
+    var abstandLinks = days*25;
+    window.scrollTo(abstandLinks,0);
+
 }
 function setAbstand() {
     var secs = start-von;
@@ -92,10 +87,7 @@ function setAbstand() {
     console.log(von);
     console.log(secs);
     var days = Math.round(secs/1000/60/60/24);
-    console.log(days);
-    var abstandLinks = days*25+"px";
-    console.log(days*25);
-    console.log(abstandLinks);
+    var abstandLinks = days*25;
     return abstandLinks;
 }
 function setDead() {
@@ -179,19 +171,22 @@ function designPC() {
     task.css("color", "red");
     task.css("overflow","hidden");
     task.css("box-sizing","content-box");
-    if(b < 100){
+    var ab = setAbstand();
+    if(b <= 100){
+        ab = ab - (100-b);
         b = 100;
         name = "...";
         if(span2.text() != ""){
             span2.text("...");
         }
     }
+    ab = ab+"px";
     b = b + "px";
     task.css("width", b);
     task.css("height", "70px");
     task.css("z-index","10");
     task.css("background", "transparent");
-    task.css("margin-left", setAbstand());
+    task.css("margin-left", ab);
     task.css("color","black");
     task.css("border-radius","20px");
 
