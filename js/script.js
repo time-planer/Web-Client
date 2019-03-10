@@ -116,6 +116,11 @@ function show(task,von,bis) {
     styleTask(div, von, bis, span);
 }
 function cookieCheck() {
+    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined )
+        includeHead(get_cookie("hcontext") );
+
+    if(get_cookie("bcontext") !== null && get_cookie("bcontext")!== undefined )
+        includeHead(get_cookie("bcontext") );
     if (get_cookie("api") === null || get_cookie("api") === undefined) {
         showLogin();
     } else {
@@ -127,6 +132,7 @@ function cookieCheck() {
         memgroup = new timeplaner.MemberingGroupsApi();
         showHome();
     }
+
 }
 
 

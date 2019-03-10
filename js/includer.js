@@ -5,11 +5,13 @@ function includeBody(comp,ready) {
         if(ready != null && ready != undefined)
             ready();
     });
+    set_cookie("bcontext",comp);
 }
 function includeHead(head) {
     $.get("views/"+head+".html",function (data) {
         $("#headinclude").html($(data).html());
     });
+    set_cookie("hcontext",head);
 }
 
 function showHome() {
