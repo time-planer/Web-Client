@@ -126,15 +126,25 @@ function detectDevice() {
             designPC();
             break;
         case 1:
-            designAndroid();
+            designAndroidTask();
             break;
         case 2:
-            designiOS();
+            designiOSTask();
             break;
     }
 };
 
+function designAndroidTask() {
+
+}
+
+function designiOSTask() {
+
+}
+
 function designAndroid() {
+    alert("Design Android");
+    
 
 }
 

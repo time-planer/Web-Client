@@ -24,3 +24,13 @@
     width: 60%;
     margin: 0px auto
 }
+
+#login-div{
+    width: 20%;
+    height: 500px;
+    border: solid;
+    border-radius: 25px;
+    margin-left: 40%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
