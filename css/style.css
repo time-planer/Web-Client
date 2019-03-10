@@ -1,4 +1,7 @@
 /* LOGIN */
+#log{
+    width: 100%;
+}
 #regis{
     margin-left: 31px;
     color: #00bfa5
