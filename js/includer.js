@@ -22,8 +22,6 @@ function includeInto(comp,into,ready) {
         if(ready != null && ready != undefined)
             ready();
     });
-    set_cookie("bcontext",comp);
-    set_cookie("bfcontext",ready);
 }
 function showHome() {
     includeHead("header2");
@@ -31,6 +29,7 @@ function showHome() {
         $("#out").click(logout);
         M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+		$('#taskholder').scrollLeft(-100);
     });
 }
 
@@ -60,7 +59,30 @@ function showAdd() {
 function showGroups() {
     includeHead("header3");
     includeBody("groups",function () {
-        $("#include-add-group").load("views/gnew.html").children("#add-grp-btn").on("click",createGroup);
+        includeInto("gnew",$("#include-add-group"),function () {
+            $("#add-grp-btn").on("click",createGroup);
+        });
+        mygroups.getOwnedGroups(get_cookie("name"),function (error,response,b) {
+            if(error){
+                M.toast({html:"Error on fetching groups!"})
+            }else{
+                for(var i = 0;i<response.length;i++){
+                    var entry = $(
+                        $.ajax({
+                            type: "GET",
+                            url: "views/group-entry.html",
+                            async: false
+                        }).responseText
+                    );
+                    entry.find(".grp-name").text(response[i].name);
+                    entry.find(".grp-memcount").text(response[i].members);
+                    entry.find(".del-grp").click(function () {
+                        mygroups.
+                    });
+                    $("#grpview").append(entry);
+                }
+            }
+        });
     });
 }
 function showSettings(){

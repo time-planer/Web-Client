@@ -131,6 +131,9 @@ function show(task,von,bis) {
     span.text(name);
     $("#taskholder").append(div);
     styleTask(div, v, b, span);
+    var today = new Date();
+    var days = Math.round((today-v)/1000/60/60/24);
+    $('#taskholder').scrollLeft((days*25)-1000);
 }
 function startup() {
     $("#footerinclude").load("views/footer.html");
