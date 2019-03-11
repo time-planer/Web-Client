@@ -16,6 +16,7 @@ var calllogin = function(error, response, context) {
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
         showHome();
+        setAPIKey(key);
     }
     var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
@@ -123,12 +124,7 @@ function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
-        var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
-        User_Key.apiKey = get_cookie("api");
-        auth = new timeplaner.AuthenticationApi();
-        tasking = new timeplaner.TaskingApi();
-        mygroups = new timeplaner.MyGroupsApi();
-        memgroup = new timeplaner.MemberingGroupsApi();
+        setAPIKey(get_cookie("api"));
     }else{
         showLogin();
         return;
@@ -185,6 +181,13 @@ function detectDeviceDesign() {
             break;
     }
 };
-
+function setAPIKey(key){
+    var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
+    User_Key.apiKey =key;
+    auth = new timeplaner.AuthenticationApi();
+    tasking = new timeplaner.TaskingApi();
+    mygroups = new timeplaner.MyGroupsApi();
+    memgroup = new timeplaner.MemberingGroupsApi();
+}
 
 $(document).ready(startup);
