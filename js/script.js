@@ -41,6 +41,7 @@ var calledittask = function(error, data, response) {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        M.toast({html: 'Task wurde erfolgreich geändert'});
     }
 };
 var callreg = function(error, data, response) {
