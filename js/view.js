@@ -12,8 +12,10 @@ var text;
 var ma = 0;
 var plan;
 var b;
+var balk2width = 0;
 var name;
 var span2;
+var pruef;
 var balkwidth = 0;
 var isMobile = {
     Android: function () {
@@ -41,7 +43,6 @@ function styleTask(task1,von1,bis,span) {
     task = task1;
     text = span.text();
     von = von1;
-    console.log(von1);
     ende = longStringtoDate(task.attr("deadline"));
     start = longStringtoDate(task.attr("startdat"));
     //var exceedDuration = task.children(".deadlineexceed").attr("duration");
@@ -84,37 +85,46 @@ function today() {
 }
 function setAbstand() {
     var secs = start-von;
-    console.log(start);
-    console.log(von);
-    console.log(secs);
     var days = Math.round(secs/1000/60/60/24);
     var abstandLinks = days*25;
     return abstandLinks;
 }
 function setDead() {
     var today = new Date();
-    farbe = "green";
     text = "";
+    farbe = "";
+    pruef = 0;
     if(today < plan){
-        balkwidth = plan-today;
-        balkwidth = balkwidth/1000/60/60/24;
-        balkwidth = balkwidth*24;
+        farbe = "orange";
+        balk2width = plan-today;
+        balk2width = balk2width/1000/60/60/24;
+        balk2width = balk2width*25;
+        if(plan !== ende){
+            balkwidth = ende-plan;
+            balkwidth = balkwidth/1000/60/60/24;
+            balkwidth = balkwidth*25;
+        }
+        pruef = 1;
     }
     if(today > plan){
+        balk2width = 0;
         farbe = "orange";
         text = "Planed exceeded";
-        balkwidth = today-plan;
+        balkwidth = ende-today;
         balkwidth = balkwidth/1000/60/60/24;
-        balkwidth = balkwidth*24;
+        balkwidth = balkwidth*25;
+        pruef = 2;
     }
     if(today > ende){
         text = "Deadline exceeded";
         farbe = "red";
+        balk2width = 0;
         balkwidth = today-ende;
         balkwidth = balkwidth/1000/60/60/24;
-        balkwidth = balkwidth*24;
+        balkwidth = balkwidth*25;
         ende = today;
         b = setWidth();
+        pruef = 3;
 
     }
 
@@ -186,27 +196,37 @@ function designiOS() {
 function designPC() {
     var dL = $("<div></div>");
     var dR = $("<div></div>");
-    var temp = b-balkwidth-5;
+    var dm = $("<div></div>");
+    var temp = b-(balkwidth+balk2width);
     var temp2 = 0;
     if(temp<100){
         temp2 = 100-temp;
         temp = 100;
     }
+
     b = b+temp2;
     temp = temp+"px";
-    balkwidth = balkwidth+"px";
+    balkwidth = balkwidth;
+    balk2width = balk2width;
+    dm.css("background-color","green");
+    dm.css("width",balk2width+"px");
+    dm.css("height", "70px");
+    dm.css("z-index","0");
+    dm.css("color","white");
+    //dR.addClass("valign-wrapper");
+    dm.addClass("left");
+    dm.addClass("flow-text");
+
     span2.text(text);
     dR.css("background-color", farbe);
     dR.css("height", "70px");
-    dR.css("width", balkwidth);
+    dR.css("width", balkwidth+"px");
     dR.css("z-index","0");
     dR.css("color","white");
     //dR.addClass("valign-wrapper");
     dR.addClass("left");
     dR.addClass("flow-text");
-    dR.css("padding-right","5px");
-
-
+    //dR.css("padding-right","5px");
 
 
     dL.css("height", "70px");
@@ -240,9 +260,23 @@ function designPC() {
     task.css("color","black");
     task.css("border-radius","20px");
     task.addClass("left-align");
+    console.log(name+" Grün: "+balk2width+" "+farbe+": "+balkwidth+" Prüf-Num: "+pruef);
     dL.append(name);
 
 
-    task.append(dL);
-    task.append(dR);
+
+    if(pruef === 1){
+        task.append(dL);
+        task.append(dm);
+        task.append(dR);
+    }
+    if(pruef === 2){
+        task.append(dL);
+        task.append(dR);
+    }
+    if(pruef === 3){
+        task.append(dL);
+        task.append(dR);
+    }
+
 }

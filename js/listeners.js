@@ -118,8 +118,6 @@ function receiveAllTasks(a, data, b) {
                 von = data[i].entererAt;
         }
         for (var i = 0; i < length; i++) {
-            console.log(von);
-            console.log(bis);
             show(data[i],von,bis);
         }
     }

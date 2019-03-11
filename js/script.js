@@ -108,8 +108,6 @@ function show(task,von,bis) {
     var b = new Date();
     v.setFullYear(2019,0,1);
     b.setFullYear(2019,11,1);
-    console.log(von);
-    console.log(bis);
     div.addClass("task");
     div.on("click",openTask);
     div.attr("planed", planend);
