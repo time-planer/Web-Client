@@ -187,6 +187,12 @@ function designPC() {
     var dL = $("<div></div>");
     var dR = $("<div></div>");
     var temp = b-balkwidth-5;
+    var temp2 = 0;
+    if(temp<100){
+        temp2 = 100-temp;
+        temp = 100;
+    }
+    b = b+temp2;
     temp = temp+"px";
     balkwidth = balkwidth+"px";
     span2.text(text);
@@ -223,6 +229,7 @@ function designPC() {
         ab = ab - (100-b);
         b = 100;
     }
+    ab = ab-temp2;
     ab = ab+"px";
     b = b + "px";
     task.css("width", b);
@@ -233,7 +240,6 @@ function designPC() {
     task.css("color","black");
     task.css("border-radius","20px");
     task.addClass("left-align");
-    dR.append(span2);
     dL.append(name);
 
 
