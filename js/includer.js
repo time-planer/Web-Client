@@ -27,9 +27,11 @@ function showHome() {
     includeHead("header2");
     includeBody("home",function () {
         $("#out").click(logout);
+        M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
+
 function showRegister() {
     includeHead("header");
     includeBody("register",function () {
