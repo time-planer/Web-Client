@@ -14,6 +14,7 @@ var plan;
 var b;
 var name;
 var span2;
+var balkwidth = 0;
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -93,21 +94,34 @@ function setAbstand() {
 function setDead() {
     var today = new Date();
     farbe = "green";
-    text = ""
+    text = "";
+    if(today < plan){
+        balkwidth = plan-today;
+        balkwidth = balkwidth/1000/60/60/24;
+        balkwidth = balkwidth*24;
+    }
     if(today > plan){
         farbe = "orange";
         text = "Planed exceeded";
+        balkwidth = today-plan;
+        balkwidth = balkwidth/1000/60/60/24;
+        balkwidth = balkwidth*24;
     }
     if(today > ende){
         text = "Deadline exceeded";
         farbe = "red";
+        balkwidth = today-ende;
+        balkwidth = balkwidth/1000/60/60/24;
+        balkwidth = balkwidth*24;
         ende = today;
         b = setWidth();
+
     }
 
 }
 
 function detectDevice() {
+    var ret;
     ret = 0;
     if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
         ret = 1;
@@ -170,15 +184,25 @@ function designiOS() {
 }
 
 function designPC() {
-    var dL = $("<div class=\"col s8\"></div>");
-    var dR = $("<div class=\"col s4\"></div>");
-
+    var dL = $("<div></div>");
+    var dR = $("<div></div>");
+    var temp = b-balkwidth-5;
+    var temp2 = 0;
+    if(temp<100){
+        temp2 = 100-temp;
+        temp = 100;
+    }
+    b = b+temp2;
+    temp = temp+"px";
+    balkwidth = balkwidth+"px";
     span2.text(text);
     dR.css("background-color", farbe);
     dR.css("height", "70px");
+    dR.css("width", balkwidth);
     dR.css("z-index","0");
     dR.css("color","white");
-    dR.addClass("valign-wrapper");
+    //dR.addClass("valign-wrapper");
+    dR.addClass("left");
     dR.addClass("flow-text");
     dR.css("padding-right","5px");
 
@@ -187,7 +211,10 @@ function designPC() {
 
     dL.css("height", "70px");
     dL.css("z-index","0");
-    dL.addClass("valign-wrapper").addClass("flow-text").addClass("name_field");
+    dL.css("width",temp);
+    //dL.addClass("valign-wrapper")
+    dL.addClass("flow-text").addClass("name_field");
+    dL.addClass("left");
 
     dL.addClass("truncate");
     dR.addClass("truncate");
@@ -202,6 +229,7 @@ function designPC() {
         ab = ab - (100-b);
         b = 100;
     }
+    ab = ab-temp2;
     ab = ab+"px";
     b = b + "px";
     task.css("width", b);
@@ -211,8 +239,7 @@ function designPC() {
     task.css("margin-left", ab);
     task.css("color","black");
     task.css("border-radius","20px");
-
-    dR.append(span2);
+    task.addClass("left-align");
     dL.append(name);
 
 

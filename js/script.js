@@ -6,17 +6,16 @@ var mygroups = new timeplaner.MyGroupsApi();
 var memgroup = new timeplaner.MemberingGroupsApi();
 
 var calllogin = function(error, response, context) {
-    if(error){
-        var statusCode = error.errorCode; // Codes listed on
-        var errorMessage = error.errorMessage; // The description
-        alert(statusCode+"\n"+JSON.stringify(errorMessage));
+    if(error || context.statusCode == 204){
+        var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
+        var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
+        //TODO: Alle errorcodes prüfen (pwd falsch/nutzer falsch usw)
         M.toast({html: 'Falsche Angaben'});
     }else{
-        // For example a Task or an task Array
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
+        setAPIKey(response.user_key);
         showHome();
-        setAPIKey(key);
     }
     var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);

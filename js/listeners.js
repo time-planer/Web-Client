@@ -151,7 +151,8 @@ function saveTask() {
     tasking.addTask(username, opts, calladdtask);
 }
 function createGroup() {
-    var grp = new timeplaner.InitialGroup();
+    var grp =
+        new timeplaner.InitialGroup();
     grp.name = $("#group-name").val();
     grp.description = $("#group-desc").val();
     var opts = {
