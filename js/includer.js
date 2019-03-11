@@ -61,27 +61,7 @@ function showGroups() {
         includeInto("gnew",$("#include-add-group"),function () {
             $("#add-grp-btn").on("click",createGroup);
         });
-        mygroups.getOwnedGroups(get_cookie("name"),function (error,response,b) {
-            if(error){
-                M.toast({html:"Error on fetching groups!"})
-            }else{
-                for(var i = 0;i<response.length;i++){
-                    var entry = $(
-                        $.ajax({
-                            type: "GET",
-                            url: "views/group-entry.html",
-                            async: false
-                        }).responseText
-                    );
-                    entry.find(".grp-name").text(response[i].name);
-                    entry.find(".grp-memcount").text(response[i].members);
-                    entry.find(".del-grp").click(function () {
-                        mygroups.
-                    });
-                    $("#grpview").append(entry);
-                }
-            }
-        });
+        showOwnedGroups();
     });
 }
 function showSettings(){

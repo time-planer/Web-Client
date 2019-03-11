@@ -101,12 +101,6 @@ var register = function() {
         }
     }
 };
-
-/**
- * @param task {InitialTask}
- * @param von {Date}
- * @param bis {Date}
- */
 function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
@@ -202,4 +196,34 @@ function setAPIKey(key){
     memgroup = new timeplaner.MemberingGroupsApi();
 }
 
+function deleteGroup(uid) {
+        mygroups.deleteGroup(get_cookie("name"),uid,function () {
+            showOwnedGroups();
+        });
+}
+
+function showOwnedGroups(){
+    mygroups.getOwnedGroups(get_cookie("name"),function (error,response,b) {
+        if (!error) {
+            for (var i = 0; i < response.length; i++) {
+                var entry = $(
+                    $.ajax({
+                        type: "GET",
+                        url: "views/group-entry.html",
+                        async: false
+                    }).responseText
+                );
+                entry.find(".grp-name").text(response[i].name);
+                entry.find(".grp-uid").text(response[i].uid).hide();
+                entry.find(".grp-memcount").text(response[i].members);
+                entry.find(".del-grp").click(function (e) {
+                    deleteGroup(entry.find(".grp-uid").text());
+                });
+                $("#grpview").append(entry);
+            }
+        } else {
+            M.toast({html: "Error on fetching groups!"})
+        }
+    });
+}
 $(document).ready(startup);
