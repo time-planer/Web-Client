@@ -101,6 +101,8 @@ function setDead() {
     if(today > ende){
         text = "Deadline exceeded";
         farbe = "red";
+        ende = today;
+        b = setWidth();
     }
 
 }
