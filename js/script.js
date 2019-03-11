@@ -93,7 +93,7 @@ var register = function() {
 };
 
 /**
- * @param task {Task}
+ * @param task {InitialTask}
  * @param von {Date}
  * @param bis {Date}
  */
