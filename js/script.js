@@ -34,6 +34,16 @@ var calladdtask = function(error, data, response) {
         },2000);
     }
 };
+var calledittask = function(error, data, response) {
+    if (error) {
+        console.error(error);
+        console.log(response);
+    } else {
+        console.log('API called successfully. Returned data: ' + data);
+        console.log(JSON.stringify(data));
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+    }
+};
 var callreg = function(error, data, response) {
     if (error) {
         console.error(error);
@@ -100,6 +110,7 @@ var register = function() {
 function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
+    var description = task.description;
     var deadline = task.deadline;
     var name = task.name;
     var priority = task.importance;
@@ -109,11 +120,10 @@ function show(task,von,bis) {
     var b = new Date();
     v.setFullYear(2019,0,1);
     b.setFullYear(2019,11,1);
-    console.log(von);
-    console.log(bis);
     div.addClass("task");
     div.on("click",openTask);
     div.attr("planed", planend);
+    div.attr("description", description);
     div.attr("deadline", deadline);
     div.attr("priority", priority);
     div.attr("startdat", startdat);

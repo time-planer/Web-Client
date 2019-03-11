@@ -8,6 +8,10 @@ function openTask(data) {
         elem = elem.parent();
     $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
     $('#name').text(elem.children(".name_field").text());
+    $('#textarea1').text(elem.attr("description"));
+    $('#textarea1').val(elem.attr("description"));
+    $('label[for=textarea1]').addClass("active");
+
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
         document.getElementById('übrig').innerText = "Tage verbleibend: "+difDateTag(longStringtoDate(elem.attr("deadline")));
     } else {
@@ -117,6 +121,7 @@ function receiveAllTasks(a, data, b) {
             if(von>data[i].entererAt)
                 von = data[i].entererAt;
         }
+        $('#taskholder').empty();
         for (var i = 0; i < length; i++) {
             console.log(von);
             console.log(bis);
@@ -158,5 +163,23 @@ function createGroup() {
         }
         console.log(JSON.stringify(c,null,4));
         showGroups();
+    });
+}
+
+function editTask() {
+    var taskname = $('#name').text();
+    var tmp = tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
+        var newconftask = new timeplaner.EditTask();
+
+        newconftask.name = taskname;
+        newconftask.planedDate = tmp.planedDate;
+        newconftask.deadline = tmp.deadline;
+        newconftask.description = $('#textarea1').val();
+        newconftask.importance = tmp.importance;
+        var opts = {
+            'editTask': newconftask
+        };
+        console.log(JSON.stringify(opts,null,"\t"));
+        tasking.editTask(get_cookie("name"), taskname, opts, calledittask);
     });
 }
