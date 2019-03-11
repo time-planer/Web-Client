@@ -50,6 +50,7 @@ function showGroups() {
     includeHead("header3");
     includeBody("groups",function () {
         $("#include-add-group").load("views/gnew.html");
+        $("#add-grp-btn").click(createGroup);
     });
 }
 function showSettings(){
