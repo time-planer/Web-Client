@@ -190,7 +190,6 @@ function designPC() {
     temp = temp+"px";
     balkwidth = balkwidth+"px";
     span2.text(text);
-    alert(balkwidth);
     dR.css("background-color", farbe);
     dR.css("height", "70px");
     dR.css("width", balkwidth);
