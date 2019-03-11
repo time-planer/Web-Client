@@ -15,7 +15,16 @@ function includeHead(head) {
     });
     set_cookie("hcontext",head);
 }
-
+function includeInto(comp,into,ready) {
+    $.get("views/"+comp+".html",function (data) {
+        into.html($(data));
+        M.AutoInit();
+        if(ready != null && ready != undefined)
+            ready();
+    });
+    set_cookie("bcontext",comp);
+    set_cookie("bfcontext",ready);
+}
 function showHome() {
     includeHead("header2");
     includeBody("home",function () {
@@ -49,8 +58,7 @@ function showAdd() {
 function showGroups() {
     includeHead("header3");
     includeBody("groups",function () {
-        $("#include-add-group").load("views/gnew.html");
-        $("#add-grp-btn").click(createGroup);
+        $("#include-add-group").load("views/gnew.html").children("#add-grp-btn").on("click",createGroup);
     });
 }
 function showSettings(){

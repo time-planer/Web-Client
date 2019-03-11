@@ -146,5 +146,17 @@ function saveTask() {
     tasking.addTask(username, opts, calladdtask);
 }
 function createGroup() {
-    group
+    var grp = new timeplaner.InitialGroup();
+    grp.name = $("#group-name").val();
+    grp.description = $("#group-desc").val();
+    var opts = {
+        'initialGroup':  grp
+    };
+    mygroups.createGroup(get_cookie("name"), opts, function (error,b,c) {
+        if(error){
+            //TODO: Error handling
+        }
+        console.log(JSON.stringify(c,null,4));
+        showGroups();
+    });
 }
