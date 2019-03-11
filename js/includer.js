@@ -50,10 +50,12 @@ function showLogin() {
 function includeScript(sc) {
     $("head").append($("<script src='"+sc+"'></script>"));
 }
+
 function showAdd() {
     includeHead("header");
     includeBody("add",function () {
         $("#speichern").click(saveTask);
+        $('#imp').mousemove(aktuImport);
     });
 }
 function showGroups() {
