@@ -80,7 +80,6 @@ function today() {
     var secs = today-von;
     var days = Math.round(secs/1000/60/60/24);
     var abstandLinks = days*25;
-    window.scrollTo(abstandLinks,0);
 
 }
 function setAbstand() {
@@ -259,6 +258,7 @@ function designPC() {
     task.css("margin-left", ab);
     task.css("color","black");
     task.css("border-radius","20px");
+    task.addClass("taskclass");
     task.addClass("left-align");
     console.log(name+" Grün: "+balk2width+" "+farbe+": "+balkwidth+" Prüf-Num: "+pruef);
     dL.append(name);

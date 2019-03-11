@@ -84,3 +84,6 @@ main {
 .headerhover:hover{
     cursor: pointer;
 }
+.taskclass:hover{
+    cursor: pointer;
+}

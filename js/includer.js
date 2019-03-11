@@ -29,6 +29,7 @@ function showHome() {
         $("#out").click(logout);
         M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+		$('#taskholder').scrollLeft(-100);
     });
 }
 
