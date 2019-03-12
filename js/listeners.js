@@ -281,3 +281,7 @@ function deleteTask() {
     tasking.deleteTask(username,taskname, calldeltask);
     M.Modal.getInstance($('#modal1')).close();
 }
+
+function deleteGroupListener(e) {
+    deleteGroup($(e.target).find(".grp-uid").text());
+}
