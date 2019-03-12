@@ -200,13 +200,7 @@ function showOwnedGroups(){
 function reciveOwnedGroups(error,response,b) {
     if (!error) {
         for (var i = 0; i < response.length; i++) {
-            var entry = $(
-                $.ajax({
-                    type: "GET",
-                    url: "views/group-entry.html",
-                    async: false
-                }).responseText
-            );
+            var entry = loadSync("groups/entry");
             entry.find(".grp-name").text(response[i].name);
             entry.find(".grp-uid").text(response[i].uid).hide();
             entry.find(".grp-memcount").text(response[i].members);
