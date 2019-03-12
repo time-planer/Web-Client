@@ -78,6 +78,19 @@ function showLogin() {
     includeHead("header");
     includeBody("login",function () {
         $("#log").click(login);
+        //$("#username").onkeydown(weiterOnEnter(event));
+        $("#username").on('keypress',function(e) {
+            if(e.which == 13) {
+                event.preventDefault();
+                login();
+            }
+        });
+        $("#pw").on('keypress',function(e) {
+            if(e.which == 13) {
+                event.preventDefault();
+                login();
+            }
+        });
     });
 }
 function showSupport() {

@@ -108,7 +108,16 @@ function logout() {
     showLogin();
 }
 function login() {
-    auth.login($("#username").val(),$("#pw").val(),calllogin)
+    if($("#username").val() === "") {
+        M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+        return null;
+    } else {
+        if($("#pw").val() === "") {
+            M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+            return null;
+        }
+        auth.login($("#username").val(),$("#pw").val(),calllogin)
+    }
 }
 function saveTask() {
     var username = get_cookie("name"); // String | The users name
@@ -309,6 +318,7 @@ function deleteAllTasks() {
 function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
+
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
     }else{
@@ -330,5 +340,10 @@ function weiterleit() {
         showHome();
     }else{
         showLogin();
+    }
+}
+function weiterOnEnter(event) {
+    if (event.which == 13) {
+
     }
 }
