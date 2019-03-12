@@ -78,7 +78,9 @@ function showGroups() {
 }
 function showSettings(){
     includeHead("header");
-    includeBody("settings");
+    includeBody("settings", function () {
+        $('#delall').click(deleteAllTasks);
+    });
 }
 /**
 function weiterleit() {

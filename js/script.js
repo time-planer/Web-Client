@@ -68,7 +68,27 @@ function calldeltask(error, data, response) {
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
+}
+
+var calldelalltasks = function(error, data, response) {
+    if (error) {
+        console.log(error);
+        console.error(error);
+        console.log(response);
+        if(error.status === 401) {
+            M.toast({html: "API key is wrong"})
+        }
+        if(error.status === 404) {
+            M.toast({html: "The User isn't known by the server"})
+        }
+    } else {
+        console.log('API called successfully. Returned data: ' + data);
+        console.log(JSON.stringify(data));
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
+    }
 };
+
 function callreg (error, data, response) {
     if (error) {
         console.error(error);
@@ -87,7 +107,8 @@ function callreg (error, data, response) {
             }
         });
     }
-};
+}
+
 function receiveAllTasks(a, data, b) {
     data.sort(function (a,b) {
         return a.deadline-b.deadline;
@@ -108,6 +129,7 @@ function receiveAllTasks(a, data, b) {
         }
     }
 }
+
 
 function show(task,von,bis) {
     //Zeig es im Fenster an
