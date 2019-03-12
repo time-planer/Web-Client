@@ -30,21 +30,25 @@
                 </div>
             </form>
         </div>
-        <i class="small material-icons hand">notifications_active</i>
-        <i class="small material-icons hand">notifications_off</i>
+
+
         <i id="del" class="small material-icons hand">delete_forever</i>
         <!-- Switch -->
-        <div class="switch">
+        <div class="switch valign-wrapper">
             <label>
-                In Bearbeitung
+                <i class="small material-icons hand">notifications_active</i>
                 <input id="pro" type="checkbox">
                 <span class="lever"></span>
-                Abgeschlossen
+                <i class="small material-icons hand">notifications_off</i>
             </label>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">DONE</a>
+        <label class="left-align" style="margin-right: 50px">
+            <input id="indeterminate-checkbox" type="checkbox" />
+            <span>Abgeschlossen</span>
+        </label>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Schließen</a>
     </div>
 </div>
 <br>
