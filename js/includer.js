@@ -30,6 +30,15 @@
                 ready();
         });
     }
+    function loadSync(comp) {
+        return $(
+            $.ajax({
+                type: "GET",
+                url: "views/"+comp+".html",
+                async: false
+            }).responseText
+        );
+    }
 }
 function showHome() {
     includeHead("header2");
@@ -69,8 +78,8 @@ function showAdd() {
 }
 function showGroups() {
     includeHead("header3");
-    includeBody("groups",function () {
-        includeInto("gnew",$("#include-add-group"),function () {
+    includeBody("groups/groups",function () {
+        includeInto("groups/new",$("#include-add-group"),function () {
             $("#add-grp-btn").on("click",createGroup);
         });
         showOwnedGroups();
