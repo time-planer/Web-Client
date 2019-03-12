@@ -19,7 +19,7 @@ function calllogin(error, response, context) {
     }
     var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
-};
+}
 function calladdtask(error, data, response) {
     console.log(response);
     if (error) {
@@ -37,7 +37,7 @@ function calladdtask(error, data, response) {
         M.toast({html: 'Task wurde erstellt'});
         showHome();
     }
-};
+}
 function calledittask(error, data, response) {
     if (error) {
         console.error(error);
@@ -47,7 +47,7 @@ function calledittask(error, data, response) {
         console.log(JSON.stringify(data));
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     }
-};
+}
 function calldeltask(error, data, response) {
     if (error) {
         console.log(error);
@@ -69,8 +69,7 @@ function calldeltask(error, data, response) {
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 }
-
-var calldelalltasks = function(error, data, response) {
+function calldelalltasks(error, data, response) {
     if (error) {
         console.log(error);
         console.error(error);
@@ -87,7 +86,7 @@ var calldelalltasks = function(error, data, response) {
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
         M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
     }
-};
+}
 
 function callreg (error, data, response) {
     if (error) {
