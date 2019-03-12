@@ -2,6 +2,10 @@
  * Utility block
  */
 {
+    /**
+     * @param comp {string}
+     * @param ready {function}
+     */
     function includeBody(comp, ready) {
         $.get("views/" + comp + ".html", function (data) {
             $("#contentinclude").html($(data));
@@ -13,15 +17,26 @@
         set_cookie("bcontext", comp);
         set_cookie("bfcontext", ready);
     }
+    /**
+     * @param head {string}
+     */
     function includeHead(head) {
         $.get("views/" + head + ".html", function (data) {
             $("#headinclude").html($(data).html());
         });
         set_cookie("hcontext", head);
     }
+    /**
+     * @param sc {string} the source
+     */
     function includeScript(sc) {
         $("head").append($("<script src='"+sc+"'></script>"));
     }
+    /**
+     * @param comp {string}
+     * @param into {jQuery.fn.init|jQuery|HTMLElement}
+     * @param ready {function}
+     */
     function includeInto(comp, into, ready) {
         $.get("views/" + comp + ".html", function (data) {
             into.html($(data));
@@ -30,6 +45,10 @@
                 ready();
         });
     }
+    /**
+     * @param comp
+     * @returns {jQuery.fn.init|jQuery|HTMLElement}
+     */
     function loadSync(comp) {
         return $(
             $.ajax({
