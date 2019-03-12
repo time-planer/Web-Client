@@ -24,13 +24,17 @@ var calladdtask = function(error, data, response) {
     if (error) {
         console.error(error);
         console.log(response);
+        if(error.errorCode === 404) {
+            M.toast({html: 'API key is wrong'});
+            showHome();
+        } else {
+            M.toast({html: 'Eingaben sind nicht gültig'});
+        }
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
         M.toast({html: 'Task wurde erstellt'});
-        setTimeout(function () {
-            showHome();
-        },2000);
+        showHome();
     }
 };
 var calledittask = function(error, data, response) {

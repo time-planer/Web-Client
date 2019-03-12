@@ -48,69 +48,74 @@ function get_cookie(name) {
 
 function stringtoDate(text) {
     if(text === "") {
-        alert("Kein Datum eingegeben!")
+        M.toast({html: 'Kein Datum eingegeben!'});
     } else {
         var montext = text.substring(0, 3);
         var monat = 0;
         var tag = text.substring(4,6);
         var jahr = text.substring(7);
+        const pruef = new Date(text);
+        const isValidDate = (Boolean(+pruef) && pruef.getDate() == tag);
+        if(isValidDate) {
+            //Macht montext --> monat
+            switch (montext) {
+                case "Jan":
+                    monat = 0;
+                    break;
 
-        //Macht montext --> monat
-        switch (montext) {
-            case "Jan":
-                monat = 0;
-                break;
+                case "Feb":
+                    monat = 1;
+                    break;
 
-            case "Feb":
-                monat = 1;
-                break;
+                case "Mar":
+                    monat = 2;
+                    break;
 
-            case "Mar":
-                monat = 2;
-                break;
+                case "Apr":
+                    monat = 3;
+                    break;
 
-            case "Apr":
-                monat = 3;
-                break;
+                case "May":
+                    monat = 4;
+                    break;
 
-            case "May":
-                monat = 4;
-                break;
+                case "Jun":
+                    monat = 5;
+                    break;
 
-            case "Jun":
-                monat = 5;
-                break;
+                case "Jul":
+                    monat = 6;
+                    break;
 
-            case "Jul":
-                monat = 6;
-                break;
+                case "Aug":
+                    monat = 7;
+                    break;
 
-            case "Aug":
-                monat = 7;
-                break;
+                case "Sep":
+                    monat = 8;
+                    break;
 
-            case "Sep":
-                monat = 8;
-                break;
+                case "Oct":
+                    monat = 9;
+                    break;
 
-            case "Oct":
-                monat = 9;
-                break;
+                case "Nov":
+                    monat = 10;
+                    break;
 
-            case "Nov":
-                monat = 10;
-                break;
-
-            case "Dez":
-                monat = 11;
-                break;
-            default:
-                break;
+                case "Dez":
+                    monat = 11;
+                    break;
+                default:
+                    break;
+            }
+            var date = new Date();
+            date.setUTCFullYear(jahr, monat, tag);
+            date.setHours(23,55, 0, 0);
+            return date;
+        } else {
+            M.toast({html: 'Kein gültiges Datum eingegeben'});
         }
-        var date = new Date();
-        date.setUTCFullYear(jahr, monat, tag);
-        date.setHours(23,55, 0, 0);
-        return date;
     }
 }
 

@@ -55,7 +55,7 @@ function showAdd() {
     includeHead("header");
     includeBody("add",function () {
         $("#speichern").click(saveTask);
-        $('#imp').mousemove(aktuImport);
+        $('#imp').attr("oninput","aktuImport()");
     });
 }
 function showGroups() {

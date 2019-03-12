@@ -138,6 +138,9 @@ function login() {
 function saveTask() {
     var username = get_cookie("name"); // String | The users name
     var task = new timeplaner.InitialTask();
+    if(stringtoDate($("#dead").val()) != 0 && stringtoDate($("#plan").val()) != 0) {
+
+    }
     task.deadline = stringtoDate($("#dead").val());
     task.planedDate = stringtoDate($("#plan").val());
     task.description = $("#not").val();
