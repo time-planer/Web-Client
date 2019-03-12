@@ -119,7 +119,7 @@ function saveTask() {
         if(checkDates(stringtoDate($("#plan").val()),stringtoDate($("#dead").val())) === 0) {
             task.deadline = stringtoDate($("#dead").val());
             task.planedDate = stringtoDate($("#plan").val());
-            task.description = $("#not").val();
+            task.description = $("#textarea1").val();
             task.name = $("#title").val();
             task.importance = $("#imp").val();
             var opts = {
