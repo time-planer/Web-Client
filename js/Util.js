@@ -217,3 +217,48 @@ function checkDates(plan, dead) {
         return 0;
     }
 }
+function detectDeviceDesign() {
+    ret = 0;
+    if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
+        ret = 1;
+    }
+    if(isMobile.iOS()){
+        ret = 2;
+    }
+    switch (ret) {
+        case 0:
+            alert("Pc");
+            break;
+        case 1:
+            alert("Android");
+            designAndroid();
+            break;
+        case 2:
+            alert("iOS");
+            designiOS();
+            break;
+    }
+};
+
+function detectDevice() {
+    var ret;
+    ret = 0;
+    if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
+        ret = 1;
+    }
+    if(isMobile.iOS()){
+        ret = 2;
+    }
+    switch (ret) {
+        case 0:
+            designPC();
+            break;
+        case 1:
+            designAndroidTask();
+            break;
+        case 2:
+            designiOSTask();
+            break;
+    }
+};
+

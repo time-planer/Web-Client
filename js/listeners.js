@@ -102,31 +102,6 @@ function openTask(data) {
     }
     M.Modal.getInstance($("#modal1")).open();
 }
-/**
- * @param a
- * @param data {Array}
- * @param b {Request}
- */
-function receiveAllTasks(a, data, b) {
-    data.sort(function (a,b) {
-        return a.deadline-b.deadline;
-    });
-    var length = data.length;
-    if(length>0) {
-        var von = data[0].deadline;
-        var bis = new Date();
-        for (var i = 0; i < length; i++) {
-            if(data[i].deadline>bis)
-                bis = data[i].deadline;
-            if(von>data[i].entererAt)
-                von = data[i].entererAt;
-        }
-        $('#taskholder').empty();
-        for (var i = 0; i < length; i++) {
-            show(data[i],von,bis);
-        }
-    }
-}
 function logout() {
     kill_cookie("name");
     kill_cookie("api");
@@ -170,7 +145,6 @@ function createGroup() {
         showGroups();
     });
 }
-
 function editTask() {
     var taskname = $('#name').text();
     var tmp = tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
@@ -188,7 +162,6 @@ function editTask() {
         tasking.editTask(get_cookie("name"), taskname, opts, calledittask);
     });
 }
-
 function aktuImport() {
     var importance = $('#imp').val();
     switch (importance-1+1) {
@@ -274,7 +247,6 @@ function aktuImport() {
             break;
     }
 }
-
 function deleteTask() {
     var username = get_cookie("name"); // String | The users name
     var taskname = $("#name").text();
@@ -283,9 +255,7 @@ function deleteTask() {
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     M.Modal.getInstance($('#modal1')).close();
 }
-
-var register = function() {
-
+function register() {
     var mach = 0;
     var mach2 = 0;
     var mach3 = 0;
@@ -334,4 +304,23 @@ function deleteGroupListener(e) {
 
 function deleteAllTasks() {
     tasking.removeAllTasks(get_cookie("name"),calldelalltasks);
+}
+function startup() {
+    $("#footerinclude").load("views/footer.html");
+    var def = true;
+    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
+        setAPIKey(get_cookie("api"));
+    }else{
+        showLogin();
+        return;
+    }
+    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined  && get_cookie("bcontext") !== null && get_cookie("bcontext") !== undefined) {
+        eval("var x = "+get_cookie("bfcontext"));
+        includeBody(get_cookie("bcontext"),x);
+        includeHead(get_cookie("hcontext"));
+        def = false;
+    }
+    else{
+        showHome();
+    }
 }
