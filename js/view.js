@@ -129,28 +129,6 @@ function setDead() {
 
 }
 
-function detectDevice() {
-    var ret;
-    ret = 0;
-    if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
-        ret = 1;
-    }
-    if(isMobile.iOS()){
-        ret = 2;
-    }
-    switch (ret) {
-        case 0:
-            designPC();
-            break;
-        case 1:
-            designAndroidTask();
-            break;
-        case 2:
-            designiOSTask();
-            break;
-    }
-};
-
 function designAndroidTask() {
     $('#taskholder').addClass("valign-wrapper");
     task.css("width","200px");

@@ -5,7 +5,7 @@ var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
 var memgroup = new timeplaner.MemberingGroupsApi();
 
-var calllogin = function(error, response, context) {
+function calllogin(error, response, context) {
     if(error || context.statusCode == 204){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
         var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
@@ -20,7 +20,7 @@ var calllogin = function(error, response, context) {
     var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
 };
-var calladdtask = function(error, data, response) {
+function calladdtask(error, data, response) {
     console.log(response);
     if (error) {
         console.error(error);
@@ -38,7 +38,7 @@ var calladdtask = function(error, data, response) {
         showHome();
     }
 };
-var calledittask = function(error, data, response) {
+function calledittask(error, data, response) {
     if (error) {
         console.error(error);
         console.log(response);
@@ -48,7 +48,7 @@ var calledittask = function(error, data, response) {
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     }
 };
-var calldeltask = function(error, data, response) {
+function calldeltask(error, data, response) {
     if (error) {
         console.log(error);
         console.error(error);
@@ -69,7 +69,7 @@ var calldeltask = function(error, data, response) {
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 };
-var callreg = function(error, data, response) {
+function callreg (error, data, response) {
     if (error) {
         console.error(error);
         switch(error.status) {
@@ -88,6 +88,27 @@ var callreg = function(error, data, response) {
         });
     }
 };
+function receiveAllTasks(a, data, b) {
+    data.sort(function (a,b) {
+        return a.deadline-b.deadline;
+    });
+    var length = data.length;
+    if(length>0) {
+        var von = data[0].deadline;
+        var bis = new Date();
+        for (var i = 0; i < length; i++) {
+            if(data[i].deadline>bis)
+                bis = data[i].deadline;
+            if(von>data[i].entererAt)
+                von = data[i].entererAt;
+        }
+        $('#taskholder').empty();
+        for (var i = 0; i < length; i++) {
+            show(data[i],von,bis);
+        }
+    }
+}
+
 function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
@@ -116,25 +137,7 @@ function show(task,von,bis) {
     var days = Math.round((today-v)/1000/60/60/24);
     $('#taskholder').scrollLeft((days*25)-500);
 }
-function startup() {
-    $("#footerinclude").load("views/footer.html");
-    var def = true;
-    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
-        setAPIKey(get_cookie("api"));
-    }else{
-        showLogin();
-        return;
-    }
-    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined  && get_cookie("bcontext") !== null && get_cookie("bcontext") !== undefined) {
-        eval("var x = "+get_cookie("bfcontext"));
-        includeBody(get_cookie("bcontext"),x);
-        includeHead(get_cookie("hcontext"));
-        def = false;
-    }
-    else{
-        showHome();
-    }
-}
+
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -155,28 +158,7 @@ var isMobile = {
         return ((isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()));
     }
 };
-function detectDeviceDesign() {
-    ret = 0;
-    if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
-        ret = 1;
-    }
-    if(isMobile.iOS()){
-        ret = 2;
-    }
-    switch (ret) {
-        case 0:
-            alert("Pc");
-            break;
-        case 1:
-            alert("Android");
-            designAndroid();
-            break;
-        case 2:
-            alert("iOS");
-            designiOS();
-            break;
-    }
-};
+
 function setAPIKey(key){
     var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
     User_Key.apiKey =key;
