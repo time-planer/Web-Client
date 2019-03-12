@@ -277,7 +277,7 @@ function aktuImport() {
 
 function deleteTask() {
     var username = get_cookie("name"); // String | The users name
-    var taskname = $("#title").text();
+    var taskname = $("#name").text();
     console.log(username,taskname);
     tasking.deleteTask(username,taskname, calldeltask);
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
