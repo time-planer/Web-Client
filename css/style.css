@@ -87,3 +87,10 @@ main {
 .taskclass:hover{
     cursor: pointer;
 }
+.hand:hover{
+    cursor: pointer;
+}
+.headerbesonders{
+    position: fixed;
+    z-index: 10;
+}
