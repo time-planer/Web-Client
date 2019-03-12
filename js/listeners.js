@@ -297,12 +297,12 @@ function register() {
             }
         }
     }
-};
+}
 function deleteGroupListener(e) {
     deleteGroup($(e.target).find(".grp-uid").text());
 }
-
 function deleteAllTasks() {
+    //Abfrage ob der Benutzer es wirklich löschen möchte
     tasking.removeAllTasks(get_cookie("name"),calldelalltasks);
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
 }

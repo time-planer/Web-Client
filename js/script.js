@@ -87,7 +87,6 @@ function calldelalltasks(error, data, response) {
         M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
     }
 }
-
 function callreg (error, data, response) {
     if (error) {
         console.error(error);
