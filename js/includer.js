@@ -21,7 +21,7 @@
      * @param head {string}
      */
     function includeHead(head) {
-        $.get("views/" + head + ".html", function (data) {
+        $.get("views/header/" + head + ".html", function (data) {
             $("#headinclude").html($(data).html());
         });
         set_cookie("hcontext", head);
