@@ -277,6 +277,54 @@ function aktuImport() {
 
 function deleteTask() {
     var username = get_cookie("name"); // String | The users name
-    var taskname = $("#title").val();
+    var taskname = $("#title").text();
+    console.log(username,taskname);
     tasking.deleteTask(username,taskname, calldeltask);
+    tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+    M.Modal.getInstance($('#modal1')).close();
 }
+
+var register = function() {
+
+    var mach = 0;
+    var mach2 = 0;
+    var mach3 = 0;
+    var neu = new timeplaner.RegistrationRequest();
+    var rname = $("#rname").val();
+    if(rname !== "") {
+        neu.name = rname;
+    } else {
+        M.toast({html: 'Bitte geben Sie einen Namen ein'});
+        mach = 1;
+    }
+    var rmail = $("#rmail").val();
+    if(validateEmail(rmail)) {
+        neu.email = rmail;
+    } else {
+        M.toast({html: 'Bitte geben Sie eine gültige Email-Adresse ein'});
+        mach2 = 1;
+    }
+    var pw = $("#pwr").val();
+    if(valipas(pw) === 0) {
+        neu.password = pw;
+    } else {
+        mach3 = 1;
+    }
+    if(mach === 0 && mach2 === 0 && mach3 === 0) {
+        var opts = {
+            'registrationRequest': neu // RegistrationRequest |
+        };
+        auth.registrate(opts, callreg);
+        showLogin();
+    } else {
+        if(mach === 1) {
+            $("#rname").trigger('focus');
+        } else {
+            if(mach2 === 1) {
+                $("#rmail").trigger('focus');
+            } else {
+                $("#pwr").trigger('focus');
+            }
+        }
+    }
+};
