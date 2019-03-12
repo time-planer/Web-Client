@@ -27,9 +27,9 @@ function showHome() {
     includeHead("header2");
     includeBody("home",function () {
         $("#out").click(logout);
+        $("#del").click(deleteTask);
         M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
-		$('#taskholder').scrollLeft(-100);
     });
 }
 

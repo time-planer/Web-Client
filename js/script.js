@@ -49,6 +49,26 @@ var calledittask = function(error, data, response) {
         M.toast({html: 'Task wurde erfolgreich geändert'});
     }
 };
+var calldeltask = function(error, data, response) {
+    if (error) {
+        console.error(error);
+        console.log(response);
+        if(error.errorCode === 400) {
+            M.toast({html: "Task isn't known by the server"});
+        }
+        if(error.errorCode === 401) {
+            M.toast({html: "API key is wrong"})
+        }
+        if(error.errorCode === 404) {
+            M.toast({html: "The User isn't known by the server"})
+        }
+    } else {
+        console.log('API called successfully. Returned data: ' + data);
+        console.log(JSON.stringify(data));
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        M.toast({html: 'Task wurde erfolgreich gelöscht'});
+    }
+};
 var callreg = function(error, data, response) {
     if (error) {
         console.error(error);

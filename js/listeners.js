@@ -274,3 +274,9 @@ function aktuImport() {
             break;
     }
 }
+
+function deleteTask() {
+    var username = get_cookie("name"); // String | The users name
+    var taskname = $("#title").val();
+    tasking.deleteTask(username,taskname, calldeltask);
+}
