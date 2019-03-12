@@ -324,3 +324,10 @@ function startup() {
         showHome();
     }
 }
+function weiterleit() {
+    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
+        showHome();
+    }else{
+        showLogin();
+    }
+}
