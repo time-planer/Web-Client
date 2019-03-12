@@ -47,6 +47,20 @@ function showLogin() {
     });
 }
 
+function showSupport() {
+    includeHead("header");
+    includeBody("support",function () {
+
+    });
+}
+
+function showBug() {
+    includeHead("header");
+    includeBody("report",function () {
+
+    });
+}
+
 function includeScript(sc) {
     $("head").append($("<script src='"+sc+"'></script>"));
 }
