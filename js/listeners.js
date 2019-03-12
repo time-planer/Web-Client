@@ -108,7 +108,16 @@ function logout() {
     showLogin();
 }
 function login() {
-    auth.login($("#username").val(),$("#pw").val(),calllogin)
+    if($("#username").val() === "") {
+        M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+        return null;
+    } else {
+        if($("#pw").val() === "") {
+            M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+            return null;
+        }
+        auth.login($("#username").val(),$("#pw").val(),calllogin)
+    }
 }
 function saveTask() {
     var username = get_cookie("name"); // String | The users name
@@ -309,6 +318,7 @@ function deleteAllTasks() {
 function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
+
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
     }else{
@@ -332,6 +342,7 @@ function weiterleit() {
         showLogin();
     }
 }
+
 function onOpenOwnGroup(e) {includeHead("header");
     var root = $(e.target);
     while(!root.hasClass("grp-entry"))
@@ -363,4 +374,9 @@ function saveChangedPermissions() {
     mygroups.editGroup(get_cookie("name"),lastGrp.uid,{editGroup:grp},function callback() {
         mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
     });
+
+function weiterOnEnter(event) {
+    if (event.which == 13) {
+
+    }
 }
