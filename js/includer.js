@@ -32,39 +32,33 @@ function showHome() {
 		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
-
 function showRegister() {
     includeHead("header");
     includeBody("register",function () {
          $("#reg").click(register);
     });
 }
-
 function showLogin() {
     includeHead("header");
     includeBody("login",function () {
         $("#log").click(login);
     });
 }
-
 function showSupport() {
     includeHead("header");
     includeBody("support",function () {
 
     });
 }
-
 function showBug() {
     includeHead("header");
     includeBody("report",function () {
 
     });
 }
-
 function includeScript(sc) {
     $("head").append($("<script src='"+sc+"'></script>"));
 }
-
 function showAdd() {
     includeHead("header");
     includeBody("add",function () {
