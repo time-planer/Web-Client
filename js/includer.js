@@ -82,12 +82,3 @@ function showSettings(){
         $('#delall').click(deleteAllTasks);
     });
 }
-/**
-function weiterleit() {
-    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
-        showHome();
-    }else{
-        showLogin();
-    }
-}
- */

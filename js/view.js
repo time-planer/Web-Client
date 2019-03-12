@@ -8,6 +8,7 @@ var von;
 var start;
 var ende;
 var farbe;
+var farbe2;
 var text;
 var ma = 0;
 var plan;
@@ -92,9 +93,11 @@ function setDead() {
     var today = new Date();
     text = "";
     farbe = "";
+    farbe2 = "";
     pruef = 0;
     if(today < plan){
         farbe = "orange";
+        farbe2 = "green";
         balk2width = plan-today;
         balk2width = balk2width/1000/60/60/24;
         balk2width = balk2width*25;
@@ -108,10 +111,14 @@ function setDead() {
     if(today > plan){
         balk2width = 0;
         farbe = "orange";
+        farbe2 = "orangered";
         text = "Planed exceeded";
         balkwidth = ende-today;
         balkwidth = balkwidth/1000/60/60/24;
         balkwidth = balkwidth*25;
+        balk2width = today-plan;
+        balk2width = balk2width/1000/60/60/24;
+        balk2width = balk2width*25;
         pruef = 2;
     }
     if(today > ende){
@@ -180,12 +187,11 @@ function designPC() {
         temp2 = 100-temp;
         temp = 100;
     }
-
     b = b+temp2;
     temp = temp+"px";
     balkwidth = balkwidth;
     balk2width = balk2width;
-    dm.css("background-color","green");
+    dm.css("background-color",farbe2);
     dm.css("width",balk2width+"px");
     dm.css("height", "70px");
     dm.css("z-index","0");
@@ -212,10 +218,8 @@ function designPC() {
     //dL.addClass("valign-wrapper")
     dL.addClass("flow-text").addClass("name_field");
     dL.addClass("left");
-
     dL.addClass("truncate");
     dR.addClass("truncate");
-
     task.addClass("row");
     task.css("border", "1px black solid");
     task.css("color", "red");
@@ -250,6 +254,7 @@ function designPC() {
     }
     if(pruef === 2){
         task.append(dL);
+        task.append(dm);
         task.append(dR);
     }
     if(pruef === 3){
