@@ -1,27 +1,35 @@
-function includeBody(comp,ready) {
-    $.get("views/"+comp+".html",function (data) {
-        $("#contentinclude").html($(data));
-        M.AutoInit();
-        if(ready != null && ready != undefined)
-            ready();
-     //   detectDeviceDesign();
-    });
-    set_cookie("bcontext",comp);
-    set_cookie("bfcontext",ready);
-}
-function includeHead(head) {
-    $.get("views/"+head+".html",function (data) {
-        $("#headinclude").html($(data).html());
-    });
-    set_cookie("hcontext",head);
-}
-function includeInto(comp,into,ready) {
-    $.get("views/"+comp+".html",function (data) {
-        into.html($(data));
-        M.AutoInit();
-        if(ready != null && ready != undefined)
-            ready();
-    });
+/**
+ * Utility block
+ */
+{
+    function includeBody(comp, ready) {
+        $.get("views/" + comp + ".html", function (data) {
+            $("#contentinclude").html($(data));
+            M.AutoInit();
+            if (ready != null && ready != undefined)
+                ready();
+            //   detectDeviceDesign();
+        });
+        set_cookie("bcontext", comp);
+        set_cookie("bfcontext", ready);
+    }
+    function includeHead(head) {
+        $.get("views/" + head + ".html", function (data) {
+            $("#headinclude").html($(data).html());
+        });
+        set_cookie("hcontext", head);
+    }
+    function includeScript(sc) {
+        $("head").append($("<script src='"+sc+"'></script>"));
+    }
+    function includeInto(comp, into, ready) {
+        $.get("views/" + comp + ".html", function (data) {
+            into.html($(data));
+            M.AutoInit();
+            if (ready != null && ready != undefined)
+                ready();
+        });
+    }
 }
 function showHome() {
     includeHead("header2");
@@ -46,18 +54,11 @@ function showLogin() {
 }
 function showSupport() {
     includeHead("header");
-    includeBody("support",function () {
-
-    });
+    includeBody("support");
 }
 function showBug() {
     includeHead("header");
-    includeBody("report",function () {
-
-    });
-}
-function includeScript(sc) {
-    $("head").append($("<script src='"+sc+"'></script>"));
+    includeBody("report");
 }
 function showAdd() {
     includeHead("header");
@@ -79,7 +80,7 @@ function showSettings(){
     includeHead("header");
     includeBody("settings");
 }
-
+/**
 function weiterleit() {
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         showHome();
@@ -87,3 +88,4 @@ function weiterleit() {
         showLogin();
     }
 }
+ */
