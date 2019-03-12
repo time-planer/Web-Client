@@ -69,6 +69,24 @@ var calldeltask = function(error, data, response) {
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 };
+var calldelalltasks = function(error, data, response) {
+    if (error) {
+        console.log(error);
+        console.error(error);
+        console.log(response);
+        if(error.status === 401) {
+            M.toast({html: "API key is wrong"})
+        }
+        if(error.status === 404) {
+            M.toast({html: "The User isn't known by the server"})
+        }
+    } else {
+        console.log('API called successfully. Returned data: ' + data);
+        console.log(JSON.stringify(data));
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
+    }
+};
 var callreg = function(error, data, response) {
     if (error) {
         console.error(error);
@@ -88,6 +106,7 @@ var callreg = function(error, data, response) {
         });
     }
 };
+
 function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;

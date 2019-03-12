@@ -331,3 +331,7 @@ var register = function() {
 function deleteGroupListener(e) {
     deleteGroup($(e.target).find(".grp-uid").text());
 }
+
+function deleteAllTasks() {
+    tasking.removeAllTasks(get_cookie("name"),calldelalltasks);
+}
