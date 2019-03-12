@@ -25,7 +25,7 @@ var calladdtask = function(error, data, response) {
     if (error) {
         console.error(error);
         console.log(response);
-        if(error.errorCode === 404) {
+        if(error.status === 404) {
             M.toast({html: 'API key is wrong'});
             showHome();
         } else {
@@ -51,15 +51,16 @@ var calledittask = function(error, data, response) {
 };
 var calldeltask = function(error, data, response) {
     if (error) {
+        console.log(error);
         console.error(error);
         console.log(response);
-        if(error.errorCode === 400) {
+        if(error.status === 400) {
             M.toast({html: "Task isn't known by the server"});
         }
-        if(error.errorCode === 401) {
+        if(error.status === 401) {
             M.toast({html: "API key is wrong"})
         }
-        if(error.errorCode === 404) {
+        if(error.status === 404) {
             M.toast({html: "The User isn't known by the server"})
         }
     } else {
@@ -72,6 +73,9 @@ var calldeltask = function(error, data, response) {
 var callreg = function(error, data, response) {
     if (error) {
         console.error(error);
+        switch(error.status) {
+            case
+        }
     } else {
         console.log('API called successfully. Returned data: ' + data);
         auth.login($("#rmail"),$("#pwr"),function (error, data, response) {
@@ -81,49 +85,6 @@ var callreg = function(error, data, response) {
                 showHome();
             }
         });
-    }
-};
-var register = function() {
-
-    var mach = 0;
-    var mach2 = 0;
-    var mach3 = 0;
-    var neu = new timeplaner.RegistrationRequest();
-    var rname = $("#rname").val();
-    if(rname !== "") {
-        neu.name = rname;
-    } else {
-        M.toast({html: 'Bitte geben Sie einen Namen ein'});
-        mach = 1;
-    }
-    var rmail = $("#rmail").val();
-    if(validateEmail(rmail)) {
-        neu.email = rmail;
-    } else {
-        M.toast({html: 'Bitte geben Sie eine gültige Email-Adresse ein'});
-        mach2 = 1;
-    }
-    var pw = $("#pwr").val();
-    if(valipas(pw) === 0) {
-        neu.password = pw;
-    } else {
-        mach3 = 1;
-    }
-    if(mach === 0 && mach2 === 0 && mach3 === 0) {
-        var opts = {
-            'registrationRequest': neu // RegistrationRequest |
-        };
-        auth.registrate(opts, callreg);
-    } else {
-        if(mach === 1) {
-            $("#rname").trigger('focus');
-        } else {
-            if(mach2 === 1) {
-                $("#rmail").trigger('focus');
-            } else {
-                $("#pwr").trigger('focus');
-            }
-        }
     }
 };
 function show(task,von,bis) {
