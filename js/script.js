@@ -21,6 +21,7 @@ var calllogin = function(error, response, context) {
     //alert(request);
 };
 var calladdtask = function(error, data, response) {
+    console.log(response);
     if (error) {
         console.error(error);
         console.log(response);

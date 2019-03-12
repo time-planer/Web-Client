@@ -49,6 +49,7 @@ function get_cookie(name) {
 function stringtoDate(text) {
     if(text === "") {
         M.toast({html: 'Kein Datum eingegeben!'});
+        return null;
     } else {
         var montext = text.substring(0, 3);
         var monat = 0;
@@ -115,6 +116,7 @@ function stringtoDate(text) {
             return date;
         } else {
             M.toast({html: 'Kein gültiges Datum eingegeben'});
+            return null;
         }
     }
 }
@@ -205,4 +207,13 @@ function difDateTag(date) {
     var secs = date-now;
     var days = secs/1000/60/60/24;
     return Math.round(days);
+}
+
+function checkDates(plan, dead) {
+    if(dead-plan < 1) {
+        M.toast({html: 'Die Deadline muss vor dem geplantem Ende sein!'})
+        return 1;
+    } else {
+        return 0;
+    }
 }

@@ -138,18 +138,21 @@ function login() {
 function saveTask() {
     var username = get_cookie("name"); // String | The users name
     var task = new timeplaner.InitialTask();
-    if(stringtoDate($("#dead").val()) != 0 && stringtoDate($("#plan").val()) != 0) {
+    if(stringtoDate($("#dead").val()) === null || stringtoDate($("#plan").val()) === null) {
 
+    } else {
+        if(checkDates(stringtoDate($("#plan").val()),stringtoDate($("#dead").val())) === 0) {
+            task.deadline = stringtoDate($("#dead").val());
+            task.planedDate = stringtoDate($("#plan").val());
+            task.description = $("#not").val();
+            task.name = $("#title").val();
+            task.importance = $("#imp").val();
+            var opts = {
+                'initialTask': task // InitialTask |
+            };
+            tasking.addTask(username, opts, calladdtask);
+        }
     }
-    task.deadline = stringtoDate($("#dead").val());
-    task.planedDate = stringtoDate($("#plan").val());
-    task.description = $("#not").val();
-    task.name = $("#title").val();
-    task.importance = $("#imp").val();
-    var opts = {
-        'initialTask': task // InitialTask |
-    };
-    tasking.addTask(username, opts, calladdtask);
 }
 function createGroup() {
     var grp =
