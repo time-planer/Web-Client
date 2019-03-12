@@ -85,3 +85,11 @@ function showSettings(){
     includeHead("header");
     includeBody("settings");
 }
+
+function weiterleit() {
+    if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
+        showHome();
+    }else{
+        showLogin();
+    }
+}

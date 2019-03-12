@@ -114,7 +114,7 @@ function show(task,von,bis) {
     styleTask(div, v, b, span);
     var today = new Date();
     var days = Math.round((today-v)/1000/60/60/24);
-    $('#taskholder').scrollLeft((days*25)-1000);
+    $('#taskholder').scrollLeft((days*25)-500);
 }
 function startup() {
     $("#footerinclude").load("views/footer.html");
@@ -193,27 +193,26 @@ function deleteGroup(uid) {
 }
 
 function showOwnedGroups(){
-    mygroups.getOwnedGroups(get_cookie("name"),function (error,response,b) {
-        if (!error) {
-            for (var i = 0; i < response.length; i++) {
-                var entry = $(
-                    $.ajax({
-                        type: "GET",
-                        url: "views/group-entry.html",
-                        async: false
-                    }).responseText
-                );
-                entry.find(".grp-name").text(response[i].name);
-                entry.find(".grp-uid").text(response[i].uid).hide();
-                entry.find(".grp-memcount").text(response[i].members);
-                entry.find(".del-grp").click(function (e) {
-                    deleteGroup(entry.find(".grp-uid").text());
-                });
-                $("#grpview").append(entry);
-            }
-        } else {
-            M.toast({html: "Error on fetching groups!"})
+    mygroups.getOwnedGroups(get_cookie("name"),reciveOwnedGroups);
+}
+function reciveOwnedGroups(error,response,b) {
+    if (!error) {
+        for (var i = 0; i < response.length; i++) {
+            var entry = $(
+                $.ajax({
+                    type: "GET",
+                    url: "views/group-entry.html",
+                    async: false
+                }).responseText
+            );
+            entry.find(".grp-name").text(response[i].name);
+            entry.find(".grp-uid").text(response[i].uid).hide();
+            entry.find(".grp-memcount").text(response[i].members);
+            entry.find(".del-grp").click(deleteGroupListener);
+            $("#grpview").append(entry);
         }
-    });
+    } else {
+        M.toast({html: "Error on fetching groups!"})
+    }
 }
 $(document).ready(startup);
