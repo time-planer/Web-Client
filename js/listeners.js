@@ -304,6 +304,7 @@ function deleteGroupListener(e) {
 
 function deleteAllTasks() {
     tasking.removeAllTasks(get_cookie("name"),calldelalltasks);
+    tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
 }
 function startup() {
     $("#footerinclude").load("views/footer.html");
