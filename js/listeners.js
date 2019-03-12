@@ -332,3 +332,35 @@ function weiterleit() {
         showLogin();
     }
 }
+function onOpenOwnGroup(e) {includeHead("header");
+    var root = $(e.target);
+    while(!root.hasClass("grp-entry"))
+        root = root.parent();
+    var uid = root.find(".grp-uid").text();
+    set_cookie("grp_uid",uid);
+    includeBody("groups/own",function () {
+        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+    });
+}
+function onAddGrpMember() {
+    var grp = new timeplaner.EditGroup();
+    grp.members = lastGrp.members;
+    var mem = new timeplaner.GroupMember();
+    mem.email = $("#member").val();
+    mem.edit = false;
+    mem.create = false;
+    mem.delete = false;
+    mem.edit = false;
+    grp.members.push(mem);
+    mygroups.editGroup(get_cookie("name"),lastGrp.uid,{editGroup:grp},function callback() {
+        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+    });
+
+}
+function saveChangedPermissions() {
+    var grp = new timeplaner.EditGroup();
+    grp.members = lastGrp.members;
+    mygroups.editGroup(get_cookie("name"),lastGrp.uid,{editGroup:grp},function callback() {
+        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+    });
+}

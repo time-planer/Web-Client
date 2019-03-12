@@ -94,3 +94,12 @@ main {
     position: fixed;
     z-index: 10;
 }
+.rounded{
+    border-radius: 20px;
+}
+.srounded{
+    border-radius: 10px;
+}
+.fillw{
+    width: 100%;
+}

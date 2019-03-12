@@ -4,7 +4,7 @@ var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
 var memgroup = new timeplaner.MemberingGroupsApi();
-
+var lastGrp;
 function calllogin(error, response, context) {
     if(error || context.statusCode == 204){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
@@ -189,9 +189,9 @@ function setAPIKey(key){
 }
 
 function deleteGroup(uid) {
-        mygroups.deleteGroup(get_cookie("name"),uid,function () {
-            showOwnedGroups();
-        });
+    mygroups.deleteGroup(get_cookie("name"),uid,function () {
+        showOwnedGroups();
+    });
 }
 
 function showOwnedGroups(){
@@ -199,16 +199,58 @@ function showOwnedGroups(){
 }
 function reciveOwnedGroups(error,response,b) {
     if (!error) {
+        var entry = loadSync("groups/entry");
         for (var i = 0; i < response.length; i++) {
-            var entry = loadSync("groups/entry");
-            entry.find(".grp-name").text(response[i].name);
-            entry.find(".grp-uid").text(response[i].uid).hide();
-            entry.find(".grp-memcount").text(response[i].members);
-            entry.find(".del-grp").click(deleteGroupListener);
-            $("#grpview").append(entry);
+            tentry = entry.clone();
+            tentry.find(".grp-name").text(response[i].name);
+            tentry.find(".grp-uid").text(response[i].uid).hide();
+            tentry.find(".grp-memcount").text(response[i].members);
+            tentry.find(".del-grp").click(deleteGroupListener);
+            tentry.click(onOpenOwnGroup);
+            $("#grpview").append(tentry);
         }
     } else {
         M.toast({html: "Error on fetching groups!"})
     }
+}
+function reciveOwnedGroup(a,grp,c){
+    lastGrp = grp;
+    $("#grp-uid").text(grp.uid);
+    $("#grp-name").text(grp.name);
+    $("#grp-desc").text(grp.description);
+    $("#grp-member-count").text(grp.members.length);
+    $("#grp-task-count").text(grp.tasks.length);
+    $("#grp-created").text(longStringDateToShortStringDate(grp.creation_date.toString()));
+    $("#add-grp-member").click(onAddGrpMember);
+    $("#grp-save").click(saveChangedPermissions);
+    var mementry = loadSync("groups/member-entry");
+    $("#grp-members").empty();
+    for(var i = 0;i<grp.members.length;i++){
+        var mem = grp.members[i];
+        var tentry = mementry.clone();
+        tentry.attr("index",i);
+        tentry.find(".grp-member-mail").text(mem.email);
+        tentry.find(".grp-member-create").prop('checked', mem.create).change(function (e) {
+            var elem = $(e.target);
+            while(!elem.is("[index]"))
+                elem = elem.parent();
+            lastGrp.members[elem.attr("index")].create = $(e.target).val() === "on";
+        });
+        tentry.find(".grp-member-del").prop('checked', mem.delete).change(function (e) {
+
+            var elem = $(e.target);
+            while(!elem.is("[index]"))
+                elem = elem.parent();
+            lastGrp.members[elem.attr("index")].delete = $(e.target).val() === "on";
+        });
+        tentry.find(".grp-member-edit").prop('checked', mem.edit).change(function (e) {
+            var elem = $(e.target);
+            while(!elem.is("[index]"))
+                elem = elem.parent();
+            lastGrp.members[elem.attr("index")].edit = $(e.target).val() === "on";
+        });
+        $("#grp-members").append(tentry);
+    }
+    console.log("Recived group : \n"+JSON.stringify(grp,null,4));
 }
 $(document).ready(startup);
