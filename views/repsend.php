@@ -13,7 +13,7 @@
             $empf = "$an";
             $betreff = $_GET['betreff'];
             $from = "From: ";
-            $from .= $wem; 
+            $from .= $wem;
             $from .= " <";
             $from .= "$von";
             $from .= ">\n";
