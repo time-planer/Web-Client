@@ -328,3 +328,6 @@ var register = function() {
         }
     }
 };
+function deleteGroupListener(e) {
+    deleteGroup($(e.target).find(".grp-uid").text());
+}
