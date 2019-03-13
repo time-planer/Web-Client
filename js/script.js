@@ -106,7 +106,6 @@ function callreg (error, data, response) {
         });
     }
 }
-
 function receiveAllTasks(a, data, b) {
     data.sort(function (a,b) {
         return a.deadline-b.deadline;
@@ -127,8 +126,6 @@ function receiveAllTasks(a, data, b) {
         }
     }
 }
-
-
 function show(task,von,bis) {
     //Zeig es im Fenster an
     var planend = task.planedDate;
@@ -157,7 +154,6 @@ function show(task,von,bis) {
     var days = Math.round((today-v)/1000/60/60/24);
     $('#taskholder').scrollLeft((days*25)-500);
 }
-
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -178,7 +174,6 @@ var isMobile = {
         return ((isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()));
     }
 };
-
 function setAPIKey(key){
     var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
     User_Key.apiKey =key;
@@ -187,13 +182,11 @@ function setAPIKey(key){
     mygroups = new timeplaner.MyGroupsApi();
     memgroup = new timeplaner.MemberingGroupsApi();
 }
-
 function deleteGroup(uid) {
     mygroups.deleteGroup(get_cookie("name"),uid,function () {
         showOwnedGroups();
     });
 }
-
 function showOwnedGroups(){
     mygroups.getOwnedGroups(get_cookie("name"),reciveOwnedGroups);
 }
@@ -253,4 +246,9 @@ function reciveOwnedGroup(a,grp,c){
     }
     console.log("Recived group : \n"+JSON.stringify(grp,null,4));
 }
+function reciveMemberingListOnAdd(a,grps,e){
+    for(var i = 0;i<grps.length;i++){
+        $("#dropdown121").append($("<li>"+grps[i].name+"</li>"))
+    }
+};
 $(document).ready(startup);
