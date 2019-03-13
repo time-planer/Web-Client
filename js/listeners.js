@@ -371,10 +371,10 @@ function onAddGrpMember() {
 function saveChangedPermissions() {
     var grp = new timeplaner.EditGroup();
     grp.members = lastGrp.members;
-    mygroups.editGroup(get_cookie("name"),lastGrp.uid,{editGroup:grp},function callback() {
-        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+    mygroups.editGroup(get_cookie("name"), lastGrp.uid, {editGroup: grp}, function callback() {
+        mygroups.getOwnedGroup(get_cookie("name"), get_cookie("grp_uid"), reciveOwnedGroup);
     });
-
+}
 function weiterOnEnter(event) {
     if (event.which == 13) {
 
