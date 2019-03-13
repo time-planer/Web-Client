@@ -242,6 +242,13 @@ function reciveOwnedGroup(a,grp,c){
                 elem = elem.parent();
             lastGrp.members[elem.attr("index")].edit = $(e.target).val() === "on";
         });
+        tentry.find(".delete-grp").click(function (e) {
+            var elem = $(e.target);
+            while(!elem.is("[index]"))
+                elem = elem.parent();
+            lastGrp.members.splice(elem.attr("index"),1);
+            saveChangedPermissions();
+        });
         $("#grp-members").append(tentry);
     }
     console.log("Recived group : \n"+JSON.stringify(grp,null,4));
