@@ -18,6 +18,7 @@ var name;
 var span2;
 var pruef;
 var balkwidth = 0;
+var faktoli = 0;
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -96,6 +97,7 @@ function setDead() {
     farbe2 = "";
     pruef = 0;
     if(today < plan){
+        faktoli = 0;
         farbe = "orange";
         farbe2 = "green";
         balk2width = plan-today;
@@ -109,6 +111,7 @@ function setDead() {
         pruef = 1;
     }
     if(today > plan){
+        faktoli = 0;
         balk2width = 0;
         farbe = "orange";
         farbe2 = "orangered";
@@ -122,6 +125,7 @@ function setDead() {
         pruef = 2;
     }
     if(today > ende){
+        faktoli = 10;
         text = "Deadline exceeded";
         farbe = "red";
         balk2width = 0;
@@ -226,6 +230,7 @@ function designPC() {
     task.css("overflow","hidden");
     task.css("box-sizing","content-box");
     var ab = setAbstand();
+    ab = ab-faktoli;
     if(b <= 100){
         ab = ab - (100-b);
         b = 100;
