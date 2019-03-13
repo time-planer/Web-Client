@@ -106,7 +106,7 @@ function showAdd() {
     includeBody("add",function () {
         $("#speichern").click(saveTask);
         $('#imp').attr("oninput","aktuImport()");
-        memgroups.getGroups(get_cookie("name"),reciveMemberingListOnAdd);
+        memgroup.getGroups(get_cookie("name"),reciveMemberingListOnAdd);
     });
 }
 function showGroups() {
