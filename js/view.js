@@ -247,7 +247,6 @@ function designPC() {
     task.css("border-radius","20px");
     task.addClass("taskclass");
     task.addClass("left-align");
-    console.log(name+" Grün: "+balk2width+" "+farbe+": "+balkwidth+" Prüf-Num: "+pruef);
     dL.append(name);
 
 
