@@ -1,21 +1,30 @@
 <header style="margin-bottom: 10px">
-<ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">Einzel</a></li>
-    <li><a href="#!">Gruppe...</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">Alle</a></li>
-</ul>
 <ul id="dropdown2" class="dropdown-content">
     <li><a href="#!">W1</a></li>
     <li><a href="#!">W2</a></li>
     <li class="divider"></li>
     <li><a href="#!">W..</a></li>
 </ul>
+<!-- Modal Structure -->
+<div id="displayGrps" class="modal">
+    <div class="modal-content">
+        <h4>Ansicht</h4>
+        <p>
+            <label class="component" name="view-entry">
+                <input type="checkbox" class="filled-in" checked="checked" />
+                <span class="grp-name"></span>
+            </label>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
+    </div>
+</div>
 <nav class="headerbesonders z-depth-0" style="margin-bottom: 64px">
     <div class="nav-wrapper teal accent-4 z-depth-0">
         <a onclick="weiterleit()" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
         <ul class="right hide-on-med-and-down ">
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Ansicht<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="waves-effect waves-light btn modal-trigger" href="#displayGrps">Ansicht</a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Woche<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </div>

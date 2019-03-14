@@ -12,7 +12,6 @@
             M.AutoInit();
             if (ready != null && ready != undefined)
                 ready();
-            //   detectDeviceDesign();
         });
         set_cookie("bcontext", comp);
         set_cookie("bfcontext", ready);
@@ -20,9 +19,12 @@
     /**
      * @param head {string}
      */
-    function includeHead(head) {
+    function includeHead(head,ready) {
         $.get("views/header/" + head + ".html", function (data) {
             $("#headinclude").html($(data).html());
+            M.AutoInit();
+            if (ready != null && ready != undefined)
+                ready();
         });
         set_cookie("hcontext", head);
     }
@@ -58,9 +60,30 @@
             }).responseText
         );
     }
+    function goTo(page, title, url) {
+        if ("undefined" !== typeof history.pushState) {
+            history.pushState({page: page}, title, url);
+        } else {
+            window.location.assign(url);
+        }
+    }
 }
 function showHome() {
-    includeHead("header2");
+    includeHead("header2",function () {
+        onepage.loadComps();
+        onepage.getComp("view-entry").init = function (v){
+            v.get().find(".grp-name").text(v.group.name);
+        };
+        memgroup.getGroups(get_cookie("name"),function (a,data,c) {
+            //TODO: Error checking
+            for(var i = 0;i<data.length;i++){
+                var v = onepage.getComp("view-entry").create();
+                v.group = data[i];
+                v.init();
+                $("#displayGrps .modal-content p").append(v.get());
+            }
+        });
+    });
     includeBody("home",function () {
         $("#out").click(logout);
         $("#del").click(deleteTask);
