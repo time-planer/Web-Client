@@ -59,11 +59,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| The users name | 
  **groupUUID** | **String**| The UUID of the group to operate with | 
- **initialTask** | [**InitialTask**](InitialTask.md)|  | [optional] 
+ **initialTask** | [**InitialTask**](../DataTypes/InitialTask.md)|  | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../DataTypes/Task.md)
 
 ### Authorization
 
@@ -112,11 +112,11 @@ apiInstance.createGroup(username, opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| The users name | 
- **initialGroup** | [**InitialGroup**](InitialGroup.md)|  | [optional] 
+ **initialGroup** | [**InitialGroup**](../DataTypes/InitialGroup.md)|  | [optional] 
 
 ### Return type
 
-[**Group**](Group.md)
+[**Group**](../DataTypes/Group.md)
 
 ### Authorization
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Group**](Group.md)
+[**Group**](../DataTypes/Group.md)
 
 ### Authorization
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../DataTypes/Task.md)
 
 ### Authorization
 
@@ -271,11 +271,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| The users name | 
  **groupUUID** | **String**| The UUID of the group to operate with | 
- **editGroup** | [**EditGroup**](EditGroup.md)| The edit information  You also can only edit a few values or none, all parameters are optional | [optional] 
+ **editGroup** | [**EditGroup**](../DataTypes/EditGroup.md)| The edit information  You also can only edit a few values or none, all parameters are optional | [optional] 
 
 ### Return type
 
-[**Group**](Group.md)
+[**Group**](../DataTypes/Group.md)
 
 ### Authorization
 
@@ -328,11 +328,11 @@ Name | Type | Description  | Notes
  **username** | **String**| The users name | 
  **task** | **String**| The name of the task to edit delte or get detailed information | 
  **groupUUID** | **String**| The UUID of the group to operate with | 
- **editTask** | [**EditTask**](EditTask.md)| Only need to enter the values to edit | [optional] 
+ **editTask** | [**EditTask**](../DataTypes/EditTask.md)| Only need to enter the values to edit | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../DataTypes/Task.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[Task]**](Task.md)
+[**[Task]**](../DataTypes/Task.md)
 
 ### Authorization
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReducedGroup**](ReducedGroup.md)
+[**ReducedGroup**](../DataTypes/ReducedGroup.md)
 
 ### Authorization
 
@@ -487,7 +487,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../DataTypes/Task.md)
 
 ### Authorization
 
@@ -536,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[ReducedGroup]**](ReducedGroup.md)
+[**[ReducedGroup]**](../DataTypes/ReducedGroup.md)
 
 ### Authorization
 
@@ -587,7 +587,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Group**](Group.md)
+[**Group**](../DataTypes/Group.md)
 
 ### Authorization
 
@@ -636,7 +636,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[ReducedGroup]**](ReducedGroup.md)
+[**[ReducedGroup]**](../DataTypes/ReducedGroup.md)
 
 ### Authorization
 
@@ -687,7 +687,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+[**SuccessResponse**](../DataTypes/SuccessResponse.md)
 
 ### Authorization
 

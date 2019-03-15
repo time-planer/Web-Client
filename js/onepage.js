@@ -86,7 +86,7 @@ var dev = false;
         var tmp = this.compPath;
         if(arguments.length === 0)
             this.loadComps();
-        else if(arguments.length == 1){
+        else if(arguments.length === 1){
             var c = new exports.Component(name);
             c.load();
             components.push(c);
@@ -102,7 +102,6 @@ var dev = false;
             components.push(c);
         }
         this.compPath = tmp;
-
     };
     exports.compPath = undefined;
 })(onepage);

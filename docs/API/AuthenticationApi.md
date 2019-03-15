@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**InlineResponse200**](../DataTypes/InlineResponse200.md)
 
 ### Authorization
 
@@ -83,11 +83,11 @@ apiInstance.registrate(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registrationRequest** | [**RegistrationRequest**](RegistrationRequest.md)|  | [optional] 
+ **registrationRequest** | [**RegistrationRequest**](../DataTypes/RegistrationRequest.md)|  | [optional] 
 
 ### Return type
 
-[**SuccessResponse**](SuccessResponse.md)
+[**SuccessResponse**](../DataTypes/SuccessResponse.md)
 
 ### Authorization
 
