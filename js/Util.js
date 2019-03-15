@@ -251,7 +251,7 @@ function detectDevice() {
     }
     switch (ret) {
         case 0:
-            designPC();
+            newDesignPC();
             break;
         case 1:
             designAndroidTask();

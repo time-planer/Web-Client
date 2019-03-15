@@ -267,3 +267,115 @@ function designPC() {
     }
 
 }
+
+/**
+ * Task Ansicht für PC
+ * @author Linus Dehner
+ * @version
+ */
+function newDesignPC() {
+    // Initialisierung der Variablen
+    var heute = $("<div></div>");
+    var green = $("<div></div>");
+    var orange = $("<div></div>");
+    var red = $("<div></div>");
+    var fortschritt = $("<div></div>");
+    var titel = $("<div></div>");
+    var tmp = 0;
+    var heut = new Date();
+    var span5 = ("<span class='flow-text'></span>");
+
+
+    // Grüner Balken Design
+    tmp = plan-start;
+    tmp = tmp/1000/60/60*25;
+    tmp = tmp+"px";
+    console.log("Green: "+tmp);
+    green.css("width", tmp);
+    green.css("height", "30px");
+    green.css("background-color","green");
+    green.addClass("left");
+
+
+    // Orangener Balken Design
+    tmp = 0;
+    tmp = ende-plan;
+    tmp = tmp/1000/60/60*25;
+    tmp = tmp+"px";
+    console.log("Orange: "+tmp);
+    orange.css("width", tmp);
+    orange.css("height", "30px");
+    orange.css("background-color","orange");
+    orange.addClass("left");
+
+
+    // Roter Balken Design
+    if(heut > ende){
+        tmp = 0;
+        tmp = heut-ende;
+        tmp = tmp/1000/60/60*25;
+        tmp = tmp+"px";
+        console.log("Red: "+tmp);
+        red.css("width", tmp);
+        red.css("height", "30px");
+        red.css("background-color","red");
+        red.addClass("left");
+    }
+
+
+    // Heute Strich Design
+    heute.css("width","25px");
+    heute.css("height", "30px");
+    heute.css("background-color","black");
+    tmp = start-heut;
+    tmp = tmp/1000/60/60*25;
+    tmp = tmp+"px";
+    heute.css("margin-left",tmp);
+    heute.css("z-index","10");
+
+
+    // Titel Box Design
+    tmp = 0;
+    tmp = green.width()+orange.width()+red.width();
+    titel.css("width",tmp);
+    titel.css("height", "40px");
+    titel.addClass("flow-text");
+    titel.text(name);
+
+
+    // Balken Box
+    tmp = 0;
+    tmp = green.width()+orange.width()+red.width();
+    fortschritt.css("width",tmp);
+    fortschritt.css("height", "30px");
+    fortschritt.append(green);
+    fortschritt.append(orange);
+    fortschritt.append(red);
+    fortschritt.append(heute);
+
+
+    // Task
+    tmp = 0;
+    tmp = green.width()+orange.width()+red.width();
+    task.css("border", "1px black solid");
+    task.css("color", "red");
+    task.css("overflow","hidden");
+    task.css("box-sizing","content-box");
+    task.css("width", tmp);
+    task.css("height", "70px");
+    task.css("z-index","11");
+    task.css("background", "transparent");
+    task.css("color","black");
+    task.css("border-radius","20px");
+    task.css("margin-top","20px");
+    task.addClass("taskclass");
+    task.addClass("left-align");
+    task.append(titel);
+    task.append(fortschritt);
+
+
+
+
+
+
+}
