@@ -27,6 +27,7 @@
                 ready();
         });
         set_cookie("hcontext", head);
+        set_cookie("hfcontext", ready);
     }
     /**
      * @param sc {string} the source
@@ -73,6 +74,12 @@ function showHome() {
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
             v.get().find(".grp-name").text(v.group.name);
+            if(get_cookie("view") != null){
+                var chkbox = v.get().find("input[type=checkbox]");
+                var newname =  (JSON.parse(get_cookie("view"))[v.group.name]);
+                chkbox.prop('checked', newname);
+            }
+
         };
         memgroup.getGroups(get_cookie("name"),function (a,data,c) {
             //TODO: Error checking
@@ -82,6 +89,14 @@ function showHome() {
                 v.init();
                 $("#displayGrps .modal-content p").append(v.get());
             }
+        });
+        $("#save-grp-view").click(function () {
+            var settings = {};
+            $(".grp-view-option").each(function () {
+                var inp = $(this).find("input[type=checkbox]");
+                settings[$(this).find(".grp-name").text()] = inp.get(0).checked;
+            });
+            set_cookie("view",JSON.stringify(settings));
         });
     });
     includeBody("home",function () {

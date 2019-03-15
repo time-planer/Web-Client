@@ -10,20 +10,20 @@
     <div class="modal-content">
         <h4>Ansicht</h4>
         <p>
-            <label class="component" name="view-entry">
-                <input type="checkbox" class="filled-in" checked="checked" />
+            <label class="component grp-view-option" name="view-entry">
+                <input type="checkbox" class="show-grp" checked="checked" />
                 <span class="grp-name"></span>
             </label>
         </p>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="save-grp-view">Save</a>
     </div>
 </div>
 <nav class="headerbesonders z-depth-0" style="margin-bottom: 64px">
     <div class="nav-wrapper teal accent-4 z-depth-0">
         <a onclick="weiterleit()" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
-        <ul class="right hide-on-med-and-down ">
+        <ul class="right disabled-hide-on-med-and-down ">
             <li><a class="waves-effect waves-light btn modal-trigger" href="#displayGrps">Ansicht</a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Woche<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
