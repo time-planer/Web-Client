@@ -58,17 +58,6 @@ function styleTask(task1,von1,bis,span) {
     setDead();
     detectDevice();
 
-
-
-
-
-
-    if(z==0){
-        //today();
-        z++;
-    }
-
-
 }
 function setWidth() {
     var secs = ende-start;
@@ -282,13 +271,12 @@ function newDesignPC() {
     var fortschritt = $("<div></div>");
     var titel = $("<div></div>");
     var tmp = 0;
-    var heut = new Date();
-    var span5 = ("<span class='flow-text'></span>");
+    var toddy = new Date();
 
 
     // Grüner Balken Design
     tmp = plan-start;
-    tmp = tmp/1000/60/60*25;
+    tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
     console.log("Green: "+tmp);
     green.css("width", tmp);
@@ -300,7 +288,7 @@ function newDesignPC() {
     // Orangener Balken Design
     tmp = 0;
     tmp = ende-plan;
-    tmp = tmp/1000/60/60*25;
+    tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
     console.log("Orange: "+tmp);
     orange.css("width", tmp);
@@ -310,10 +298,12 @@ function newDesignPC() {
 
 
     // Roter Balken Design
-    if(heut > ende){
+    if(toddy > ende){
         tmp = 0;
-        tmp = heut-ende;
-        tmp = tmp/1000/60/60*25;
+        tmp = toddy-ende;
+        console.log("Red0: "+tmp);
+        tmp = tmp/1000/60/60/24*25;
+        console.log("Red1: "+tmp);
         tmp = tmp+"px";
         console.log("Red: "+tmp);
         red.css("width", tmp);
@@ -327,7 +317,7 @@ function newDesignPC() {
     heute.css("width","25px");
     heute.css("height", "30px");
     heute.css("background-color","black");
-    tmp = start-heut;
+    tmp = start-toddy;
     tmp = tmp/1000/60/60*25;
     tmp = tmp+"px";
     heute.css("margin-left",tmp);
@@ -368,6 +358,7 @@ function newDesignPC() {
     task.css("color","black");
     task.css("border-radius","20px");
     task.css("margin-top","20px");
+    task.css("margin-left",setAbstand()+"px");
     task.addClass("taskclass");
     task.addClass("left-align");
     task.append(titel);
