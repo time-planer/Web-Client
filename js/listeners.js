@@ -327,8 +327,9 @@ function startup() {
     }
     if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined  && get_cookie("bcontext") !== null && get_cookie("bcontext") !== undefined) {
         eval("var x = "+get_cookie("bfcontext"));
+        eval("var y = "+get_cookie("hfcontext"));
         includeBody(get_cookie("bcontext"),x);
-        includeHead(get_cookie("hcontext"));
+        includeHead(get_cookie("hcontext"),y);
         def = false;
     }
     else{
