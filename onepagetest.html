@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OnePage</title>
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/onepage.js"></script>
+    <script>
+        $(document).ready(function () {
+            onepage.init();
+        });
+    </script>
+</head>
+<body>
+    <div class="component" name="para">
+        <h1 subst="title"></h1>
+        <p subst="text"></p>
+        <span class="view" name="button" text="Weiter"></span>
+    </div>
+    <div class="component" name="button">
+        <button class="btn" subst="text"></button>
+    </div>
+    <span class="view" name="para" title="Heading" text="Das ist der Text"></span>
+    <span class="view" name="para" title="Heading1" text="Das ist der Text"></span>
+    <span class="view" name="para" title="Heading2" text="Das ist der Text"></span>
+    <span class="view" name="para" title="Heading3" text="Das ist der Text"></span>
+    <span class="view" name="para" title="Heading4" text="Das ist der Text"></span>
+</body>
+</html>

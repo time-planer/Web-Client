@@ -1,7 +1,12 @@
 const onepage = {};
+var dev = true;
 (function(exports) {
     var components = [];
     var views = [];
+    if(dev){
+        exports.components = components;
+        exports.views = views;
+    }
     var defInit = function(view) {
         view.get().find("[subst]").each(function() {
             var val = $(this).attr("subst");
@@ -13,18 +18,24 @@ const onepage = {};
             if (components[i].name === name) return components[i];
         }
     };
-    exports.loadComps = function() {
+    exports.loadComps = function() gi{
         $(".component").hide().each(function() {
             var elem = $(this);
             var comp = new exports.Component();
             comp.name = elem.attr("name");
             comp.base = elem;
+            comp.base.removeClass("component");
             comp.init = defInit;
             components.push(comp);
         });
     };
-    exports.substViews = function() {
-        $(".view").show().each(function() {
+    exports.substViews = function(element) {
+        var els;
+        if(element !== undefined && element != null)
+            els = element.find(".view");
+        else
+            els = $(".view");
+        els.show().each(function() {
             var elem = $(this);
             var c, v;
             for (var i = 0; i < components.length; i++) {
@@ -63,29 +74,6 @@ const onepage = {};
 })(onepage);
 
 (function(exports) {
-    exports.View = function (comp) {
-        this.comp = comp;
-        if (this.comp != null) this.element = comp.base.clone().show();
-    };
-    exports.View.prototype.get = function() {
-        if (this.element == null) init();
-        return this.element;
-    };
-    exports.View.prototype.element = null;
-    exports.View.prototype.refresh = function() {
-        this.element.html(this.comp.base.clone().html());
-        this.comp.init(this);
-    };
-    exports.View.prototype.get = function() {
-        return this.element;
-    };
-    exports.View.prototype.$ = exports.View.prototype.get;
-    exports.View.prototype.init = function() {
-        this.comp.init(this);
-    };
-})(onepage);
-
-(function(exports) {
     exports.Component = function (name) {
         if (name != null) {
             this.name = name;
@@ -101,8 +89,34 @@ const onepage = {};
         }).responseText);
     };
     exports.Component.prototype.create = function() {
-        return new exports.View(this);
+       var v = new exports.View(this);
+       v.init();
+       return v;
     };
     exports.Component.prototype.init = function(v) {};
+})(onepage);
 
+(function(exports) {
+    exports.View = function (comp) {
+        this.comp = comp;
+        if (this.comp != null) { this.element = comp.base.clone().show();}
+    };
+    exports.View.prototype.get = function() {
+        if (this.element == null) init();
+        return this.element;
+    };
+    exports.View.prototype.element = null;
+    exports.View.prototype.refresh = function() {
+        this.element.html(this.comp.base.clone().html());
+        exports.substViews(this.element);
+        this.comp.init(this);
+    };
+    exports.View.prototype.get = function() {
+        return this.element;
+    };
+    exports.View.prototype.$ = exports.View.prototype.get;
+    exports.View.prototype.init = function() {
+        exports.substViews(this.element);
+        this.comp.init(this);
+    };
 })(onepage);
