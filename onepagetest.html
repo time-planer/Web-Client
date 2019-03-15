@@ -7,23 +7,26 @@
     <script src="js/onepage.js"></script>
     <script>
         $(document).ready(function () {
-            onepage.init();
+            onepage.loadComps();
+            onepage.getComp("para").init = function(v){
+                var elem = v.$();
+                elem.find(".heading").text(v.val("head"));
+                elem.find(".text").text(v.val("text"));
+            };
+            var view = onepage.getComp("para").create();
+            view.val("text","Test Text");
+            $("body").append(view.get());
         });
     </script>
 </head>
 <body>
     <div class="component" name="para">
-        <h1 subst="title"></h1>
-        <p subst="text"></p>
+        <h1 class="title"></h1>
+        <p class="text"></p>
         <span class="view" name="button" text="Weiter"></span>
     </div>
     <div class="component" name="button">
         <button class="btn" subst="text"></button>
     </div>
-    <span class="view" name="para" title="Heading" text="Das ist der Text"></span>
-    <span class="view" name="para" title="Heading1" text="Das ist der Text"></span>
-    <span class="view" name="para" title="Heading2" text="Das ist der Text"></span>
-    <span class="view" name="para" title="Heading3" text="Das ist der Text"></span>
-    <span class="view" name="para" title="Heading4" text="Das ist der Text"></span>
 </body>
 </html>
