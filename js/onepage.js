@@ -21,7 +21,7 @@ var dev = false;
         });
     };
     /**
-     * @param name {string}
+     *@param name {string}
      * @return {exports.Component}
      */
     exports.getComp = function(name) {
