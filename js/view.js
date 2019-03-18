@@ -317,11 +317,11 @@ function newDesignPC() {
     heute.css("width","25px");
     heute.css("height", "30px");
     heute.css("background-color","black");
-    tmp = start-toddy;
-    tmp = tmp/1000/60/60*25;
+    tmp = toddy-start;
+    tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
     heute.css("margin-left",tmp);
-    heute.css("z-index","10");
+    heute.css("z-index","11");
 
 
     // Titel Box Design
@@ -329,6 +329,7 @@ function newDesignPC() {
     tmp = green.width()+orange.width()+red.width();
     titel.css("width",tmp);
     titel.css("height", "40px");
+    titel.css("padding-left","15px");
     titel.addClass("flow-text");
     titel.text(name);
 
@@ -363,6 +364,4 @@ function newDesignPC() {
     task.addClass("left-align");
     task.append(titel);
     task.append(fortschritt);
-
-
 }
