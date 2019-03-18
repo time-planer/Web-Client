@@ -271,6 +271,7 @@ function newDesignPC() {
     var fortschritt = $("<div></div>");
     var titel = $("<div></div>");
     var tmp = 0;
+    var dada = $("<span></span>");
     var toddy = new Date();
 
 
@@ -303,6 +304,7 @@ function newDesignPC() {
         tmp = toddy-ende;
         console.log("Red0: "+tmp);
         tmp = tmp/1000/60/60/24*25;
+        tmp = tmp+25;
         console.log("Red1: "+tmp);
         tmp = tmp+"px";
         console.log("Red: "+tmp);
@@ -321,7 +323,8 @@ function newDesignPC() {
     tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
     heute.css("margin-left",tmp);
-    heute.css("z-index","11");
+    heute.css("position","relative");
+    heute.css("z-index","1");
 
 
     // Titel Box Design
@@ -331,7 +334,6 @@ function newDesignPC() {
     titel.css("height", "40px");
     titel.css("padding-left","15px");
     titel.addClass("flow-text");
-    var dada = $("<span></span>");
     dada.text(name);
     dada.addClass('name_field');
     titel.append(dada);
