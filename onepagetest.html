@@ -9,11 +9,11 @@
         $(document).ready(function () {
             onepage.loadComps();
             onepage.getComp("para").init = function(v){
-                var elem = v.$();
+                let elem = v.$();
                 elem.find(".heading").text(v.val("head"));
                 elem.find(".text").text(v.val("text"));
             };
-            var view = onepage.getComp("para").create();
+            let view = onepage.getComp("para").create();
             view.val("text","Test Text");
             $("body").append(view.get());
         });

@@ -55,7 +55,7 @@ function styleTask(task1,von1,bis,span) {
     b = setWidth();
 
     span2 = $("<span style='width: 90%; padding-right: 10%'></span>");
-    setDead();
+    //setDead();
     detectDevice();
 
 }
@@ -363,10 +363,6 @@ function newDesignPC() {
     task.addClass("left-align");
     task.append(titel);
     task.append(fortschritt);
-
-
-
-
 
 
 }

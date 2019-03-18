@@ -187,25 +187,7 @@ function deleteGroup(uid) {
         showOwnedGroups();
     });
 }
-function showOwnedGroups(){
-    mygroups.getOwnedGroups(get_cookie("name"),reciveOwnedGroups);
-}
-function reciveOwnedGroups(error,response,b) {
-    if (!error) {
-        var entry = loadSync("groups/entry");
-        for (var i = 0; i < response.length; i++) {
-            tentry = entry.clone();
-            tentry.find(".grp-name").text(response[i].name);
-            tentry.find(".grp-uid").text(response[i].uid).hide();
-            tentry.find(".grp-memcount").text(response[i].members);
-            tentry.find(".del-grp").click(deleteGroupListener);
-            tentry.click(onOpenOwnGroup);
-            $("#grpview").append(tentry);
-        }
-    } else {
-        M.toast({html: "Error on fetching groups!"})
-    }
-}
+
 function reciveOwnedGroup(a,grp,c){
     lastGrp = grp;
     $("#grp-uid").text(grp.uid);

@@ -6,10 +6,11 @@
 <ul class="collapsible">
     <li>
         <div class="collapsible-header"><i class="material-icons">group</i>Meine Gruppen</div>
-        <div class="collapsible-body">
-            <div class="container" id="grpview">
+        <div class="collapsible-body" id="my-grp-holder">
+            <div class="container grp-view component"name="my-grp-list">
             </div>
         </div>
+        <span class="view" name="my-grp-list"></span>
     </li>
     <li>
         <div class="collapsible-header"><i class="material-icons">group</i>Besuchte Gruppen</div>
@@ -29,6 +30,7 @@
     <li>
         <div class="collapsible-header"><i class="material-icons">add</i>Add</div>
         <div class="collapsible-body" id="include-add-group">
+            <span class="view" name="new"></span>
         </div>
     </li>
 </ul>
