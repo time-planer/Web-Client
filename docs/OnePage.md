@@ -3,7 +3,7 @@ This framework enables HTML reusing and using it as JavaFX
 ## Getting Started
 ### Structure
 This is the file structure present at all time in my tutorial.<br>
-You can use your own one for sure.
+You can use your own one too.
 ```
  project
  |--- components
