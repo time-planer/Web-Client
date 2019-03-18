@@ -7,6 +7,8 @@ function openTask(data) {
     if(!elem.hasClass("task"))
         elem = elem.parent();
     $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
+    console.log(elem);
+    console.log(elem.children('name_field').innerText());
     $('#name').text(elem.children(".name_field").text());
     $('#textarea1').text(elem.attr("description"));
     $('#textarea1').val(elem.attr("description"));
@@ -375,9 +377,4 @@ function saveChangedPermissions() {
     mygroups.editGroup(get_cookie("name"), lastGrp.uid, {editGroup: grp}, function callback() {
         mygroups.getOwnedGroup(get_cookie("name"), get_cookie("grp_uid"), reciveOwnedGroup);
     });
-}
-function weiterOnEnter(event) {
-    if (event.which == 13) {
-
-    }
 }
