@@ -7,9 +7,7 @@ function openTask(data) {
     if(!elem.hasClass("task"))
         elem = elem.parent();
     $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
-    console.log(elem);
-    console.log(elem.children('name_field').innerText());
-    $('#name').text(elem.children(".name_field").text());
+    $('#name').text(elem.find(".name_field").text());
     $('#textarea1').text(elem.attr("description"));
     $('#textarea1').val(elem.attr("description"));
     $('label[for=textarea1]').addClass("active");
@@ -158,9 +156,8 @@ function createGroup() {
 }
 function editTask() {
     var taskname = $('#name').text();
-    var tmp = tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
+    tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
         var newconftask = new timeplaner.EditTask();
-
         newconftask.name = taskname;
         newconftask.planedDate = tmp.planedDate;
         newconftask.deadline = tmp.deadline;

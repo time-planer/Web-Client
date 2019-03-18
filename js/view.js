@@ -330,7 +330,10 @@ function newDesignPC() {
     titel.css("width",tmp);
     titel.css("height", "40px");
     titel.addClass("flow-text");
-    titel.text(name);
+    var dada = $("<span></span>");
+    dada.text(name);
+    dada.addClass('name_field');
+    titel.append(dada);
 
 
     // Balken Box
