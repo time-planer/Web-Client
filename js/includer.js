@@ -150,10 +150,38 @@ function showAdd() {
 function showGroups() {
     includeHead("header3");
     includeBody("groups/groups",function () {
-        includeInto("groups/new",$("#include-add-group"),function () {
-            $("#add-grp-btn").on("click",createGroup);
-        });
-        showOwnedGroups();
+        onepage.loadComp("groups","new");
+        onepage.getComp("new").init = function (v) {
+            v.$().find("#add-grp-btn").on("click",createGroup);
+        };
+        onepage.substViews($("#include-add-group"));
+
+        onepage.loadComps();
+        onepage.loadComp("groups","entry");
+        onepage.getComp("entry").init = function (v){
+            if(v.val("grp") === null || v.val("grp") === undefined)
+                return;
+            v.$().find(".grp-name").text(v.val("grp").name);
+            v.$().find(".grp-uid").text(v.val("grp").uid).hide();
+            v.$().find(".grp-memcount").text(v.val("grp").members);
+            v.$().find(".del-grp").click(deleteGroupListener);
+            v.$().click(onOpenOwnGroup);
+        };
+        onepage.getComp("my-grp-list").init = function (v){
+            if(v.val("list") === null || v.val("list") === undefined)
+                return;
+            for (let i = 0; i < v.val("list").length; i++) {
+                let entry = onepage.getComp("entry").create();
+                entry.val("grp",v.val("list")[i]);
+                v.get().append(entry.$());
+            }
+        };
+        const grpList = onepage.getComp("my-grp-list").create();
+        $("#my-grp-holder").append(grpList.get());
+        mygroups.getOwnedGroups(get_cookie("name"),function (a,b,c) {
+                grpList.val("list",b);
+            }
+        );
     });
 }
 function showSettings(){

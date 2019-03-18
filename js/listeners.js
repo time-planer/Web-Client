@@ -318,10 +318,11 @@ function deleteAllTasks() {
 function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
-
+    onepage.compPath = "views";
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
-    }else{
+    }
+    else{
         showLogin();
         return;
     }
@@ -343,8 +344,8 @@ function weiterleit() {
         showLogin();
     }
 }
-
-function onOpenOwnGroup(e) {includeHead("header");
+function onOpenOwnGroup(e) {
+    includeHead("header");
     var root = $(e.target);
     while(!root.hasClass("grp-entry"))
         root = root.parent();
