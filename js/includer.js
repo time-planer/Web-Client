@@ -75,7 +75,7 @@ function showHome() {
             $("#out").click(logout);
             $("#del").click(deleteTask);
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
-            tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+            loadView();
         });
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
@@ -108,12 +108,12 @@ function showHome() {
             loadView();
         });
     });
-    includeBody("home",function () {
+   /* includeBody("home",function () {
         $(".out").click(logout);
         $("#del").click(deleteTask);
         M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
-		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
-    });
+        loadView();
+    });*/
 }
 function showRegister() {
     includeHead("header");

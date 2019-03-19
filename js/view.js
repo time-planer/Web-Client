@@ -279,7 +279,6 @@ function newDesignPC() {
     tmp = plan-start;
     tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
-    console.log("Green: "+tmp);
     green.css("width", tmp);
     green.css("height", "30px");
     green.css("background-color","green");
@@ -291,7 +290,6 @@ function newDesignPC() {
     tmp = ende-plan;
     tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
-    console.log("Orange: "+tmp);
     orange.css("width", tmp);
     orange.css("height", "30px");
     orange.css("background-color","orange");
@@ -302,12 +300,9 @@ function newDesignPC() {
     if(toddy > ende){
         tmp = 0;
         tmp = toddy-ende;
-        console.log("Red0: "+tmp);
         tmp = tmp/1000/60/60/24*25;
         tmp = tmp+25;
-        console.log("Red1: "+tmp);
         tmp = tmp+"px";
-        console.log("Red: "+tmp);
         red.css("width", tmp);
         red.css("height", "30px");
         red.css("background-color","red");
@@ -369,4 +364,41 @@ function newDesignPC() {
     task.addClass("left-align");
     task.append(titel);
     task.append(fortschritt);
+    liste();
+}
+
+function liste() {
+    var a = $("<tr></tr>");
+    var toddy = new Date();
+    var task = $("<td></td>");
+    task.text(name);
+    var von = $("<td></td>");
+    von.text(start.getDay()+"-"+start.getMonth()+"-"+start.getFullYear());
+    var geplant = $("<td></td>");
+    geplant.text(plan.getDay()+"-"+plan.getMonth()+"-"+plan.getFullYear());
+    var deadline = $("<td></td>");
+    deadline.text(ende.getDay()+"-"+ende.getMonth()+"-"+ende.getFullYear());
+
+    var status = $("<td></td>");
+    if(toddy < plan){
+        status.css("background-color","green");
+        status.css("color", "white");
+        status.text("In Time");
+    }
+    if(toddy > plan){
+        status.css("background-color","orange");
+        status.css("color", "white");
+        status.text("Plan exceeded");
+    }
+    if(toddy > ende){
+        status.css("background-color","red");
+        status.css("color", "white");
+        status.text("Deadline exceeded");
+    }
+    a.append(task);
+    a.append(von);
+    a.append(geplant);
+    a.append(deadline);
+    a.append(status);
+    $("#listbody").append(a);
 }

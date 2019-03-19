@@ -1,12 +1,12 @@
 var timeplaner = require("time_planer");
-//timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
 var memgroup = new timeplaner.MemberingGroupsApi();
 var lastGrp;
 var ij = 0;
-var all;
+var all = null;
 var storage = [];
 function calllogin(error, response, context) {
     if(error || context.statusCode == 204){
@@ -114,7 +114,7 @@ function receiveAllTasks(a, data, b) {
         storage.push(data[i]);
     }
     ij++;
-    if(all !== undefined && i<all.length) {
+    if(all !== null && ij<all.length) {
         tasking.getAllGroupTasks(get_cookie("name"),all[ij],receiveAllTasks);
     } else {
             storage.sort(function (a,b) {
@@ -130,6 +130,7 @@ function receiveAllTasks(a, data, b) {
                     if(von>storage[i].entererAt)
                         von = storage[i].entererAt;
                 }
+                $("#listbody").empty();
                 $('#taskholder').empty();
                 for (var i = 0; i < length; i++) {
                     show(storage[i],von,bis);
@@ -248,7 +249,7 @@ function loadView() {
     storage = [];
     all = JSON.parse(get_cookie("view"));
     ij=0;
-    if(all[0]==="default") {
+    if(all === null ||   all[0]==="default") {
         ij=1;
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks)
     } else {
