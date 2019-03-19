@@ -152,6 +152,7 @@ function designAndroidTask() {
     task.text(name);
     task.css("border","0.1px black solid");
     task.css("border-radius","20px");
+    liste();
 
 }
 
