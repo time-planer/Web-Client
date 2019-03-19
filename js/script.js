@@ -135,6 +135,7 @@ function receiveAllTasks(a, data, b) {
                 for (var i = 0; i < length; i++) {
                     show(storage[i],von,bis);
                 }
+                timeline();
             }
         }
 }

@@ -39,12 +39,15 @@ var isMobile = {
         return ((isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()));
     }
 };
+var zaehler = 0;
+var unt;
 
 
 function styleTask(task1,von1,bis,span) {
     task = task1;
     text = span.text();
     von = von1;
+    unt = bis;
     ende = longStringtoDate(task.attr("deadline"));
     start = longStringtoDate(task.attr("startdat"));
     //var exceedDuration = task.children(".deadlineexceed").attr("duration");
@@ -402,4 +405,28 @@ function liste() {
     a.append(deadline);
     a.append(status);
     $("#listbody").append(a);
+}
+
+function timeline(){
+    var tmp;
+    var tl = $("<div class='left-align'></div>");
+    tmp = unt-von;
+    tmp = tmp/1000/60/60/24;
+    console.log(unt+"-"+von+"="+tmp);
+    var abstand = 25;
+    var i;
+    for(i = 1; i<tmp;i++){
+        var vline = $("<div class='vline'></div>");;
+        console.log("drinnen");
+        vline.css("position","relative");
+        vline.css("z-index","20");
+        vline.css("width", "2px");
+        vline.css("height","100%");
+        vline.css("background-color","black");
+        vline.css("margin-left",(abstand+"px"));
+        abstand = abstand+25;
+        tl.append(vline);
+    }
+    $("#taskholder").append(tl);
+    console.log("fertig");
 }
