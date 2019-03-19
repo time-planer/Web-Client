@@ -13,9 +13,9 @@ function openTask(data) {
     $('label[for=textarea1]').addClass("active");
 
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
-        document.getElementById('übrig').innerText = "Tage verbleibend: "+difDateTag(longStringtoDate(elem.attr("deadline")));
+        document.getElementById('übrig').innerText = "Tage verbleibend: "+((difDateTag(longStringtoDate(elem.attr("deadline"))))-1);
     } else {
-        document.getElementById('übrig').innerText = "Tage verstrichen: "+(-1)*(difDateTag(longStringtoDate(elem.attr("deadline"))));
+        document.getElementById('übrig').innerText = "Tage verstrichen: "+((-1)*(difDateTag(longStringtoDate(elem.attr("deadline"))))-1+2);
     }
     var pri = elem.attr("priority");
     switch (pri-1+1) {
