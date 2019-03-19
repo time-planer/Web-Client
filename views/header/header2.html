@@ -1,10 +1,5 @@
 <header style="margin-bottom: 10px">
-<ul id="dropdown2" class="dropdown-content">
-    <li><a href="#!">W1</a></li>
-    <li><a href="#!">W2</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">W..</a></li>
-</ul>
+
 <!-- Modal Structure -->
 <div id="displayGrps" class="modal">
     <div class="modal-content">
@@ -23,18 +18,44 @@
 <nav class="headerbesonders z-depth-0" style="margin-bottom: 64px">
     <div class="nav-wrapper teal accent-4 z-depth-0">
         <a onclick="weiterleit()" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
+            <li><a onclick="showGroups()" class="hand">Gruppen</a></li>
+            <li><a onclick="showAdd()" class="hand">Neuer Task</a></li>
+            <li style="width: 120px; z-index: 12" class="center-align"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+        </ul>
         <ul class="right disabled-hide-on-med-and-down ">
-            <li><a class="waves-effect waves-light btn modal-trigger" href="#displayGrps">Ansicht</a></li>
-            <li><a class="dropdown-trigger" href="" data-target="dropdown2">Woche<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li style="width: 120px" class="center-align"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+
+        </ul>
+    </div>
+    <div class="nav-content teal accent-4">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#home">Home</a></li>
+            <li class="tab"><a href="#taskholder">Tasks</a></li>
+            <li class="tab"><a  href="#test">Test 2</a></li>
         </ul>
     </div>
 </nav>
 
-    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px">
-        <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li>
+    <ul class="sidenav right" id="mobile-demo">
+        <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
+        <li><a onclick="showGroups()" class="hand sidenav-close">Gruppen</a></li>
+        <li><a onclick="showAdd()" class="hand sidenav-close">Neuer Task</a></li>
+        <li><a class="dropdown-trigger" data-target="dropdownuser2">Benutzer</a></li>
+    </ul>
+<script>
+
+</script>
+    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px; z-index: 12">
+        <!-- <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li> -->
         <li style="width: 120px"><a class="" onclick="showSettings()">Einstellungen</a></li>
-        <li style="width: 120px"><a class="" id="out">Abmelden</a></li>
+        <li style="width: 120px"><a class="out">Abmelden</a></li>
+    </ul>
+
+    <ul id="dropdownuser2" class="dropdown-content center-align" style="width: 100%; z-index: 12">
+        <li style="width: 100%"><a class="sidenav-close" onclick="showSettings()">Einstellungen</a></li>
+        <li style="width: 100%"><a class="out red-text sidenav-close">Abmelden</a></li>
     </ul>
 </header>
 <!--
