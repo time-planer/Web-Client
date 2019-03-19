@@ -79,18 +79,21 @@ function showHome() {
         });
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
-            v.get().find(".grp-name").text(v.group.name);
-            if(get_cookie("view") != null){
-                var chkbox = v.get().find("input[type=checkbox]");
-                var newname =  (JSON.parse(get_cookie("view"))[v.group.name]);
-                chkbox.prop('checked', newname);
+            if(v.values.group !== undefined) {
+                v.get().find(".grp-name").text(v.values.group.name);
+                v.get().attr("uid",v.values.group.uid);
+                if (get_cookie("view") != null) {
+                    var chkbox = v.get().find("input[type=checkbox]");
+                    var newname = (JSON.parse(get_cookie("view"))[v.values.group.name]);
+                    chkbox.prop('checked', newname);
+                }
             }
         };
         memgroup.getGroups(get_cookie("name"),function (a,data,c) {
             //TODO: Error checking
             for(var i = 0;i<data.length;i++){
                 var v = onepage.getComp("view-entry").create();
-                v.group = data[i];
+                v.values.group = data[i];
                 v.init();
                 $("#displayGrps .modal-content p").append(v.get());
             }
