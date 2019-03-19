@@ -85,7 +85,6 @@ function showHome() {
                 var newname =  (JSON.parse(get_cookie("view"))[v.group.name]);
                 chkbox.prop('checked', newname);
             }
-
         };
         memgroup.getGroups(get_cookie("name"),function (a,data,c) {
             //TODO: Error checking
@@ -103,7 +102,14 @@ function showHome() {
                 settings[$(this).find(".grp-name").text()] = inp.get(0).checked;
             });
             set_cookie("view",JSON.stringify(settings));
+            loadView();
         });
+    });
+    includeBody("home",function () {
+        $(".out").click(logout);
+        $("#del").click(deleteTask);
+        M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
+		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
 function showRegister() {
