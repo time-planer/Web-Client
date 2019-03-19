@@ -164,7 +164,13 @@ function showGroups() {
             v.$().find(".grp-name").text(v.val("grp").name);
             v.$().find(".grp-uid").text(v.val("grp").uid).hide();
             v.$().find(".grp-memcount").text(v.val("grp").members);
-            v.$().find(".del-grp").click(deleteGroupListener);
+            v.$().find(".del-grp").click(function () {
+                mygroups.deleteGroup(get_cookie("name"),v.val("grp").uid,function () {
+                    let list = grpList.val("list");
+                    list.slice(list.indexOf(v.val("grp")),1);
+                    grpList.val("list",list);
+                });
+            });
             v.$().click(onOpenOwnGroup);
         };
         onepage.getComp("my-grp-list").init = function (v){

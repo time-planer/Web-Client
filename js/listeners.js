@@ -307,9 +307,6 @@ function register() {
         }
     }
 }
-function deleteGroupListener(e) {
-    deleteGroup($(e.target).find(".grp-uid").text());
-}
 function deleteAllTasks() {
     //Abfrage ob der Benutzer es wirklich löschen möchte
     tasking.removeAllTasks(get_cookie("name"),calldelalltasks);
@@ -345,6 +342,8 @@ function weiterleit() {
     }
 }
 function onOpenOwnGroup(e) {
+    if($(e.target).hasClass("del-grp"))
+        return;
     includeHead("header");
     var root = $(e.target);
     while(!root.hasClass("grp-entry"))

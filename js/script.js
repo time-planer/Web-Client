@@ -1,5 +1,5 @@
 var timeplaner = require("time_planer");
-timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+//timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
@@ -181,11 +181,6 @@ function setAPIKey(key){
     tasking = new timeplaner.TaskingApi();
     mygroups = new timeplaner.MyGroupsApi();
     memgroup = new timeplaner.MemberingGroupsApi();
-}
-function deleteGroup(uid) {
-    mygroups.deleteGroup(get_cookie("name"),uid,function () {
-        showOwnedGroups();
-    });
 }
 
 function reciveOwnedGroup(a,grp,c){
