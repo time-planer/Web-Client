@@ -5,6 +5,9 @@ var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
 var memgroup = new timeplaner.MemberingGroupsApi();
 var lastGrp;
+var ij = 0;
+var all;
+var storage = [];
 function calllogin(error, response, context) {
     if(error || context.statusCode == 204){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
@@ -107,24 +110,32 @@ function callreg (error, data, response) {
     }
 }
 function receiveAllTasks(a, data, b) {
-    data.sort(function (a,b) {
-        return a.deadline-b.deadline;
-    });
-    var length = data.length;
-    if(length>0) {
-        var von = data[0].deadline;
-        var bis = new Date();
-        for (var i = 0; i < length; i++) {
-            if(data[i].deadline>bis)
-                bis = data[i].deadline;
-            if(von>data[i].entererAt)
-                von = data[i].entererAt;
-        }
-        $('#taskholder').empty();
-        for (var i = 0; i < length; i++) {
-            show(data[i],von,bis);
-        }
+    for(var i = 0;i<data.length;i++) {
+        storage.push(data[i]);
     }
+    ij++;
+    if(all !== undefined && i<all.length) {
+        tasking.getAllGroupTasks(get_cookie("name"),all[ij],receiveAllTasks);
+    } else {
+            storage.sort(function (a,b) {
+                return a.deadline-b.deadline;
+            });
+            var length = storage.length;
+            if(length>0) {
+                var von = storage[0].deadline;
+                var bis = new Date();
+                for (var i = 0; i < length; i++) {
+                    if(storage[i].deadline>bis)
+                        bis = storage[i].deadline;
+                    if(von>storage[i].entererAt)
+                        von = storage[i].entererAt;
+                }
+                $('#taskholder').empty();
+                for (var i = 0; i < length; i++) {
+                    show(storage[i],von,bis);
+                }
+            }
+        }
 }
 function show(task,von,bis) {
     //Zeig es im Fenster an
@@ -150,9 +161,6 @@ function show(task,von,bis) {
     span.text(name);
     $("#taskholder").append(div);
     styleTask(div, von, bis, span);
-    var today = new Date();
-    var days = Math.round((today-v)/1000/60/60/24);
-    $('#taskholder').scrollLeft((days*25)-500);
 }
 var isMobile = {
     Android: function () {
@@ -235,4 +243,16 @@ function reciveMemberingListOnAdd(a,grps,e){
         $("#dropdown121").append($("<li>"+grps[i].name+"</li>"))
     }
 };
+
+function loadView() {
+    storage = [];
+    all = JSON.parse(get_cookie("view"));
+    ij=0;
+    if(all[0]==="default") {
+        ij=1;
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks)
+    } else {
+        tasking.getAllGroupTasks(get_cookie("name"),all[ij],receiveAllTasks);
+    }
+}
 $(document).ready(startup);

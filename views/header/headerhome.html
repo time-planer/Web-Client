@@ -1,0 +1,50 @@
+<nav class="nav-extended teal accent-4">
+    <div class="nav-wrapper teal accent-4">
+        <a onclick="weiterleit()" class="brand-logo headerhover white-text">Time Planer</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#displayGrps">Ansicht</a></li>
+            <li><a href="#dropdownuser" class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+        </ul>
+    </div>
+    <div class="nav-content teal accent-4">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a href="#test1">Tasks</a></li>
+            <li class="tab"><a class="active" href="#test2">Test 2</a></li>
+            <li class="tab disabled"><a href="#test3">Disabled Tab</a></li>
+            <li class="tab"><a href="#test4">Test 4</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="#displayGrps">Ansicht</a></li>
+    <li><a href="badges.html" class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+</ul>
+
+<div id="test1" class="col s12">Tasks</div>
+<div id="test2" class="col s12">Test 2</div>
+<div id="test3" class="col s12">Test 3</div>
+<div id="test4" class="col s12">Test 4</div>
+
+
+<div id="displayGrps" class="modal">
+    <div class="modal-content">
+        <h4>Ansicht</h4>
+        <p>
+            <label class="component grp-view-option" name="view-entry">
+                <input type="checkbox" class="show-grp" checked="checked" />
+                <span class="grp-name"></span>
+            </label>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="save-grp-view">Save</a>
+    </div>
+</div>
+
+<ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px">
+    <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li>
+    <li style="width: 120px"><a class="" onclick="showSettings()">Einstellungen</a></li>
+    <li style="width: 120px"><a class="" id="out">Abmelden</a></li>
+</ul>

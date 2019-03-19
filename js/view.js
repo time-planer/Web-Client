@@ -55,7 +55,7 @@ function styleTask(task1,von1,bis,span) {
     b = setWidth();
 
     span2 = $("<span style='width: 90%; padding-right: 10%'></span>");
-    setDead();
+    //setDead();
     detectDevice();
 
 }
@@ -271,6 +271,7 @@ function newDesignPC() {
     var fortschritt = $("<div></div>");
     var titel = $("<div></div>");
     var tmp = 0;
+    var dada = $("<span></span>");
     var toddy = new Date();
 
 
@@ -303,6 +304,7 @@ function newDesignPC() {
         tmp = toddy-ende;
         console.log("Red0: "+tmp);
         tmp = tmp/1000/60/60/24*25;
+        tmp = tmp+25;
         console.log("Red1: "+tmp);
         tmp = tmp+"px";
         console.log("Red: "+tmp);
@@ -317,11 +319,12 @@ function newDesignPC() {
     heute.css("width","25px");
     heute.css("height", "30px");
     heute.css("background-color","black");
-    tmp = start-toddy;
-    tmp = tmp/1000/60/60*25;
+    tmp = toddy-start;
+    tmp = tmp/1000/60/60/24*25;
     tmp = tmp+"px";
     heute.css("margin-left",tmp);
-    heute.css("z-index","10");
+    heute.css("position","relative");
+    heute.css("z-index","1");
 
 
     // Titel Box Design
@@ -329,8 +332,11 @@ function newDesignPC() {
     tmp = green.width()+orange.width()+red.width();
     titel.css("width",tmp);
     titel.css("height", "40px");
+    titel.css("padding-left","15px");
     titel.addClass("flow-text");
-    titel.text(name);
+    dada.text(name);
+    dada.addClass('name_field');
+    titel.append(dada);
 
 
     // Balken Box
@@ -363,10 +369,4 @@ function newDesignPC() {
     task.addClass("left-align");
     task.append(titel);
     task.append(fortschritt);
-
-
-
-
-
-
 }
