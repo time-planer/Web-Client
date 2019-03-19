@@ -71,6 +71,12 @@
 }
 function showHome() {
     includeHead("header2",function () {
+        includeBody("home",function () {
+            $("#out").click(logout);
+            $("#del").click(deleteTask);
+            M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
+            tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        });
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
             v.get().find(".grp-name").text(v.group.name);
@@ -98,12 +104,6 @@ function showHome() {
             });
             set_cookie("view",JSON.stringify(settings));
         });
-    });
-    includeBody("home",function () {
-        $("#out").click(logout);
-        $("#del").click(deleteTask);
-        M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
-		tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     });
 }
 function showRegister() {
