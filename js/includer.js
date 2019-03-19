@@ -81,7 +81,7 @@ function showHome() {
         onepage.getComp("view-entry").init = function (v){
             if(v.values.group !== undefined) {
                 v.get().find(".grp-name").text(v.values.group.name);
-                v.get().attr("uid",v.values.group.uid);
+                v.get().find(".grp-uid").text(v.values.group.uid).hide();
                 if (get_cookie("view") != null) {
                     var chkbox = v.get().find("input[type=checkbox]");
                     var newname = (JSON.parse(get_cookie("view"))[v.values.group.name]);
@@ -99,10 +99,16 @@ function showHome() {
             }
         });
         $("#save-grp-view").click(function () {
-            var settings = {};
+            let settings = [];
             $(".grp-view-option").each(function () {
-                var inp = $(this).find("input[type=checkbox]");
-                settings[$(this).find(".grp-name").text()] = inp.get(0).checked;
+                if($(this).hasClass("component"))
+                    return;
+                let obj = {};
+                let inp = $(this).find("input[type=checkbox]");
+                obj.name = $(this).find(".grp-name").text();
+                obj.val = inp.get(0).checked;
+                obj.uid = $(this).find(".grp-uid").text();
+                settings.push(obj);
             });
             set_cookie("view",JSON.stringify(settings));
             loadView();

@@ -47,7 +47,7 @@ const dev = false;
             const comp = new exports.Component();
             comp.name = elem.attr("name");
             comp.base = elem;
-            comp.base.removeClass("component");
+            //comp.base.removeClass("component");
             comp.init = defInit;
             components.push(comp);
         });
@@ -125,7 +125,8 @@ const dev = false;
          * @return {onepage.View}
          */
        create() {
-            var v = new exports.View(this);
+            let v = new exports.View(this);
+            v.get().removeClass("component");
             v.init();
             return v;
         };

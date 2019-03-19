@@ -1,5 +1,5 @@
 var timeplaner = require("time_planer");
-timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+//timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
@@ -115,7 +115,7 @@ function receiveAllTasks(a, data, b) {
     }
     ij++;
     if(all !== null && ij<all.length) {
-        tasking.getAllGroupTasks(get_cookie("name"),all[ij],receiveAllTasks);
+        tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     } else {
             storage.sort(function (a,b) {
                 return a.deadline-b.deadline;
@@ -253,7 +253,7 @@ function loadView() {
         ij=1;
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks)
     } else {
-        tasking.getAllGroupTasks(get_cookie("name"),all[ij],receiveAllTasks);
+        tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     }
 }
 $(document).ready(startup);
