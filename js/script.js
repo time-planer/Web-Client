@@ -110,21 +110,27 @@ function callreg (error, data, response) {
     }
 }
 function receiveAllTasks(a, data, b) {
-    for(var i = 0;i<data.length;i++) {
+    for(let i = 0;i<data.length;i++) {
         storage.push(data[i]);
     }
     ij++;
     if(all !== null && ij<all.length) {
+        while(ij < all.length && !all[ij].val)
+            ij++;
+        if(!(ij < all.length)) {
+            loadView();
+            return;
+        }
         tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     } else {
             storage.sort(function (a,b) {
                 return a.deadline-b.deadline;
             });
-            var length = storage.length;
+            let length = storage.length;
             if(length>0) {
-                var von = storage[0].deadline;
-                var bis = new Date();
-                for (var i = 0; i < length; i++) {
+                let von = storage[0].deadline;
+                let bis = new Date();
+                for (let i = 0; i < length; i++) {
                     if(storage[i].deadline>bis)
                         bis = storage[i].deadline;
                     if(von>storage[i].entererAt)
@@ -132,7 +138,7 @@ function receiveAllTasks(a, data, b) {
                 }
                 $("#listbody").empty();
                 $('#taskholder').empty();
-                for (var i = 0; i < length; i++) {
+                for (let i = 0; i < length; i++) {
                     show(storage[i],von,bis);
                 }
                 timeline();
@@ -141,15 +147,15 @@ function receiveAllTasks(a, data, b) {
 }
 function show(task,von,bis) {
     //Zeig es im Fenster an
-    var planend = task.planedDate;
-    var description = task.description;
-    var deadline = task.deadline;
-    var name = task.name;
-    var priority = task.importance;
-    var startdat = task.entererAt;
-    var div = $("<div></div>");
-    var v = new Date();
-    var b = new Date();
+    let planend = task.planedDate;
+    let description = task.description;
+    let deadline = task.deadline;
+    let name = task.name;
+    let priority = task.importance;
+    let startdat = task.entererAt;
+    let div = $("<div></div>");
+    let v = new Date();
+    let b = new Date();
     v.setFullYear(2019,0,1);
     b.setFullYear(2019,11,1);
     div.addClass("task");
@@ -159,7 +165,7 @@ function show(task,von,bis) {
     div.attr("deadline", deadline);
     div.attr("priority", priority);
     div.attr("startdat", startdat);
-    var span = $("<span></span>");
+    let span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
     styleTask(div, von, bis, span);
@@ -185,7 +191,7 @@ var isMobile = {
     }
 };
 function setAPIKey(key){
-    var User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
+    let User_Key = timeplaner.ApiClient.instance.authentications['User_Key'];
     User_Key.apiKey =key;
     auth = new timeplaner.AuthenticationApi();
     tasking = new timeplaner.TaskingApi();
@@ -203,34 +209,33 @@ function reciveOwnedGroup(a,grp,c){
     $("#grp-created").text(longStringDateToShortStringDate(grp.creation_date.toString()));
     $("#add-grp-member").click(onAddGrpMember);
     $("#grp-save").click(saveChangedPermissions);
-    var mementry = loadSync("groups/member-entry");
+    let mementry = loadSync("groups/member-entry");
     $("#grp-members").empty();
-    for(var i = 0;i<grp.members.length;i++){
-        var mem = grp.members[i];
-        var tentry = mementry.clone();
+    for(let i = 0;i<grp.members.length;i++){
+        let mem = grp.members[i];
+        let tentry = mementry.clone();
         tentry.attr("index",i);
         tentry.find(".grp-member-mail").text(mem.email);
         tentry.find(".grp-member-create").prop('checked', mem.create).change(function (e) {
-            var elem = $(e.target);
+            let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
             lastGrp.members[elem.attr("index")].create = $(e.target).val() === "on";
         });
         tentry.find(".grp-member-del").prop('checked', mem.delete).change(function (e) {
-
-            var elem = $(e.target);
+            let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
             lastGrp.members[elem.attr("index")].delete = $(e.target).val() === "on";
         });
         tentry.find(".grp-member-edit").prop('checked', mem.edit).change(function (e) {
-            var elem = $(e.target);
+            let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
             lastGrp.members[elem.attr("index")].edit = $(e.target).val() === "on";
         });
         tentry.find(".delete-grp").click(function (e) {
-            var elem = $(e.target);
+            let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
             lastGrp.members.splice(elem.attr("index"),1);
@@ -241,7 +246,7 @@ function reciveOwnedGroup(a,grp,c){
     console.log("Recived group : \n"+JSON.stringify(grp,null,4));
 }
 function reciveMemberingListOnAdd(a,grps,e){
-    for(var i = 0;i<grps.length;i++){
+    for(let i = 0;i<grps.length;i++){
         $("#dropdown121").append($("<li>"+grps[i].name+"</li>"))
     }
 };
@@ -254,6 +259,10 @@ function loadView() {
         ij=1;
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks)
     } else {
+        while(ij < all.length && !all[ij].val)
+            ij++;
+        if(!(ij < all.length))
+            return;
         tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     }
 }
