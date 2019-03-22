@@ -83,8 +83,13 @@ function showHome() {
                 v.get().find(".grp-name").text(v.values.group.name);
                 v.get().find(".grp-uid").text(v.values.group.uid).hide();
                 if (get_cookie("view") != null) {
-                    var chkbox = v.get().find("input[type=checkbox]");
-                    var newname = (JSON.parse(get_cookie("view"))[v.values.group.name]);
+                    let chkbox = v.get().find("input[type=checkbox]");
+                    let view = JSON.parse(get_cookie("view"));
+                    for (let i = 0; i < view.length; i++) {
+                        if(view[i].name === v.values.group.name)
+                            view = view[i];
+                    }
+                    let newname = view.val;
                     chkbox.prop('checked', newname);
                 }
             }
@@ -167,7 +172,8 @@ function showGroups() {
     includeBody("groups/groups",function () {
         onepage.loadComp("groups","new");
         onepage.getComp("new").init = function (v) {
-            v.$().find("#add-grp-btn").on("click",createGroup);
+            v.$().find("#add-grp-btn").off();
+            v.$().find("#add-grp-btn").on("click",addNewGroup);
         };
         onepage.substViews($("#include-add-group"));
 
@@ -182,7 +188,12 @@ function showGroups() {
             v.$().find(".del-grp").click(function () {
                 mygroups.deleteGroup(get_cookie("name"),v.val("grp").uid,function () {
                     let list = grpList.val("list");
-                    list.slice(list.indexOf(v.val("grp")),1);
+                    for (let i = 0; i < list.length; i++) {
+                        if(list[i].uid === v.val("grp").uid) {
+                            list.slice(i, 1);
+                            break;
+                        }
+                    }
                     grpList.val("list",list);
                 });
             });

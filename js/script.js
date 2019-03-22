@@ -1,5 +1,5 @@
 var timeplaner = require("time_planer");
-timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+//timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
@@ -100,7 +100,7 @@ function callreg (error, data, response) {
         }
     } else {
         console.log('API called successfully. Returned data: ' + data);
-        auth.login($("#rmail"),$("#pwr"),function (error, data, response) {
+        auth.login($("#rmail").val(),$("#pwr").val(),function (error, data, response) {
             if(!error) {
                 set_cookie("name", $("#rmail").val());
                 set_cookie("api", response.user_key);
@@ -109,6 +109,30 @@ function callreg (error, data, response) {
         });
     }
 }
+
+function displayStorage() {
+    storage.sort(function (a,b) {
+        return a.deadline-b.deadline;
+    });
+    let length = storage.length;
+    $("#listbody").empty();
+    $('#taskholder').empty();
+    if(length>0) {
+        let von = storage[0].deadline;
+        let bis = new Date();
+        for (let i = 0; i < length; i++) {
+            if(storage[i].deadline>bis)
+                bis = storage[i].deadline;
+            if(von>storage[i].entererAt)
+                von = storage[i].entererAt;
+        }
+        for (let i = 0; i < length; i++) {
+            show(storage[i],von,bis);
+        }
+        timeline();
+    }
+}
+
 function receiveAllTasks(a, data, b) {
     for(let i = 0;i<data.length;i++) {
         storage.push(data[i]);
@@ -118,32 +142,13 @@ function receiveAllTasks(a, data, b) {
         while(ij < all.length && !all[ij].val)
             ij++;
         if(!(ij < all.length)) {
-            loadView();
+            displayStorage();
             return;
         }
         tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     } else {
-            storage.sort(function (a,b) {
-                return a.deadline-b.deadline;
-            });
-            let length = storage.length;
-            if(length>0) {
-                let von = storage[0].deadline;
-                let bis = new Date();
-                for (let i = 0; i < length; i++) {
-                    if(storage[i].deadline>bis)
-                        bis = storage[i].deadline;
-                    if(von>storage[i].entererAt)
-                        von = storage[i].entererAt;
-                }
-                $("#listbody").empty();
-                $('#taskholder').empty();
-                for (let i = 0; i < length; i++) {
-                    show(storage[i],von,bis);
-                }
-                timeline();
-            }
-        }
+        displayStorage();
+    }
 }
 function show(task,von,bis) {
     //Zeig es im Fenster an
@@ -255,14 +260,16 @@ function loadView() {
     storage = [];
     all = JSON.parse(get_cookie("view"));
     ij=0;
-    if(all === null ||   all[0]==="default") {
+    if(all === null) {
         ij=1;
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks)
+        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
     } else {
         while(ij < all.length && !all[ij].val)
             ij++;
-        if(!(ij < all.length))
+        if(!(ij < all.length)) {
+            displayStorage();
             return;
+        }
         tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
     }
 }

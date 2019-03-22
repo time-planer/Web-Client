@@ -138,7 +138,7 @@ function saveTask() {
         }
     }
 }
-function createGroup() {
+function addNewGroup() {
     var grp =
         new timeplaner.InitialGroup();
     grp.name = $("#group-name").val();
@@ -342,6 +342,8 @@ function weiterleit() {
 }
 function onOpenOwnGroup(e) {
     if($(e.target).hasClass("del-grp"))
+        return;
+    if($(e.target).parent().hasClass("del-grp"))
         return;
     includeHead("header");
     var root = $(e.target);
