@@ -15,7 +15,6 @@ function calllogin(error, response, context) {
         //TODO: Alle errorcodes prüfen (pwd falsch/nutzer falsch usw)
         M.toast({html: 'Falsche Angaben'});
     }else{
-        alert($("#username").val());
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
         setAPIKey(response.user_key);

@@ -22,7 +22,7 @@
     function includeHead(head,ready) {
         $.get("views/header/" + head + ".html", function (data) {
             $("#headinclude").html($(data).html());
-            M.AutoInit();
+            //try{M.AutoInit();}catch(e) {}
             if (ready != null && ready != undefined)
                 ready();
         });
