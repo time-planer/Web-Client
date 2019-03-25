@@ -133,29 +133,127 @@ function setDead() {
 }
 
 function designAndroidTask() {
-    $('#taskholder').addClass("valign-wrapper");
-    task.css("width","200px");
-    task.addClass("center-align");
-    task.addClass("truncate");
-    var ab = setAbstand();
-    if(b <= 100){
-        ab = ab - (100-b);
-        b = 100;
-    }
-    ab = ab+"px";
-    b = b + "px";
+    // var today = new Date();
+    // text = "";
+    // farbe = "";
+    // farbe2 = "";
+    // pruef = 0;
+    // if(today < plan){
+    //     faktoli = 0;
+    //     farbe = "orange";
+    //     farbe2 = "green";
+    //     balk2width = plan-today;
+    //     balk2width = balk2width/1000/60/60/24;
+    //     balk2width = balk2width*25;
+    //     if(plan !== ende){
+    //         balkwidth = ende-plan;
+    //         balkwidth = balkwidth/1000/60/60/24;
+    //         balkwidth = balkwidth*25;
+    //     }
+    //     pruef = 1;
+    // }
+    // if(today > plan){
+    //     faktoli = 0;
+    //     balk2width = 0;
+    //     farbe = "orange";
+    //     farbe2 = "orangered";
+    //     text = "Planed exceeded";
+    //     balkwidth = ende-today;
+    //     balkwidth = balkwidth/1000/60/60/24;
+    //     balkwidth = balkwidth*25;
+    //     balk2width = today-plan;
+    //     balk2width = balk2width/1000/60/60/24;
+    //     balk2width = balk2width*25;
+    //     pruef = 2;
+    // }
+    // if(today > ende){
+    //     faktoli = 10;
+    //     text = "Deadline exceeded";
+    //     farbe = "red";
+    //     balk2width = 0;
+    //     balkwidth = today-ende;
+    //     balkwidth = balkwidth/1000/60/60/24;
+    //     balkwidth = balkwidth*25;
+    //     ende = today;
+    //     b = setWidth();
+    //     pruef = 3;
+    //
+    // }
+    // $('#taskholder').addClass("valign-wrapper");
+    // task.css("width","200px");
+    // task.addClass("center-align");
+    // task.addClass("truncate");
+    // var ab = setAbstand();
+    // if(b <= 100){
+    //     ab = ab - (100-b);
+    //     b = 100;
+    // }
+    // ab = ab+"px";
+    // b = b + "px";
+    //
+    // task.css("height",b);
+    // task.css("margin-top",ab);
+    // //task.addClass("valign-wrapper");
+    // task.addClass("flow-text");
+    // task.css("margin-left","5px");
+    // task.css("color","white");
+    // task.css("background-color",farbe);
+    // task.text(name);
+    // task.css("border","0.1px black solid");
+    // task.css("border-radius","20px");
+    // liste();
 
-    task.css("height",b);
-    task.css("margin-top",ab);
-    //task.addClass("valign-wrapper");
-    task.addClass("flow-text");
-    task.css("margin-left","5px");
-    task.css("color","white");
-    task.css("background-color",farbe);
-    task.text(name);
-    task.css("border","0.1px black solid");
-    task.css("border-radius","20px");
-    liste();
+    var box = $("<div></div>");
+    var bw;
+    bw = ende-start/1000/60/60/24*25;
+    bw = bw+"px";
+    box.css("width","100px");
+    box.css("height",bw);
+    box.css("background-color","red");
+    box.css("margin-left","20px");
+    task.addClass("valign-wrapper");
+    task.addClass("left-align");
+    task.append(box);
+}
+
+function newDesignAndroidTask(){
+    // Initialisierung der Variablen
+    var heute = $("<div></div>");
+    var green = $("<div></div>");
+    var orange = $("<div></div>");
+    var red = $("<div></div>");
+    var fortschritt = $("<div></div>");
+    var titel = $("<div></div>");
+    var tmp = 0;
+    var dada = $("<span></span>");
+    var toddy = new Date();
+    var pixw = "70px";
+
+    tmp = plan-start;
+    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp+"px";
+    green.css("width",pixw);
+    green.css("height",tmp);
+
+
+    tmp = 0;
+    tmp = ende-plan;
+    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp+"px";
+    orange.css("width",pixw);
+    green.css("height",tmp);
+
+    if(toddy > ende){
+        tmp = 0;
+        tmp = toddy-ende;
+        tmp = tmp/1000/60/60/24*25;
+        tmp = tmp+25;
+        tmp = tmp+"px";
+        red.css("width", tmp);
+        red.css("height", "30px");
+        red.css("background-color","red");
+        red.addClass("left");
+    }
 
 }
 
