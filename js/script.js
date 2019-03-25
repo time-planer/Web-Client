@@ -15,12 +15,13 @@ function calllogin(error, response, context) {
         //TODO: Alle errorcodes prüfen (pwd falsch/nutzer falsch usw)
         M.toast({html: 'Falsche Angaben'});
     }else{
+        alert($("#username").val());
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
         setAPIKey(response.user_key);
         showHome();
     }
-    var request = context.request; // Get the request. You dont need it but here is how you get it
+    //var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
 }
 function calladdtask(error, data, response) {

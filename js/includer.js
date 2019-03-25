@@ -72,7 +72,7 @@
 function showHome() {
     includeHead("header2",function () {
         includeBody("home",function () {
-            $("#out").click(logout);
+            $(".out").click(logout);
             $("#del").click(deleteTask);
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();

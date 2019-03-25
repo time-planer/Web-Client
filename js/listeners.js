@@ -315,10 +315,13 @@ function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
     onepage.compPath = "views";
+    if(get_cookie("name") === "null" && get_cookie("name") === "undefined") {
+        return;
+    }
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
     }
-    else{
+    else {
         showLogin();
         return;
     }
