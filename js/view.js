@@ -205,14 +205,19 @@ function designAndroidTask() {
 
     var box = $("<div></div>");
     var bw;
-    bw = ende-start/1000/60/60/24*25;
+    var tmp;
+    tmp = setAbstand()+"px";
+    bw = (ende-start)/1000/60/60/24*25;
     bw = bw+"px";
+    console.log(bw);
     box.css("width","100px");
     box.css("height",bw);
     box.css("background-color","red");
     box.css("margin-left","20px");
-    task.addClass("valign-wrapper");
+    $("#taskholder").addClass("valign-wrapper");
     task.addClass("left-align");
+    task.css("margin-top",tmp);
+    console.log(tmp);
     task.append(box);
 }
 
