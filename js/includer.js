@@ -75,10 +75,8 @@ function showHome() {
         includeBody("home",function () {
             $(".out").click(logout);
             $("#del").click(deleteTask);
-            M.AutoInit();
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();
-            M.AutoInit();
         });
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
