@@ -13,8 +13,8 @@
             if (ready != null && ready != undefined)
                 ready();
         });
-        set_cookie("bcontext", comp);
-        set_cookie("bfcontext", ready);
+        //set_cookie("bcontext", comp);
+        //set_cookie("bfcontext", ready);
     }
     /**
      * @param head {string}
@@ -26,8 +26,8 @@
             if (ready != null && ready != undefined)
                 ready();
         });
-        set_cookie("hcontext", head);
-        set_cookie("hfcontext", ready);
+        //set_cookie("hcontext", head);
+        //set_cookie("hfcontext", ready);
     }
     /**
      * @param sc {string} the source
@@ -70,12 +70,15 @@
     }
 }
 function showHome() {
+    set_cookie("scene", 'Home');
     includeHead("header2",function () {
         includeBody("home",function () {
             $(".out").click(logout);
             $("#del").click(deleteTask);
+            M.AutoInit();
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();
+            M.AutoInit();
         });
         onepage.loadComps();
         onepage.getComp("view-entry").init = function (v){
@@ -127,12 +130,14 @@ function showHome() {
     });*/
 }
 function showRegister() {
+    set_cookie("scene", 'Register');
     includeHead("header");
     includeBody("register",function () {
          $("#reg").click(register);
     });
 }
 function showLogin() {
+    set_cookie("scene", 'Login');
     includeHead("header");
     includeBody("login",function () {
         $("#log").click(login);
@@ -152,14 +157,17 @@ function showLogin() {
     });
 }
 function showSupport() {
+    set_cookie("scene", 'Support');
     includeHead("header");
     includeBody("support");
 }
 function showBug() {
+    set_cookie("scene", 'Bug');
     includeHead("header");
     includeBody("report");
 }
 function showAdd() {
+    set_cookie("scene", 'Add');
     includeHead("header");
     includeBody("add",function () {
         $("#speichern").click(saveTask);
@@ -168,6 +176,7 @@ function showAdd() {
     });
 }
 function showGroups() {
+    set_cookie("scene", 'Groups');
     includeHead("header3");
     includeBody("groups/groups",function () {
         onepage.loadComp("groups","new");
@@ -217,6 +226,7 @@ function showGroups() {
     });
 }
 function showSettings(){
+    set_cookie("scene", 'Settings');
     includeHead("header");
     includeBody("settings", function () {
         $('#delall').click(deleteAllTasks);
