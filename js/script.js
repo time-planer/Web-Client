@@ -1,5 +1,6 @@
 var timeplaner = require("time_planer");
 timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+//timeplaner.ApiClient.instance.basePath = "http://10.0.100.30:8080/eds/time-planer/";
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
@@ -20,7 +21,7 @@ function calllogin(error, response, context) {
         setAPIKey(response.user_key);
         showHome();
     }
-    var request = context.request; // Get the request. You dont need it but here is how you get it
+    //var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
 }
 function calladdtask(error, data, response) {
