@@ -315,19 +315,18 @@ function startup() {
     $("#footerinclude").load("views/footer.html");
     var def = true;
     onepage.compPath = "views";
+    if(get_cookie("name") === "null" && get_cookie("name") === "undefined") {
+        return;
+    }
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
     }
-    else{
+    else {
         showLogin();
         return;
     }
-    if(get_cookie("hcontext") !== null && get_cookie("hcontext")!== undefined  && get_cookie("bcontext") !== null && get_cookie("bcontext") !== undefined) {
-        eval("var x = "+get_cookie("bfcontext"));
-        eval("var y = "+get_cookie("hfcontext"));
-        includeBody(get_cookie("bcontext"),x);
-        includeHead(get_cookie("hcontext"),y);
-        def = false;
+    if(get_cookie("scene") !== null && get_cookie("scene")!== undefined) {
+        eval("show"+get_cookie("scene")+"();");
     }
     else{
         showHome();
