@@ -260,7 +260,7 @@ function deleteTask() {
     var taskname = $("#name").text();
     console.log(username,taskname);
     tasking.deleteTask(username,taskname, calldeltask);
-    tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+    loadView();
     M.Modal.getInstance($('#modal1')).close();
 }
 function register() {

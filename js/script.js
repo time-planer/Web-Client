@@ -49,7 +49,7 @@ function calledittask(error, data, response) {
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        loadView();
     }
 }
 function calldeltask(error, data, response) {
@@ -129,6 +129,7 @@ function displayStorage() {
         }
         for (let i = 0; i < length; i++) {
             show(storage[i],von,bis);
+            //Hier verändern
         }
         timeline();
     }
