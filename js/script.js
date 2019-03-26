@@ -69,7 +69,7 @@ function calldeltask(error, data, response) {
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        loadView();
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 }
