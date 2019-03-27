@@ -205,7 +205,7 @@ function difDateTag(date) {
     //var date = stringtoDate(date.substr(4,11));
     var now = new Date();
     var secs = date-now;
-    var days = secs/1000/60/60/24;
+    var days = secs/1000/60/60/24+1;
     return Math.round(days);
 }
 
