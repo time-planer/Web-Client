@@ -95,15 +95,20 @@ function showHome() {
                 }
             }
         };
-        memgroup.getGroups(get_cookie("name"),function (a,data,c) {
+        memgroup.getGroups(get_cookie("name"),function (error,data,c) {
             //TODO: Error checking
-            for(var i = 0;i<data.length;i++){
-                var v = onepage.getComp("view-entry").create();
-                v.values.group = data[i];
-                v.init();
-                $("#displayGrps .modal-content p").append(v.get());
+            if(error.status === 500) {
+                M.toast({html: 'Serverfehler!<br>Bitte kontaktieren Sie einen Admin!'});
+            } else {
+                for(var i = 0;i<data.length;i++){
+                    var v = onepage.getComp("view-entry").create();
+                    v.values.group = data[i];
+                    v.init();
+                    $("#displayGrps .modal-content p").append(v.get());
+                }
             }
         });
+        // Hier ist ein Fehler... ;/
         $("#save-grp-view").click(function () {
             let settings = [];
             $(".grp-view-option").each(function () {
