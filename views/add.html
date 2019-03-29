@@ -1,0 +1,105 @@
+<!--
+<div style="width: 100%; height: 60px; text-align: right">
+    <a onclick="showHome()"><i class="medium material-icons">arrow_back</i></a>
+</div>
+<div class="container valign-wrapper">
+    <div id="left" class="row">
+        <br/>
+        <div class="input-field col s12 m4" style="margin-left: 20px; margin-right: 20px">
+            <input id="title" tabindex="1" type="text" class="validate"/>
+            <label for="title">Überbegriff</label>
+        </div>
+        <div class="input-field col s12 m4" style="margin-left: 20px; margin-right: 20px">
+            <input type="text" id="plan" tabindex="-1" class="datepicker"/>
+            <label for="title">Geplantes Ende</label>
+        </div>
+        <div class="input-field col s12 m4" style="margin-left: 20px; margin-right: 20px">
+            <input type="text" id="dead" tabindex="-1" class="datepicker"/>
+            <label for="title">Deadline</label>
+        </div>
+        <br>
+        <p style="margin-left: 20px; margin-right: 20px;">Importance:</p>
+        <form action="#" style="margin-left: 20px; margin-right: 20px">
+            <p class="range-field">
+                <input type="range" id="imp" min="0" max="10" />
+            </p>
+        </form>
+        <center>
+        <i class="medium material-icons" id="star1">star</i>
+        <i class="medium material-icons" id="star2">star</i>
+        <i class="medium material-icons" id="star3">star_half</i>
+        <i class="medium material-icons" id="star4">star_border</i>
+        <i class="medium material-icons" id="star5">star_border</i>
+        </center>
+        <p style="margin-left: 20px; margin-right: 20px; visibility: hidden">Gruppen:</p>
+        <div class="chips chips-initial" style="margin-left: 20px; margin-right: 20px; visibility: hidden"></div>
+    </div>
+
+    <div id="right" class="row">
+        <br>
+            <form class="col s12 m8">
+                    <div class="input-field col s12 m8">
+                        <textarea id="textarea1" tabindex="2" class="materialize-textarea" style="max-height: 500px"></textarea>
+                        <label id="not" for="textarea1">Notizen</label>
+                    </div>
+            </form>
+        </div>
+</div>
+<div style="width: 100%; height: 60px; text-align: right">
+    <a tabindex="3" href="#" id="speichern"><i class="medium material-icons">save</i></a>
+</div>
+-->
+<div class="container valign-wrapper">
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="input-field col s12 m12">
+                <input id="title" tabindex="1" type="text" class="validate"/>
+                <label for="title">Titel</label>
+            </div>
+            <div class="input-field col s12 m12">
+                <input type="text" id="plan" tabindex="-1" class="datepicker"/>
+                <label for="plan">Geplantes Ende</label>
+            </div>
+            <div class="input-field col s12 m12">
+                <input type="text" id="dead" tabindex="-1" class="datepicker"/>
+                <label for="dead">Deadline</label>
+            </div>
+            <div class="col s12 m12">
+                <p>Importance:</p>
+                <form action="#">
+                    <p class="range-field">
+                        <input type="range" id="imp" min="0" max="10" />
+                    </p>
+                </form>
+                <div class="center-align">
+                    <i class="medium material-icons" id="star1">star</i>
+                    <i class="medium material-icons" id="star2">star</i>
+                    <i class="medium material-icons" id="star3">star_half</i>
+                    <i class="medium material-icons" id="star4">star_border</i>
+                    <i class="medium material-icons" id="star5">star_border</i>
+                </div>
+            </div>
+            <div class="input-field col s12 m12">
+                <!-- Dropdown Trigger -->
+                <a class='dropdown-trigger btn' style="width: 100%;" href='#' data-target='dropdown121'>Gruppen</a>
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown121' class='dropdown-content'>
+                    <li><a href="#!">Private</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="col s12 m8">
+            <form>
+                <div class="input-field col s12 m12">
+                    <textarea id="textarea1" tabindex="2" class="materialize-textarea" style="max-height: 300px"></textarea>
+                    <label id="not" for="textarea1">Notizen</label>
+                </div>
+            </form>
+        </div>
+        <div class="col s12 m12 right-align">
+            <a tabindex="3" href="#" id="speichern"><i class="medium material-icons">save</i></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OnePage</title>
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/onepage.js"></script>
+    <script>
+        $(document).ready(function () {
+            onepage.loadComps();
+            onepage.getComp("para").init = function(v){
+                let elem = v.$();
+                elem.find(".heading").text(v.val("head"));
+                elem.find(".text").text(v.val("text"));
+            };
+            let view = onepage.getComp("para").create();
+            view.val("text","Test Text");
+            $("body").append(view.get());
+        });
+    </script>
+</head>
+<body>
+    <div class="component" name="para">
+        <h1 class="title"></h1>
+        <p class="text"></p>
+        <span class="view" name="button" text="Weiter"></span>
+    </div>
+    <div class="component" name="button">
+        <button class="btn" subst="text"></button>
+    </div>
+</body>
+</html>

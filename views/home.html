@@ -1,0 +1,96 @@
+
+
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h1 id="name">Modulname</h1>
+        <i class="medium material-icons" id="star1">star</i>
+        <i class="medium material-icons" id="star2">star</i>
+        <i class="medium material-icons" id="star3">star_half</i>
+        <i class="medium material-icons" id="star4">star_border</i>
+        <i class="medium material-icons" id="star5">star_border</i>
+        <h5 id="ablauf">Ablaufdatum</h5>
+        <h5 id="übrig">Tage übrig/Abgelaufen</h5>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Notizen</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <i id="del" class="small material-icons hand">delete_forever</i>
+        <!-- Switch -->
+        <div class="switch valign-wrapper">
+            <label>
+                <i class="small material-icons hand">notifications_active</i>
+                <input id="pro" type="checkbox">
+                <span class="lever"></span>
+                <i class="small material-icons hand">notifications_off</i>
+            </label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <label class="left-align" style="margin-right: 50px">
+            <input id="indeterminate-checkbox" type="checkbox" />
+            <span>Abgeschlossen</span>
+        </label>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Schließen</a>
+    </div>
+</div>
+<!--
+<ul id="tabs-swipe-demo" class="tabs teal accent-4  teal accent-4">
+    <li style="color: white" class="tab col s3 teal accent-4 active" ><a style="color: white" href="#taskholder">Tasks</a></li>
+    <li style="color: white" class="tab col s3"><a style="color: white"  href="#test">Test 2</a></li>
+    <li style="color: white" class="tab col s3"><a style="color: white" href="#test-swipe-3">Test 3</a></li>
+</ul>
+
+<div class="fixed-action-btn ">
+        <a class="btn-floating btn-large cyan" onclick="showAdd()" >
+            <i class="material-icons large z-depth-4 cyan">add</i>
+        </a>
+    </div>
+-->
+
+<div id="home" style="margin-top: 80px"><h1>Home-Screen</h1>
+    <div class="container">
+        <ul class="collapsible row m11 s11">
+            <li>
+                <div class="collapsible-header">Patch 0.1</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header">Patch 0.2</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header">Patch 0.3</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div id="taskholder" style="margin-top: 80px"></div>
+<div id="liste" style="margin-top: 80px" class="container">
+    <div class="row col m11 s11">
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Task</th>
+                <th>Von</th>
+                <th>Geplant</th>
+                <th>Deadline</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody id="listbody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>

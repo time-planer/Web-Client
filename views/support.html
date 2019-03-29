@@ -1,0 +1,15 @@
+<form class="container valign-wrapper" id="form" action="/view/supsend.php" style="position: relative; margin-top: 7%; color:white " method="get">
+    <div class="row s12 m8">
+        <script>
+            $('#sm').val(get_cookie("name"));
+        </script>
+        <input id="name" placeholder="Ihr vollständiger Name" type="text" name="wem" class="validate col s12 m12">
+        <input style="color: black" id="sm" placeholder="E-Mail" type="text" name="von" class="validate col s12 m12">
+        <input id="b" placeholder="Ihr Anliegen" type="text" name="betreff" class="validate col s12 m12">
+        <textarea id="txt" placeholder="Text" name="text" class="materialize-textarea col s12 m12"></textarea>
+        <br><br>
+        <button class="btn waves-effect waves-light col s12 m12" type="submit" value="Senden">Senden
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,68 @@
+<header style="margin-bottom: 10px">
+
+<!-- Modal Structure -->
+<div id="displayGrps" class="modal">
+    <div class="modal-content">
+        <h4>Ansicht</h4>
+        <p>
+            <label class="component grp-view-option" name="view-entry">
+                <input type="checkbox" class="show-grp" checked="checked" />
+                <span class="grp-name"></span>
+                <span class="grp-uid"></span>
+            </label>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="save-grp-view">Save</a>
+    </div>
+</div>
+<nav class="headerbesonders z-depth-0" style="margin-bottom: 64px">
+    <div class="nav-wrapper teal accent-4 z-depth-0">
+        <a onclick="weiterleit()" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
+            <li><a onclick="showGroups()" class="hand">Gruppen</a></li>
+            <li><a onclick="showAdd()" class="hand">Neuer Task</a></li>
+            <li style="width: 120px; z-index: 12" class="center-align"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+        </ul>
+        <ul class="right disabled-hide-on-med-and-down ">
+
+        </ul>
+    </div>
+    <div class="nav-content teal accent-4">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a  href="#home">Home</a></li>
+            <li class="tab"><a class="active" href="#taskholder">Tasks</a></li>
+            <li class="tab"><a  href="#liste">Liste</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <ul class="sidenav right" id="mobile-demo">
+        <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
+        <li><a onclick="showGroups()" class="hand sidenav-close">Gruppen</a></li>
+        <li><a onclick="showAdd()" class="hand sidenav-close">Neuer Task</a></li>
+        <li><a class="dropdown-trigger" data-target="dropdownuser2">Benutzer</a></li>
+    </ul>
+<script>
+
+</script>
+    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px; z-index: 12">
+        <!-- <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li> -->
+        <li style="width: 120px"><a class="" onclick="showSettings()">Einstellungen</a></li>
+        <li style="width: 120px"><a class="out">Abmelden</a></li>
+    </ul>
+
+    <ul id="dropdownuser2" class="dropdown-content center-align" style="width: 100%; z-index: 12">
+        <li style="width: 100%"><a class="sidenav-close" onclick="showSettings()">Einstellungen</a></li>
+        <li style="width: 100%"><a class="out red-text sidenav-close">Abmelden</a></li>
+    </ul>
+</header>
+<!--
+
+<i class="material-icons">power_settings_new</i>
+<i class="material-icons">settings</i>
+<i class="material-icons">group</i>
+
+-->
