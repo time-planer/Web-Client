@@ -170,13 +170,42 @@ function showBug() {
     includeHead("header");
     includeBody("report");
 }
+
+let selectGroupToAddDropdown;
 function showAdd() {
     set_cookie("scene", 'Add');
     includeHead("header");
-    includeBody("add",function () {
+    includeBody("add/main",function () {
         $("#speichern").click(saveTask);
         $('#imp').attr("oninput","aktuImport()");
-        memgroup.getGroups(get_cookie("name"),reciveMemberingListOnAdd);
+        let entry = onepage.loadComp("add","entry");
+        entry.init = function(v){
+            if(v.values.group !== undefined){
+                v.$().find(".grp-item-name").text(v.values.group.name);
+                v.$().click(function () {
+                    selectGroupToAddDropdown.values.selected = v.values.group;
+                });
+            }
+        };
+        
+        let dropdown = onepage.loadComp("add","dropdown");
+        dropdown.init = function(v){
+            if(v.values.groups !== undefined){
+                v.$().find(".dropdown-trigger").text(v.values.selected.name);
+                for(let i = 0;i<v.values.groups.length;i++){
+                    let entry = onepage.getComp("entry").create();
+                    entry.values.group = v.values.groups[i];
+                    v.get().find("#grp-select").append(entry.$());
+                }
+                M.Dropdown.init(v.$().find(".dropdown-trigger"), {});
+            }
+        };
+        selectGroupToAddDropdown = dropdown.create();
+        $(".grp-select").html(selectGroupToAddDropdown.$());
+        memgroup.getGroups(get_cookie("name"),function (error,data,request) {
+            selectGroupToAddDropdown.values.selected = data[0];
+            selectGroupToAddDropdown.values.groups = data;
+        });
     });
 }
 function showGroups() {
