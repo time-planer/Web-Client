@@ -96,10 +96,11 @@ function showHome() {
             }
         };
         memgroup.getGroups(get_cookie("name"),function (error,data,c) {
-            //TODO: Error checking
-            if(error.status === 500) {
-                M.toast({html: 'Serverfehler!<br>Bitte kontaktieren Sie einen Admin!'});
-            } else {
+            if (error) {
+                if (error.status === 500) {
+                    M.toast({html: 'Serverfehler!<br>Bitte kontaktieren Sie einen Admin!'});
+                }
+            }   else {
                 for(var i = 0;i<data.length;i++){
                     var v = onepage.getComp("view-entry").create();
                     v.values.group = data[i];
@@ -188,7 +189,6 @@ function showGroups() {
             v.$().find("#add-grp-btn").on("click",addNewGroup);
         };
         onepage.substViews($("#include-add-group"));
-
         onepage.loadComps();
         onepage.loadComp("groups","entry");
         onepage.getComp("entry").init = function (v){
