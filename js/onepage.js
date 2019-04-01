@@ -52,7 +52,10 @@ const dev = false;
             components.push(comp);
         });
     };
-    exports.substViews = function(element) {
+    /**
+     * @param element {HTMLElement | jquery.fn.init}
+     */
+    exports.substViews = function(element = null) {
         let els;
         if(element !== undefined && element != null)
             els = element.find(".view");
@@ -87,6 +90,9 @@ const dev = false;
         this.loadComps();
         this.substViews();
     };
+    /**
+     * @returns {onepage.Component}
+     */
     exports.loadComp = function(){
         const tmp = this.compPath;
         if(arguments.length === 0)
@@ -106,6 +112,7 @@ const dev = false;
             components.push(c);
         }
         this.compPath = tmp;
+        return components[components.length-1];
     };
 
 
@@ -131,12 +138,12 @@ const dev = false;
             return v;
         };
         /**
-         * @param v {onepage.View}
+         * @param v {exports.View}
          */
         init (v) {};
 
         /**
-         * @param name
+         * @param name {string}
          */
         constructor (name = null){
             /**
