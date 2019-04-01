@@ -480,11 +480,54 @@ function liste() {
     var task = $("<td></td>");
     task.text(name);
     var von = $("<td></td>");
-    von.text(start.getDay()+"-"+start.getMonth()+"-"+start.getFullYear());
+    var l1 = longStringDateToShortStringDate((start.toString()));
+    var l2 = longStringDateToShortStringDate((plan.toString()));
+    var l3 = longStringDateToShortStringDate((ende.toString()));
+    var t;
+    l1 = l1.split(".");
+    if(l1[0]<10){
+        l1[0] = "0"+l1[0];
+    }
+    if(l1[1]<10){
+        l1[1] = "0"+l1[1];
+    }
+    //console.log(l1[0]);
+    //console.log(l1[1]);
+    t = l1[0]+"-"+l1[1]+"-"+l1[2];
+    l1 = t;
+    t = 0;
+    l2 = l2.split(".");
+    if(l2[0]<10){
+        l2[0] = "0"+l2[0];
+    }
+    if(l2[1]<10){
+        l2[1] = "0"+l2[1];
+    }
+    //console.log(l2[0]);
+    //console.log(l2[1]);
+    t = l2[0]+"-"+l2[1]+"-"+l2[2];
+    l2 = t;
+    t = 0;
+    l3 = l3.split(".");
+    if(l3[0]<10){
+        l3[0] = "0"+l3[0];
+    }
+    if(l3[1]<10){
+        l3[1] = "0"+l3[1];
+    }
+    //console.log(l3[0]);
+    //console.log(l3[1]);
+    t = l3[0]+"-"+l3[1]+"-"+l3[2];
+    l3 = t;
+    t = 0;
+    //console.log(longStringDateToShortStringDate((start.toString())));
+    //console.log(longStringDateToShortStringDate((plan.toString())));
+    //console.log(longStringDateToShortStringDate((ende.toString())));
+    von.text(l1);
     var geplant = $("<td></td>");
-    geplant.text(plan.getDay()+"-"+plan.getMonth()+"-"+plan.getFullYear());
+    geplant.text(l2);
     var deadline = $("<td></td>");
-    deadline.text(ende.getDay()+"-"+ende.getMonth()+"-"+ende.getFullYear());
+    deadline.text(l3);
 
     var status = $("<td></td>");
     if(toddy < plan){
