@@ -134,7 +134,7 @@ function saveTask() {
             var opts = {
                 'initialTask': task // InitialTask |
             };
-            tasking.addTask(username, opts, calladdtask);
+            tasking.addGroupTask(username,selectGroupToAddDropdown.values.selected.uid, opts, calladdtask);
         }
     }
 }
