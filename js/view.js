@@ -418,13 +418,13 @@ function newDesignPC() {
 
 
     // Heute Strich Design
-    heute.css("width","25px");
+    heute.css("width","27px");
     heute.css("height", "30px");
     heute.css("background-color","black");
     tmp = toddy-start;
     tmp = tmp/1000/60/60/24*25;
-    tmp = tmp+"px";
-    heute.css("margin-left",tmp);
+    tmp = tmp;
+    heute.css("margin-left",(tmp+2)+"px");
     heute.css("position","relative");
     heute.css("z-index","1");
 
@@ -434,6 +434,7 @@ function newDesignPC() {
     tmp = green.width()+orange.width()+red.width();
     titel.css("width",tmp);
     titel.css("height", "40px");
+    titel.css("background-color","white");
     titel.css("padding-left","15px");
     titel.addClass("flow-text");
     dada.text(name);
@@ -555,21 +556,21 @@ function liste() {
 
 function timeline(){
     var tmp;
-
+    var h = storage.length;
+    h = h*(-20*25);
     tmp = unt-von;
     console.log(tmp);
     tmp = tmp/1000/60/60/24;
-    var tl = $("<div class='left-align' style='height: 100px; position: relative; width: "+tmp*25+"px'></div>");
+    var tl = $("<div class='left-align' style='height: "+(-1*h)+"px;z-index: -5; position: relative; width: "+tmp*25+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
     console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
     var abstand = 23;
     var i;
-    for(i = 1; i<tmp;i++){
+    for(i = 1; i<tmp+1;i++){
         var vline = $("<div class='vline'></div>");;
         console.log("drinnenab");
-        vline.css("position","relative");
+        //vline.css("position","relative");
         vline.css("display","inline-block");
-        vline.css("z-index","20");
         vline.css("width", "2px");
         vline.css("height","100%");
         vline.css("background-color","black");
