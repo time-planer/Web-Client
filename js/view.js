@@ -555,22 +555,26 @@ function liste() {
 
 function timeline(){
     var tmp;
-    var tl = $("<div class='left-align'></div>");
+
     tmp = unt-von;
+    console.log(tmp);
     tmp = tmp/1000/60/60/24;
+    var tl = $("<div class='left-align' style='height: 100px; position: relative; width: "+tmp*25+"px'></div>");
+    console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
     var abstand = 25;
     var i;
+    tmp = tmp-38;
     for(i = 1; i<tmp;i++){
         var vline = $("<div class='vline'></div>");;
-        console.log("drinnen");
+        console.log("drinnenab");
         vline.css("position","relative");
+        vline.css("display","inline-block");
         vline.css("z-index","20");
         vline.css("width", "2px");
         vline.css("height","100%");
         vline.css("background-color","black");
         vline.css("margin-left",(abstand+"px"));
-        abstand = abstand+25;
         tl.append(vline);
     }
     $("#taskholder").append(tl);
