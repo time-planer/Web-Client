@@ -178,6 +178,7 @@ function showAdd() {
     includeBody("add/main",function () {
         $("#speichern").click(saveTask);
         $('#imp').attr("oninput","aktuImport()");
+        onepage.components.splice(0,onepage.components.length);
         let entry = onepage.loadComp("add","entry");
         entry.init = function(v){
             if(v.values.group !== undefined){
@@ -194,8 +195,9 @@ function showAdd() {
                 v.$().find(".dropdown-trigger").text(v.values.selected.name);
                 for(let i = 0;i<v.values.groups.length;i++){
                     let entry = onepage.getComp("entry").create();
-                    entry.values.group = v.values.groups[i];
+                    entry.refresh();
                     v.get().find("#grp-select").append(entry.$());
+                    entry.values.group = v.values.groups[i];
                 }
                 M.Dropdown.init(v.$().find(".dropdown-trigger"), {});
             }
@@ -225,6 +227,9 @@ function showGroups() {
                 return;
             v.$().find(".grp-name").text(v.val("grp").name);
             v.$().find(".grp-uid").text(v.val("grp").uid).hide();
+            if(v.val("grp").members === 1) {
+                v.$().find('.memb').text("Member");
+            }
             v.$().find(".grp-memcount").text(v.val("grp").members);
             v.$().find(".del-grp").click(function () {
                 mygroups.deleteGroup(get_cookie("name"),v.val("grp").uid,function () {

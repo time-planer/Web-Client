@@ -1,5 +1,5 @@
 const onepage = {};
-const dev = false;
+const dev = true;
 
 /**
  * main Init
