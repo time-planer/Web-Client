@@ -408,7 +408,7 @@ function newDesignPC() {
         tmp = 0;
         tmp = toddy-ende;
         tmp = tmp/1000/60/60/24*25;
-        tmp = tmp+25;
+        tmp = tmp+25+2;
         tmp = tmp+"px";
         red.css("width", tmp);
         red.css("height", "30px");
@@ -418,15 +418,15 @@ function newDesignPC() {
 
 
     // Heute Strich Design
-    heute.css("width","27px");
-    heute.css("height", "30px");
-    heute.css("background-color","black");
-    tmp = toddy-start;
-    tmp = tmp/1000/60/60/24*25;
-    tmp = tmp;
-    heute.css("margin-left",(tmp+2)+"px");
-    heute.css("position","relative");
-    heute.css("z-index","1");
+    //heute.css("width","25px");
+    //heute.css("height", "30px");
+    //heute.css("background-color","black");
+    //tmp = toddy-start;
+    //tmp = tmp/1000/60/60/24*25;
+    //tmp = tmp;
+    //heute.css("margin-left",(tmp+2)+"px");
+    //heute.css("position","relative");
+    //heute.css("z-index","1");
 
 
     // Titel Box Design
@@ -556,6 +556,11 @@ function liste() {
 
 function timeline(){
     var tmp;
+    var bitch = new Date();
+    console.log("Von: "+von);
+    console.log("Unt: "+unt);
+    var bitchi = (bitch-von)/1000/60/60/24;
+    bitchi = Math.round(bitchi);
     var h = storage.length;
     h = h*(-20*25);
     tmp = unt-von;
@@ -566,16 +571,27 @@ function timeline(){
     console.log(unt+"-"+von+"="+tmp);
     var abstand = 23;
     var i;
-    for(i = 1; i<tmp+1;i++){
+    for(i = 1; i<tmp;i++){
         var vline = $("<div class='vline'></div>");;
-        console.log("drinnenab");
-        //vline.css("position","relative");
-        vline.css("display","inline-block");
-        vline.css("width", "2px");
-        vline.css("height","100%");
-        vline.css("background-color","black");
-        vline.css("margin-left",(abstand+"px"));
-        tl.append(vline);
+        if(bitchi != i){
+            console.log("drinnenab");
+            //vline.css("position","relative");
+            vline.css("display","inline-block");
+            vline.css("width", "2px");
+            vline.css("height","100%");
+            vline.css("background-color","black");
+            vline.css("margin-left",(abstand+"px"));
+            tl.append(vline);
+        }
+        else{
+            console.log("tottototoot");
+            vline.css("display","inline-block");
+            vline.css("width", "25px");
+            vline.css("height","100%");
+            vline.css("background-color","black");
+            vline.css("margin-left",(abstand+"px"));
+            tl.append(vline);
+        }
     }
     $("#taskholder").append(tl);
     console.log("fertig");
