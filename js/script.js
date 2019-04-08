@@ -14,12 +14,26 @@ var ij = 0;
 var all = null;
 var storage = [];
 function calllogin(error, response, context) {
-    if(error || context.statusCode == 204){
+    if(error || context.statusCode === 204 || context.statusCode === 203){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
         var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
-        //TODO: Alle errorcodes prüfen (pwd falsch/nutzer falsch usw)
-        M.toast({html: 'Falsche Angaben'});
+        if(context.statusCode === 204) {
+            M.toast({html: 'Keine E-Mail Adresse gefunden'});
+        }
+        if(context.statusCode === 203) {
+            M.toast({html: 'Kein Passwort in der Anfrage'});
+        }
+        if(error.status === 400) {
+            M.toast({html: 'Parameter stimmen nicht überein'});
+        }
+        if(error.status === 401) {
+            M.toast({html: 'Falsche Angaben'});
+        }
+        if(error.status === 402) {
+            M.toast({html: 'Falsche Angaben'});
+        }
     }else{
+
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
         setAPIKey(response.user_key);
@@ -30,15 +44,26 @@ function calllogin(error, response, context) {
 }
 function calladdtask(error, data, response) {
     console.log(response);
-    if (error) {
+    if (error || context.errorCode === 203) {
         console.error(error);
         console.log(response);
-        if(error.status === 404) {
-            M.toast({html: 'API key is wrong'});
-            showHome();
-        } else {
-            M.toast({html: 'Eingaben sind nicht gültig'});
+        if(context.errorCode === 203) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            showLogin();
+            return;
         }
+        if(error.status === 404) {
+            M.toast({html: 'API key ist falsch'});
+        }
+        if(error.status === 401) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            showLogin();
+            return;
+        }
+        if(error.status === 403) {
+            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+        }
+        showHome();
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
@@ -47,9 +72,25 @@ function calladdtask(error, data, response) {
     }
 }
 function calledittask(error, data, response) {
-    if (error) {
+    if (error || context.errorCode === 203) {
         console.error(error);
         console.log(response);
+        if(context.errorCode === 203) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+        }
+        if(error.status === 400) {
+            M.toast({html: 'Task ist nicht vorhanden'});
+        }
+        if(error.status === 401) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            showLogin();
+        }
+        if(error.status === 403) {
+            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+        }
+        if(error.status === 404) {
+            M.toast({html: 'Der User existiert nicht'});
+        }
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
@@ -57,18 +98,25 @@ function calledittask(error, data, response) {
     }
 }
 function calldeltask(error, data, response) {
-    if (error) {
-        console.log(error);
+    if (error || context.errorCode === 203) {
         console.error(error);
         console.log(response);
+        if(context.errorCode === 203) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+        }
         if(error.status === 400) {
-            M.toast({html: "Task isn't known by the server"});
+            M.toast({html: "Task ist nicht vorhanden"});
         }
         if(error.status === 401) {
-            M.toast({html: "API key is wrong"})
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            showLogin();
+        }
+        if(error.status === 403) {
+            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
         }
         if(error.status === 404) {
-            M.toast({html: "The User isn't known by the server"})
+            M.toast({html: "Der User existiert nicht"});
+            showLogin();
         }
     } else {
         console.log('API called successfully. Returned data: ' + data);
@@ -78,15 +126,18 @@ function calldeltask(error, data, response) {
     }
 }
 function calldelalltasks(error, data, response) {
-    if (error) {
-        console.log(error);
+    if (error || context.errorCode === 203) {
         console.error(error);
         console.log(response);
+        if(context.errorCode === 203) {
+            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+        }
         if(error.status === 401) {
-            M.toast({html: "API key is wrong"})
+            M.toast({html: "API key ist falsch"});
         }
         if(error.status === 404) {
-            M.toast({html: "The User isn't known by the server"})
+            M.toast({html: "The User ist nicht bekannt"});
+            showLogin();
         }
     } else {
         console.log('API called successfully. Returned data: ' + data);
@@ -101,6 +152,18 @@ function callreg (error, data, response) {
         switch(error.status) {
             case 409:
                 M.toast({html: 'Email-Adresse bereits vergeben'});
+                break;
+
+            case 404:
+                M.toast({html: 'Nicht alle Parameter gegeben'});
+                break;
+
+            case 400:
+                M.toast({html: 'Parameter stimmen nicht überein'});
+                break;
+
+            default:
+                M.toast({html: 'Etwas ist schief gelaufen'});
                 break;
         }
     } else {
