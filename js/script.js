@@ -50,6 +50,7 @@ function calladdtask(error, data, response) {
         if(context.errorCode === 203) {
             M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
             showLogin();
+            return;
         }
         if(error.status === 404) {
             M.toast({html: 'API key ist falsch'});
