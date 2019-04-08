@@ -562,9 +562,8 @@ function timeline(){
     var tl = $("<div class='left-align' style='height: 100px; position: relative; width: "+tmp*25+"px'></div>");
     console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
-    var abstand = 25;
+    var abstand = 23;
     var i;
-    tmp = tmp-38;
     for(i = 1; i<tmp;i++){
         var vline = $("<div class='vline'></div>");;
         console.log("drinnenab");
