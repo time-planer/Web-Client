@@ -563,11 +563,12 @@ function timeline(){
     bitchi = Math.round(bitchi);
     console.log(bitchi);
     var h = storage.length;
-    h = h*(-20*50);
+    h = h*(-90);
+    h = h-90;
     tmp = unt-von;
     console.log(tmp);
     tmp = tmp/1000/60/60/24;
-    var tl = $("<div class='left-align' style='height: "+(-1*h)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
+    var tl = $("<div class='left-align' style='height: "+(-1*h+20)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
     console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
     var abstand = 49;
@@ -594,6 +595,7 @@ function timeline(){
             tl.append(vline);
         }
     }
+    $("#taskholder").css("height",(-h)+"px");
     $("#taskholder").append(tl);
     console.log("fertig");
 }
