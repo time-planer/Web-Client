@@ -65,7 +65,7 @@ function styleTask(task1,von1,bis,span) {
 function setWidth() {
     var secs = ende-start;
     var days = Math.round(secs/1000/60/60/24);
-    var breite = days*25;
+    var breite = days*50;
     breite = breite;
     return breite;
 }
@@ -73,13 +73,13 @@ function today() {
     var today = new Date();
     var secs = today-von;
     var days = Math.round(secs/1000/60/60/24);
-    var abstandLinks = days*25;
+    var abstandLinks = days*50;
 
 }
 function setAbstand() {
     var secs = start-von;
     var days = Math.round(secs/1000/60/60/24);
-    var abstandLinks = days*25;
+    var abstandLinks = days*50;
     return abstandLinks;
 }
 function setDead() {
@@ -94,11 +94,11 @@ function setDead() {
         farbe2 = "green";
         balk2width = plan-today;
         balk2width = balk2width/1000/60/60/24;
-        balk2width = balk2width*25;
+        balk2width = balk2width*50;
         if(plan !== ende){
             balkwidth = ende-plan;
             balkwidth = balkwidth/1000/60/60/24;
-            balkwidth = balkwidth*25;
+            balkwidth = balkwidth*50;
         }
         pruef = 1;
     }
@@ -110,10 +110,10 @@ function setDead() {
         text = "Planed exceeded";
         balkwidth = ende-today;
         balkwidth = balkwidth/1000/60/60/24;
-        balkwidth = balkwidth*25;
+        balkwidth = balkwidth*50;
         balk2width = today-plan;
         balk2width = balk2width/1000/60/60/24;
-        balk2width = balk2width*25;
+        balk2width = balk2width*50;
         pruef = 2;
     }
     if(today > ende){
@@ -123,7 +123,7 @@ function setDead() {
         balk2width = 0;
         balkwidth = today-ende;
         balkwidth = balkwidth/1000/60/60/24;
-        balkwidth = balkwidth*25;
+        balkwidth = balkwidth*50;
         ende = today;
         b = setWidth();
         pruef = 3;
@@ -144,11 +144,11 @@ function designAndroidTask() {
     //     farbe2 = "green";
     //     balk2width = plan-today;
     //     balk2width = balk2width/1000/60/60/24;
-    //     balk2width = balk2width*25;
+    //     balk2width = balk2width*50;
     //     if(plan !== ende){
     //         balkwidth = ende-plan;
     //         balkwidth = balkwidth/1000/60/60/24;
-    //         balkwidth = balkwidth*25;
+    //         balkwidth = balkwidth*50;
     //     }
     //     pruef = 1;
     // }
@@ -160,10 +160,10 @@ function designAndroidTask() {
     //     text = "Planed exceeded";
     //     balkwidth = ende-today;
     //     balkwidth = balkwidth/1000/60/60/24;
-    //     balkwidth = balkwidth*25;
+    //     balkwidth = balkwidth*50;
     //     balk2width = today-plan;
     //     balk2width = balk2width/1000/60/60/24;
-    //     balk2width = balk2width*25;
+    //     balk2width = balk2width*50;
     //     pruef = 2;
     // }
     // if(today > ende){
@@ -173,7 +173,7 @@ function designAndroidTask() {
     //     balk2width = 0;
     //     balkwidth = today-ende;
     //     balkwidth = balkwidth/1000/60/60/24;
-    //     balkwidth = balkwidth*25;
+    //     balkwidth = balkwidth*50;
     //     ende = today;
     //     b = setWidth();
     //     pruef = 3;
@@ -207,7 +207,7 @@ function designAndroidTask() {
     var bw;
     var tmp;
     tmp = setAbstand()+"px";
-    bw = (ende-start)/1000/60/60/24*25;
+    bw = (ende-start)/1000/60/60/24*50;
     bw = bw+"px";
     console.log(bw);
     box.css("width","100px");
@@ -235,7 +235,7 @@ function newDesignAndroidTask(){
     var pixw = "70px";
 
     tmp = plan-start;
-    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp/1000/60/60/24*50;
     tmp = tmp+"px";
     green.css("width",pixw);
     green.css("height",tmp);
@@ -243,7 +243,7 @@ function newDesignAndroidTask(){
 
     tmp = 0;
     tmp = ende-plan;
-    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp/1000/60/60/24*50;
     tmp = tmp+"px";
     orange.css("width",pixw);
     green.css("height",tmp);
@@ -251,8 +251,8 @@ function newDesignAndroidTask(){
     if(toddy > ende){
         tmp = 0;
         tmp = toddy-ende;
-        tmp = tmp/1000/60/60/24*25;
-        tmp = tmp+25;
+        tmp = tmp/1000/60/60/24*50;
+        tmp = tmp+50;
         tmp = tmp+"px";
         red.css("width", tmp);
         red.css("height", "30px");
@@ -384,7 +384,7 @@ function newDesignPC() {
 
     // Grüner Balken Design
     tmp = plan-start;
-    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp/1000/60/60/24*50;
     tmp = tmp+"px";
     green.css("width", tmp);
     green.css("height", "30px");
@@ -395,7 +395,7 @@ function newDesignPC() {
     // Orangener Balken Design
     tmp = 0;
     tmp = ende-plan;
-    tmp = tmp/1000/60/60/24*25;
+    tmp = tmp/1000/60/60/24*50;
     tmp = tmp+"px";
     orange.css("width", tmp);
     orange.css("height", "30px");
@@ -407,8 +407,8 @@ function newDesignPC() {
     if(toddy > ende){
         tmp = 0;
         tmp = toddy-ende;
-        tmp = tmp/1000/60/60/24*25;
-        tmp = tmp+25+2;
+        tmp = tmp/1000/60/60/24*50;
+        tmp = tmp+50+2;
         tmp = tmp+"px";
         red.css("width", tmp);
         red.css("height", "30px");
@@ -418,15 +418,15 @@ function newDesignPC() {
 
 
     // Heute Strich Design
-    //heute.css("width","25px");
-    //heute.css("height", "30px");
-    //heute.css("background-color","black");
-    //tmp = toddy-start;
-    //tmp = tmp/1000/60/60/24*25;
-    //tmp = tmp;
-    //heute.css("margin-left",(tmp+2)+"px");
-    //heute.css("position","relative");
-    //heute.css("z-index","1");
+    // heute.css("width","50px");
+    // heute.css("height", "30px");
+    // heute.css("background-color","black");
+    // tmp = toddy-start;
+    // tmp = tmp/1000/60/60/24*50;
+    // tmp = tmp;
+    // heute.css("margin-left",(tmp+2)+"px");
+    // heute.css("position","relative");
+    // heute.css("z-index","1");
 
 
     // Titel Box Design
@@ -450,7 +450,7 @@ function newDesignPC() {
     fortschritt.append(green);
     fortschritt.append(orange);
     fortschritt.append(red);
-    fortschritt.append(heute);
+    //fortschritt.append(heute);
 
 
     // Task
@@ -561,23 +561,24 @@ function timeline(){
     console.log("Unt: "+unt);
     var bitchi = (bitch-von)/1000/60/60/24;
     bitchi = Math.round(bitchi);
+    console.log(bitchi);
     var h = storage.length;
-    h = h*(-20*25);
+    h = h*(-20*50);
     tmp = unt-von;
     console.log(tmp);
     tmp = tmp/1000/60/60/24;
-    var tl = $("<div class='left-align' style='height: "+(-1*h)+"px;z-index: -5; position: relative; width: "+tmp*25+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
+    var tl = $("<div class='left-align' style='height: "+(-1*h)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
     console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
-    var abstand = 23;
+    var abstand = 49;
     var i;
     for(i = 1; i<tmp;i++){
         var vline = $("<div class='vline'></div>");;
-        if(bitchi != i){
+        if(bitchi+1 != i){
             console.log("drinnenab");
             //vline.css("position","relative");
             vline.css("display","inline-block");
-            vline.css("width", "2px");
+            vline.css("width", "1px");
             vline.css("height","100%");
             vline.css("background-color","black");
             vline.css("margin-left",(abstand+"px"));
@@ -586,7 +587,7 @@ function timeline(){
         else{
             console.log("tottototoot");
             vline.css("display","inline-block");
-            vline.css("width", "25px");
+            vline.css("width", "50px");
             vline.css("height","100%");
             vline.css("background-color","black");
             vline.css("margin-left",(abstand+"px"));
