@@ -42,8 +42,8 @@ function calllogin(error, response, context) {
     //var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
 }
-function calladdtask(error, data, response) {
-    console.log(response);
+function calladdtask(error, data, context) {
+    console.log(context);
     if (error || context.errorCode === 203) {
         console.error(error);
         console.log(response);
@@ -71,10 +71,10 @@ function calladdtask(error, data, response) {
         showHome();
     }
 }
-function calledittask(error, data, response) {
+function calledittask(error, data, context) {
     if (error || context.errorCode === 203) {
         console.error(error);
-        console.log(response);
+        console.log(context);
         if(context.errorCode === 203) {
             M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
         }
@@ -97,10 +97,10 @@ function calledittask(error, data, response) {
         loadView();
     }
 }
-function calldeltask(error, data, response) {
+function calldeltask(error, data, context) {
     if (error || context.errorCode === 203) {
         console.error(error);
-        console.log(response);
+        console.log(context);
         if(context.errorCode === 203) {
             M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
         }
@@ -125,10 +125,10 @@ function calldeltask(error, data, response) {
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 }
-function calldelalltasks(error, data, response) {
+function calldelalltasks(error, data, context) {
     if (error || context.errorCode === 203) {
         console.error(error);
-        console.log(response);
+        console.log(context);
         if(context.errorCode === 203) {
             M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
         }
@@ -146,7 +146,7 @@ function calldelalltasks(error, data, response) {
         M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
     }
 }
-function callreg (error, data, response) {
+function callreg (error, data, context) {
     if (error) {
         console.error(error);
         switch(error.status) {
