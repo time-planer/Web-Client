@@ -6,7 +6,7 @@
      * @param comp {string}
      * @param ready {function}
      */
-    function includeBody(comp, ready) {
+    function includeBody(comp, ready = null) {
         $.get("views/" + comp + ".html", function (data) {
             $("#contentinclude").html($(data));
             M.AutoInit();
@@ -268,4 +268,14 @@ function showSettings(){
     includeBody("settings", function () {
         $('#delall').click(deleteAllTasks);
     });
+}
+function showPrivacy() {
+    set_cookie("scene", 'Privacy');
+    includeHead("header");
+    includeBody("privacy");
+}
+function showPrivacyEng() {
+    set_cookie("scene", 'PrivacyEng');
+    includeHead("header");
+    includeBody("privacy_eng");
 }
