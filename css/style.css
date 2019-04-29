@@ -81,10 +81,8 @@ main {
 }
 
 #taskholder{
-    margin-left: 2%;
-    margin-right:2%;
     height: 850px;
-    width: 96%;
+    width: 100%;
     border: 1px black solid;
     /* border-radius: 25px; */
     overflow: scroll;
