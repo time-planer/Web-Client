@@ -6,6 +6,8 @@ var z = 0;
 var task;
 var von;
 var start;
+let description;
+let priority;
 var ende;
 var farbe;
 var farbe2;
@@ -43,8 +45,10 @@ var zaehler = 0;
 var unt;
 
 
-function styleTask(task1,von1,bis,span) {
+function styleTask(task1,von1,bis,span, desc, pri) {
     task = task1;
+    priority = pri;
+    description = desc;
     text = span.text();
     von = von1;
     unt = bis;
@@ -476,9 +480,8 @@ function newDesignPC() {
 }
 
 function liste() {
-    var a = $("<tr></tr>");
     var toddy = new Date();
-    var task = $("<td></td>");
+    var task = $("<td class='name_field'></td>");
     task.text(name);
     var von = $("<td></td>");
     var l1 = longStringDateToShortStringDate((start.toString()));
@@ -529,7 +532,12 @@ function liste() {
     geplant.text(l2);
     var deadline = $("<td></td>");
     deadline.text(l3);
-
+    var a = $("<tr class='task hand'></tr>");
+    a.attr("planed",shortStringDatetoLongStringDate(geplant.text()));
+    a.attr("deadline",shortStringDatetoLongStringDate(deadline.text()));
+    a.attr("startdate",shortStringDatetoLongStringDate(von.text()));
+    a.attr("description",description); //Die Infos
+    a.attr("priority",priority); //Die Wichtigkeit
     var status = $("<td></td>");
     if(toddy < plan){
         status.css("background-color","green");
@@ -551,6 +559,7 @@ function liste() {
     a.append(geplant);
     a.append(deadline);
     a.append(status);
+    a.on("click",openTask);
     $("#listbody").append(a);
 }
 

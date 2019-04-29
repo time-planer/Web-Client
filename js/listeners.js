@@ -97,7 +97,7 @@ function openTask(data) {
             document.getElementById("star5").innerText = "star";
             break;
         default:
-            alert(pri);
+            alert(pri); //Wirft undefined
             break;
     }
     M.Modal.getInstance($("#modal1")).open();
