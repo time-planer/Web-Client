@@ -177,6 +177,23 @@ function callreg (error, data, context) {
         });
     }
 }
+function receiveAllTasks(a, data, b) {
+    for(let i = 0;i<data.length;i++) {
+        storage.push(data[i]);
+    }
+    ij++;
+    if(all !== null && ij<all.length) {
+        while(ij < all.length && !all[ij].val)
+            ij++;
+        if(!(ij < all.length)) {
+            displayStorage();
+            return;
+        }
+        tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
+    } else {
+        displayStorage();
+    }
+}
 
 function displayStorage() {
     storage.sort(function (a,b) {
@@ -202,23 +219,6 @@ function displayStorage() {
     }
 }
 
-function receiveAllTasks(a, data, b) {
-    for(let i = 0;i<data.length;i++) {
-        storage.push(data[i]);
-    }
-    ij++;
-    if(all !== null && ij<all.length) {
-        while(ij < all.length && !all[ij].val)
-            ij++;
-        if(!(ij < all.length)) {
-            displayStorage();
-            return;
-        }
-        tasking.getAllGroupTasks(get_cookie("name"),all[ij].uid,receiveAllTasks);
-    } else {
-        displayStorage();
-    }
-}
 function show(task,von,bis) {
     //Zeig es im Fenster an
     let planend = task.planedDate;
@@ -242,7 +242,7 @@ function show(task,von,bis) {
     let span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
-    styleTask(div, von, bis, span);
+    styleTask(div, von, bis, span, description, priority);
 }
 var isMobile = {
     Android: function () {

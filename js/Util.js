@@ -197,6 +197,13 @@ function longStringDateToShortStringDate(date) {
     return tmp.getDate()+"."+(tmp.getMonth()+1)+"."+tmp.getFullYear();
 }
 
+function shortStringDatetoLongStringDate(date) {
+    var tag = date.substring(0,date.indexOf("-"));
+    var monat = date.substring(date.indexOf("-")+1,date.lastIndexOf("-"));
+    date = monat+"-"+tag+"-"+date.substring(date.lastIndexOf("-")+1,date.length);
+    return new Date(date).toString();
+}
+
 function longStringtoDate(string) {
     return stringtoDate(string.substr(4,11));
 }
