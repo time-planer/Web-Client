@@ -212,7 +212,7 @@ function showAdd() {
 }
 function showGroups() {
     set_cookie("scene", 'Groups');
-    includeHead("header3");
+    includeHead("header");
     includeBody("groups/groups",function () {
         onepage.loadComp("groups","new");
         onepage.getComp("new").init = function (v) {
