@@ -274,6 +274,11 @@ function showPrivacy() {
     includeHead("header");
     includeBody("privacy");
 }
+function showAbout() {
+    set_cookie("scene", 'About');
+    includeHead("header");
+    includeBody("about");
+}
 function showPrivacyEng() {
     set_cookie("scene", 'PrivacyEng');
     includeHead("header");
