@@ -32,6 +32,9 @@ function calllogin(error, response, context) {
         if(error.status === 402) {
             M.toast({html: 'Falsche Angaben'});
         }
+		if(error.status === 404) {
+            M.toast({html: 'Benutzer nicht gefunden'});
+        }
     }else{
 
         set_cookie("name",$("#username").val());
