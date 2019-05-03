@@ -1,5 +1,9 @@
 ﻿var timeplaner = require("time_planer");
 if(developerMode()) {
+	console.log("-------------------[Notice]-------------------");
+	console.log(" You are in Developer Mode (using local server)");
+	console.log("-------------------[Notice]-------------------");
+	
     timeplaner.ApiClient.instance.basePath = "http://localhost:8080/time-planer/";
 }else{
     timeplaner.ApiClient.instance.basePath = "https://projekte.tgm.ac.at/eds/api/time-planer/";
