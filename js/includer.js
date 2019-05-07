@@ -233,14 +233,7 @@ function showGroups() {
             v.$().find(".grp-memcount").text(v.val("grp").members);
             v.$().find(".del-grp").click(function () {
                 mygroups.deleteGroup(get_cookie("name"),v.val("grp").uid,function () {
-                    let list = grpList.val("list");
-                    for (let i = 0; i < list.length; i++) {
-                        if(list[i].uid === v.val("grp").uid) {
-                            list.slice(i, 1);
-                            break;
-                        }
-                    }
-                    grpList.val("list",list);
+                    showGroups();
                 });
             });
             v.$().click(onOpenOwnGroup);

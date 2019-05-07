@@ -1,8 +1,12 @@
-var timeplaner = require("time_planer");
+﻿var timeplaner = require("time_planer");
 if(developerMode()) {
+	console.log("-------------------[Notice]-------------------");
+	console.log(" You are in Developer Mode (using local server)");
+	console.log("-------------------[Notice]-------------------");
+	
     timeplaner.ApiClient.instance.basePath = "http://localhost:8080/time-planer/";
 }else{
-    timeplaner.ApiClient.instance.basePath = "https://eds.logfro.de/time-planer/";
+    timeplaner.ApiClient.instance.basePath = "https://projekte.tgm.ac.at/eds/api/time-planer/";
     // timeplaner.ApiClient.instance.basePath = "http://10.0.100.30:8080/eds/time-planer/";
 }
 var auth = new timeplaner.AuthenticationApi();
@@ -31,6 +35,9 @@ function calllogin(error, response, context) {
         }
         if(error.status === 402) {
             M.toast({html: 'Falsche Angaben'});
+        }
+		if(error.status === 404) {
+            M.toast({html: 'Benutzer nicht gefunden'});
         }
     }else{
 
