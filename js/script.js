@@ -283,7 +283,7 @@ function reciveOwnedGroup(a,grp,c){
     $("#grp-created").text(longStringDateToShortStringDate(grp.creation_date.toString()));
     $("#add-grp-member").click(onAddGrpMember);
     $("#grp-save").click(saveChangedPermissions);
-    let mementry = loadSync("groups/member-entry");
+    let mementry = loadSync("groups/member-entry"); //Hier fehler, debugging notwendig
     $("#grp-members").empty();
     for(let i = 0;i<grp.members.length;i++){
         let mem = grp.members[i];
