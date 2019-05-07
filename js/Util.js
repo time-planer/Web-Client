@@ -19,6 +19,7 @@ function austausch_cookie(ersterName, ersterWert, zweiterName, zweiterWert) {
     set_cookie(ersterName,zweiterWert);
     set_cookie(zweiterName,ersterWert);
 }
+
 /**
  * Setzt die Lebensdauer der cookies auf 90 Tage
  */

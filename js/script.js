@@ -297,24 +297,26 @@ function reciveOwnedGroup(a,grp,c){
         let tentry = mementry.clone();
         tentry.attr("index",i);
         tentry.find(".grp-member-mail").text(mem.email);
+        // Hier Arbeiten
         tentry.find(".grp-member-create").prop('checked', mem.create).change(function (e) {
             let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
-            lastGrp.members[elem.attr("index")].create = $(e.target).val() === "on";
+            lastGrp.members[elem.attr("index")].create = $(e.target).get(0).checked;
         });
         tentry.find(".grp-member-del").prop('checked', mem.delete).change(function (e) {
             let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
-            lastGrp.members[elem.attr("index")].delete = $(e.target).val() === "on";
+            lastGrp.members[elem.attr("index")].delete = $(e.target).get(0).checked;
         });
         tentry.find(".grp-member-edit").prop('checked', mem.edit).change(function (e) {
             let elem = $(e.target);
             while(!elem.is("[index]"))
                 elem = elem.parent();
-            lastGrp.members[elem.attr("index")].edit = $(e.target).val() === "on";
+            lastGrp.members[elem.attr("index")].edit = $(e.target).get(0).checked
         });
+        // Hier Arbeiten
         tentry.find(".delete-grp").click(function (e) {
             let elem = $(e.target);
             while(!elem.is("[index]"))
