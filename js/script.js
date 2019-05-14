@@ -210,6 +210,7 @@ function receiveAllTasks(a, data, b) {
 }
 
 function displayStorage() {
+    var tlhoch;
     storage.sort(function (a,b) {
         return a.deadline-b.deadline;
     });
@@ -219,21 +220,23 @@ function displayStorage() {
     if(length>0) {
         let von = storage[0].deadline;
         let bis = new Date();
+
         for (let i = 0; i < length; i++) {
             if(storage[i].deadline>bis)
                 bis = storage[i].deadline;
             if(von>storage[i].entererAt)
                 von = storage[i].entererAt;
         }
+        tlhoch = timeline(bis,von);
         for (let i = 0; i < length; i++) {
-            show(storage[i],von,bis);
+            show(storage[i],von,bis,tlhoch);
             //Hier verändern
         }
-        timeline();
+
     }
 }
 
-function show(task,von,bis) {
+function show(task,von,bis,tlhoch) {
     //Zeig es im Fenster an
     let planend = task.planedDate;
     let description = task.description;
@@ -256,7 +259,7 @@ function show(task,von,bis) {
     let span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
-    styleTask(div, von, bis, span, description, priority);
+    styleTask(div, von, bis, span, description, priority,tlhoch);
 }
 var isMobile = {
     Android: function () {
