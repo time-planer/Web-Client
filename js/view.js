@@ -564,6 +564,7 @@ function liste() {
 }
 
 function timeline(){
+    var datesline = $("<div style='position: fixed;'></div>");
     var tmp;
     var bitch = new Date();
     console.log("Von: "+von);
@@ -583,6 +584,7 @@ function timeline(){
     var abstand = 49;
     var i;
     for(i = 1; i<tmp;i++){
+        var dates = $("<div></div>")
         var vline = $("<div class='vline'></div>");;
         if(bitchi+1 != i){
             console.log("drinnenab");
@@ -607,4 +609,10 @@ function timeline(){
     $("#taskholder").css("height",(-h)+"px");
     $("#taskholder").append(tl);
     console.log("fertig");
+}
+
+function datesTimeline() {
+
+
+
 }

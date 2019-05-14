@@ -5,6 +5,7 @@ if(developerMode()) {
 	console.log("-------------------[Notice]-------------------");
 	
     timeplaner.ApiClient.instance.basePath = "http://localhost:8080/time-planer/";
+    //timeplaner.ApiClient.instance.basePath = "http://10.0.105.43:8080/time-planer/";
 }else{
     timeplaner.ApiClient.instance.basePath = "https://projekte.tgm.ac.at/eds/api/time-planer/";
     // timeplaner.ApiClient.instance.basePath = "http://10.0.100.30:8080/eds/time-planer/";
