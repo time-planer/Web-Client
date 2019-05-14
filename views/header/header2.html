@@ -18,12 +18,12 @@
 </div>
 <nav class="headerbesonders z-depth-0" style="margin-bottom: 64px">
     <div class="nav-wrapper teal accent-4 z-depth-0">
-        <a onclick="weiterleit()" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <a href="#home" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
+        <a href="#home" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
-            <li><a onclick="showGroups()" class="hand">Gruppen</a></li>
-            <li><a onclick="showAdd()" class="hand">Neuer Task</a></li>
+            <li><a href="#groups" class="hand">Gruppen</a></li>
+            <li><a href="#addtask" class="hand">Neuer Task</a></li>
             <li style="width: 120px; z-index: 12" class="center-align"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
         </ul>
         <ul class="right disabled-hide-on-med-and-down ">
@@ -41,8 +41,8 @@
 
     <ul class="sidenav right" id="mobile-demo">
         <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
-        <li><a onclick="showGroups()" class="hand sidenav-close">Gruppen</a></li>
-        <li><a onclick="showAdd()" class="hand sidenav-close">Neuer Task</a></li>
+        <li><a href="#groups" class="hand sidenav-close">Gruppen</a></li>
+        <li><a href="#addtask" class="hand sidenav-close">Neuer Task</a></li>
         <li><a class="dropdown-trigger" data-target="dropdownuser2">Benutzer</a></li>
     </ul>
 <script>
@@ -50,12 +50,12 @@
 </script>
     <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px; z-index: 12">
         <!-- <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li> -->
-        <li style="width: 120px"><a class="" onclick="showSettings()">Einstellungen</a></li>
+        <li style="width: 120px"><a class="" href="#settings">Einstellungen</a></li>
         <li style="width: 120px"><a class="out">Abmelden</a></li>
     </ul>
 
     <ul id="dropdownuser2" class="dropdown-content center-align" style="width: 100%; z-index: 12">
-        <li style="width: 100%"><a class="sidenav-close" onclick="showSettings()">Einstellungen</a></li>
+        <li style="width: 100%"><a class="sidenav-close" href="#settings">Einstellungen</a></li>
         <li style="width: 100%"><a class="out red-text sidenav-close">Abmelden</a></li>
     </ul>
 </header>

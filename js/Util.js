@@ -53,7 +53,7 @@ function get_cookie(name) {
 
 function stringtoDate(text) {
     if(text === "") {
-        M.toast({html: 'Kein Datum eingegeben!'});
+        M.toast({html: 'No date inserted!'});
         return null;
     } else {
         var montext = text.substring(0, 3);
@@ -120,7 +120,7 @@ function stringtoDate(text) {
             date.setHours(23,55, 0, 0);
             return date;
         } else {
-            M.toast({html: 'Kein gültiges Datum eingegeben'});
+            M.toast({html: 'Date is not valid!'});
             return null;
         }
     }
@@ -129,28 +129,28 @@ function stringtoDate(text) {
 function valipas(pass) {
     var re = 0;
     if (pass.length === 0) {
-        M.toast({html: 'Bitte geben Sie ein Passwort ein'});
+        M.toast({html: 'Please insert password'});
         return 1;
     } else {
         if (!(pass.length > 7)) {
-            M.toast({html: 'Passwort zu kurz'});
+            M.toast({html: 'Password too short'});
             re = 1;
         }
     }
     if (!(pass.length < 40)) {
-        M.toast({html: 'Passwort zu lang'});
+        M.toast({html: 'Password too long'});
         re = 1;
     }
     if (!(hasSmall(pass))) {
-        M.toast({html: 'Passwort hat keinen kleinen Buchstaben'});
+        M.toast({html: 'Password has no small characters'});
         re = 1;
     }
     if(!(hasBig(pass))) {
-        M.toast({html: 'Passwort hat keinen großen Buchstaben'});
+        M.toast({html: 'Password has no uppercase characters'});
         re = 1;
     }
     if(!(hasNumber(pass))) {
-        M.toast({html: 'Passwort hat keine Nummer'});
+        M.toast({html: 'Password has no number'});
         re = 1;
     }
     return re;
@@ -223,7 +223,7 @@ function difDateTag(date) {
 
 function checkDates(plan, dead) {
     if(dead-plan < 1) {
-        M.toast({html: 'Die Deadline muss nach dem geplantem Ende sein!'})
+        M.toast({html: 'The deadline must be before the planned date!'})
         return 1;
     } else {
         return 0;

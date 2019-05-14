@@ -24,22 +24,22 @@ function calllogin(error, response, context) {
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
         var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
         if(context.statusCode === 204) {
-            M.toast({html: 'Keine E-Mail Adresse gefunden'});
+            M.toast({html: 'No email address found'});
         }
         if(context.statusCode === 203) {
-            M.toast({html: 'Kein Passwort in der Anfrage'});
+            M.toast({html: 'No passwort in the request'});
         }
         if(error.status === 400) {
-            M.toast({html: 'Parameter stimmen nicht überein'});
+            M.toast({html: 'Parameters not matching'});
         }
         if(error.status === 401) {
-            M.toast({html: 'Falsche Angaben'});
+            M.toast({html: 'Wrong informations'});
         }
         if(error.status === 402) {
-            M.toast({html: 'Falsche Angaben'});
+            M.toast({html: 'Wring informations'});
         }
 		if(error.status === 404) {
-            M.toast({html: 'Benutzer nicht gefunden'});
+            M.toast({html: 'User not found'});
         }
     }else{
 
@@ -57,26 +57,26 @@ function calladdtask(error, data, context) {
         console.error(error);
         console.log(response);
         if(context.errorCode === 203) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            M.toast({html: 'Something went wrong!\nPlease log in again'});
             showLogin();
             return;
         }
         if(error.status === 404) {
-            M.toast({html: 'API key ist falsch'});
+            M.toast({html: 'API key is wrong'});
         }
         if(error.status === 401) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            M.toast({html: 'Something went wrong!\nPlease log in again'});
             showLogin();
             return;
         }
         if(error.status === 403) {
-            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+            M.toast({html: 'Not enough permissions to do that'});
         }
         showHome();
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        M.toast({html: 'Task wurde erstellt'});
+        M.toast({html: 'Task was created'});
         showHome();
     }
 }
@@ -86,20 +86,20 @@ function calledittask(error, data, context) {
             console.error(error);
             console.log(context);
             if (context.errorCode === 203) {
-                M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+                M.toast({html: 'Something went wrong!\nPlease log in again'});
             }
             if (error.status === 400) {
-                M.toast({html: 'Task ist nicht vorhanden'});
+                M.toast({html: 'Task was not found'});
             }
             if (error.status === 401) {
-                M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+                M.toast({html: 'Something went wrong!\nPlease log in again'});
                 showLogin();
             }
             if (error.status === 403) {
-                M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+                M.toast({html: 'Not enough permissions to do that'});
             }
             if (error.status === 404) {
-                M.toast({html: 'Der User existiert nicht'});
+                M.toast({html: 'The user doesn\'t excist'});
             }
         } else {
             console.log('API called successfully. Returned data: ' + data);
@@ -115,20 +115,20 @@ function calldeltask(error, data, context) {
         console.error(error);
         console.log(context);
         if(context.errorCode === 203) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            M.toast({html: 'Something went wrong!\nPlease log in again'});
         }
         if(error.status === 400) {
-            M.toast({html: "Task ist nicht vorhanden"});
+            M.toast({html: "Task was not found"});
         }
         if(error.status === 401) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            M.toast({html: 'Something went wrong!\nPlease log in again'});
             showLogin();
         }
         if(error.status === 403) {
-            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+            M.toast({html: 'Not enough permissions to do that'});
         }
         if(error.status === 404) {
-            M.toast({html: "Der User existiert nicht"});
+            M.toast({html: "The user doesn\'t excist"});
             showLogin();
         }
     } else {
@@ -136,7 +136,7 @@ function calldeltask(error, data, context) {
         console.log(JSON.stringify(data));
         loadView();
         felete = true;
-        M.toast({html: 'Task wurde erfolgreich gelöscht'});
+        M.toast({html: 'Task was successfully deleted'});
     }
 }
 function calldelalltasks(error, data, context) {
@@ -144,20 +144,20 @@ function calldelalltasks(error, data, context) {
         console.error(error);
         console.log(context);
         if(context.errorCode === 203) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            M.toast({html: 'Something went wrong!\nPlease log in again'});
         }
         if(error.status === 401) {
-            M.toast({html: "API key ist falsch"});
+            M.toast({html: "API key is wrong"});
         }
         if(error.status === 404) {
-            M.toast({html: "The User ist nicht bekannt"});
+            M.toast({html: "The user doesn\'t excist"});
             showLogin();
         }
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
         tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
-        M.toast({html: 'Alle Tasks wurden erfolgreich gelöscht'});
+        M.toast({html: 'All tasks were successfully deleted'});
     }
 }
 function callreg (error, data, context) {
@@ -165,19 +165,19 @@ function callreg (error, data, context) {
         console.error(error);
         switch(error.status) {
             case 409:
-                M.toast({html: 'Email-Adresse bereits vergeben'});
+                M.toast({html: 'Email address already taken'});
                 break;
 
             case 404:
-                M.toast({html: 'Nicht alle Parameter gegeben'});
+                M.toast({html: 'Not all parameters given'});
                 break;
 
             case 400:
-                M.toast({html: 'Parameter stimmen nicht überein'});
+                M.toast({html: 'Parameters don\'t match'});
                 break;
 
             default:
-                M.toast({html: 'Etwas ist schief gelaufen'});
+                M.toast({html: 'Something went wrong!'});
                 break;
         }
     } else {
