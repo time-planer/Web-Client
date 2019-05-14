@@ -103,8 +103,7 @@ function openTask(data) {
     M.Modal.getInstance($("#modal1")).open();
 }
 function logout() {
-    kill_cookie("name");
-    kill_cookie("api");
+    deleteAllCookies();
     showLogin();
 }
 function login() {

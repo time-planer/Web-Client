@@ -7,6 +7,10 @@ function set_cookie(name, value) {
     document.cookie=name+"="+escape(value)+"; expires="+cookie_live();
 }
 
+function deleteAllCookies() {
+    document.cookie="";
+}
+
 function kill_cookie(name) {
     document.cookie=name+'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
@@ -15,6 +19,7 @@ function austausch_cookie(ersterName, ersterWert, zweiterName, zweiterWert) {
     set_cookie(ersterName,zweiterWert);
     set_cookie(zweiterName,ersterWert);
 }
+
 /**
  * Setzt die Lebensdauer der cookies auf 90 Tage
  */
