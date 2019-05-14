@@ -9,6 +9,7 @@ if(developerMode()) {
     timeplaner.ApiClient.instance.basePath = "https://projekte.tgm.ac.at/eds/api/time-planer/";
     // timeplaner.ApiClient.instance.basePath = "http://10.0.100.30:8080/eds/time-planer/";
 }
+var felete = false;
 var auth = new timeplaner.AuthenticationApi();
 var tasking = new timeplaner.TaskingApi();
 var mygroups = new timeplaner.MyGroupsApi();
@@ -79,29 +80,33 @@ function calladdtask(error, data, context) {
     }
 }
 function calledittask(error, data, context) {
-    if (error || context.errorCode === 203) {
-        console.error(error);
-        console.log(context);
-        if(context.errorCode === 203) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
-        }
-        if(error.status === 400) {
-            M.toast({html: 'Task ist nicht vorhanden'});
-        }
-        if(error.status === 401) {
-            M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
-            showLogin();
-        }
-        if(error.status === 403) {
-            M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
-        }
-        if(error.status === 404) {
-            M.toast({html: 'Der User existiert nicht'});
+    if(!felete) {
+        if (error || context.errorCode === 203) {
+            console.error(error);
+            console.log(context);
+            if (context.errorCode === 203) {
+                M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+            }
+            if (error.status === 400) {
+                M.toast({html: 'Task ist nicht vorhanden'});
+            }
+            if (error.status === 401) {
+                M.toast({html: 'Etwas ist schief gelaufen.\nBitte erneut Anmelden'});
+                showLogin();
+            }
+            if (error.status === 403) {
+                M.toast({html: 'Sie haben nicht die nötige Berechtigung dies zu tun'});
+            }
+            if (error.status === 404) {
+                M.toast({html: 'Der User existiert nicht'});
+            }
+        } else {
+            console.log('API called successfully. Returned data: ' + data);
+            console.log(JSON.stringify(data));
+            loadView();
         }
     } else {
-        console.log('API called successfully. Returned data: ' + data);
-        console.log(JSON.stringify(data));
-        loadView();
+        felete = false;
     }
 }
 function calldeltask(error, data, context) {
@@ -129,6 +134,7 @@ function calldeltask(error, data, context) {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
         loadView();
+        felete = true;
         M.toast({html: 'Task wurde erfolgreich gelöscht'});
     }
 }

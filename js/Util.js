@@ -223,7 +223,7 @@ function difDateTag(date) {
 
 function checkDates(plan, dead) {
     if(dead-plan < 1) {
-        M.toast({html: 'Die Deadline muss vor dem geplantem Ende sein!'})
+        M.toast({html: 'Die Deadline muss nach dem geplantem Ende sein!'})
         return 1;
     } else {
         return 0;
@@ -285,4 +285,22 @@ function download(filename, text) {
     element.click();
 
     document.body.removeChild(element);
+}
+
+function addOneDayToDate(datum) {
+    var monat = datum.getMonth();
+    var tag = datum.getDate()+1;
+    alert(tag+"."+monat);
+    var temp = new Date(datum.getFullYear(),monat,tag);
+    monat = temp.getMonth()+1;
+    tag = temp.getDate();
+    alert(tag+"."+monat);
+    if(monat < 10) {
+        monat = "0"+monat;
+    }
+    if(tag < 10) {
+        tag = "0"+tag;
+    }
+    alert(tag+"."+monat);
+    return tag+"."+monat;
 }
