@@ -1,47 +1,12 @@
 class Router {
-    routes = new Map();
-    redirects = new Map();
-    forwards = new Map();
     listeners = new Map();
-
+    redirects = new Map();
     /**
      * @type {string}
      */
-    defaultRoute = "";
-
-    fallback = function (router,url) {
-
-    };
-
-    static appConfig;
-    /**
-     * @param defaultPath {string} is not a route so it may not contain any variables
-     * @param defaultPage {Page}
-     */
-    constructor(defaultPath, defaultPage = DefaultPage){
-        let _this = this;
-        window.onpopstate = function(event) {
-            _this.openMatchingLocation();
-        };
-        this.defaultRoute = defaultPath;
-        //this.addRoute(defaultPath,defaultPage);
+    defaultRoute = "#home";
+    constructor(){
     }
-
-    /**
-     * @param route {string}
-     */
-    set defaultRoute(route){
-        this.defaultRoute = route;
-    }
-
-    /**
-     * @param path {string}
-     * @param page {Page}
-     */
-    addRoute(path,page){
-        this.routes.put(path,page);
-    }
-
 
     /**
      * @param path {string}
@@ -49,17 +14,6 @@ class Router {
      */
     addRedirect(path,url){
         this.redirects.put(path,url);
-    }
-
-
-    /**
-     * @param path {string}
-     * @param url {string}
-     * @deprecated
-     * not implemented yet
-     */
-    addForward(path,url){
-        this.forwards.put(path,url);
     }
 
     /**
@@ -75,9 +29,12 @@ class Router {
     goTo(url){
         history.pushState({}, "title 1", url);
         this.openMatchingLocation();
-
     }
     apply(){
+        let _this = this;
+        window.onpopstate = function(event) {
+            _this.openMatchingLocation();
+        };
         this.addRedirect("#",this.defaultRoute);
         this.openMatchingLocation();
     }
@@ -88,7 +45,7 @@ class Router {
      * @param route {string}
      * @return {{}}
      */
-    static match(path,route,maping){
+    static match(path,route){
         let pathParts = path.split("/");
         let routeParts = route.split("/");
         let variables = {};
@@ -107,35 +64,7 @@ class Router {
 
     openMatchingLocation() {
         this.checkListeners();
-        if(!this.checkRoutes())
-            if(!this.checkRedirects())
-                if(!this.checkForwards())
-                    this.fallback(this,window.location.href);
-    }
-
-    checkRoutes() {
-        for (let i = 0; i <this.routes.size; i++) {
-            let route = this.routes.keys[i];
-            let parts = route.split("/").length;
-            let cuted =document.location.href.split(
-                "/",
-                document.location.href.split("/").length-parts
-            );
-            cuted = document.location.href.replace(cuted.join("/"),"");
-            cuted = cuted.substring(1,cuted.length);
-
-
-            let vars = Router.match(cuted,route,this.routes);
-            if(vars !== null && vars !== undefined){
-                let page = new (this.routes.get(route))();
-                for (let j = 0; j <  Object.keys(vars).length; j++) {
-                    page.val(Object.keys(vars)[j],vars[Object.keys(vars)[j]]);
-                }
-                page.show();
-                return true;
-            }
-        }
-        return false;
+        this.checkRedirects();
     }
 
     checkRedirects() {
@@ -151,14 +80,10 @@ class Router {
             cuted = cuted.substring(1,cuted.length);
 
 
-            let vars = Router.match(cuted,route,this.redirects);
+            let vars = Router.match(cuted,route);
             if(vars !== null && vars !== undefined){
                 let target = this.redirects.get(route);
                 let keys =  Object.keys(vars);
-                let page = this.routes.get(target);
-                if(page === null || page === undefined){
-                    this.fallback(this,window.location.href);
-                }
                 for (let j = 0; j <  keys.length; j++) {
                     target = target.replace("{"+keys[j]+"}",vars[keys[j]]);
                 }
@@ -166,9 +91,6 @@ class Router {
                 return true;
             }
         }
-        return false;
-    }
-    checkForwards() {
         return false;
     }
 
@@ -184,7 +106,7 @@ class Router {
             cuted = cuted.substring(1,cuted.length);
 
 
-            let vars = Router.match(cuted,route,this.listeners);
+            let vars = Router.match(cuted,route);
             if(vars !== null && vars !== undefined){
                 this.listeners.get(route)();
                 return true;
