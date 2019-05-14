@@ -108,11 +108,11 @@ function logout() {
 }
 function login() {
     if($("#username").val() === "") {
-        M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+        M.toast({html: 'Please fill in all the Fields'});
         return null;
     } else {
         if($("#pw").val() === "") {
-            M.toast({html: 'Bitte füllen Sie alle Felder aus'});
+            M.toast({html: 'Please fill in all the Fields'});
             return null;
         }
         auth.login($("#username").val(),$("#pw").val(),calllogin)
@@ -271,14 +271,14 @@ function register() {
     if(rname !== "") {
         neu.name = rname;
     } else {
-        M.toast({html: 'Bitte geben Sie einen Namen ein'});
+        M.toast({html: 'Please insert a name'});
         mach = 1;
     }
     var rmail = $("#rmail").val();
     if(validateEmail(rmail)) {
         neu.email = rmail;
     } else {
-        M.toast({html: 'Bitte geben Sie eine gültige Email-Adresse ein'});
+        M.toast({html: 'Please insert valide email address'});
         mach2 = 1;
     }
     var pw = $("#pwr").val();
@@ -311,6 +311,16 @@ function deleteAllTasks() {
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
 }
 function startup() {
+    let r = new Router(null,null);
+    r.addListener("#home",showHome);
+    r.addListener("#groups",showGroups);
+    r.addListener("#settings",showSettings);
+    r.addListener("#addtask",showAdd);
+    r.addListener("#about",showAbout);
+    r.addListener("#supp",showSupport);
+    r.addListener("#priva",showPrivacy);
+    r.addListener("#bug",showBug);
+    r.apply();
     $("#footerinclude").load("views/footer.html");
     var def = true;
     onepage.compPath = "views";
