@@ -41,6 +41,7 @@ function calllogin(error, response, context) {
 		if(error.status === 404) {
             M.toast({html: 'User not found'});
         }
+		$('#load').hide();
     }else{
 
         set_cookie("name",$("#username").val());

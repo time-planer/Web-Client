@@ -141,10 +141,12 @@ function showRegister() {
          $("#reg").click(register);
     });
 }
+
 function showLogin() {
     set_cookie("scene", 'Login');
     includeHead("header");
     includeBody("login",function () {
+        $('#load').hide();
         $("#log").click(login);
         //$("#username").onkeydown(weiterOnEnter(event));
         $("#username").on('keypress',function(e) {
