@@ -9,7 +9,7 @@ function set_cookie(name, value) {
 }
 
 function deleteAllCookies() {
-    document.cookie="";
+    document.cookie=undefined;
     delete document.cookie;
 }
 

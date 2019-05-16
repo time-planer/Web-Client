@@ -3,7 +3,7 @@
  */
 function openTask(data) {
     //Daten einlesen
-    var elem = $(data.target);//.parent();
+    var elem = $(data.target).parent();
     if(!elem.hasClass("task"))
         elem = elem.parent();
     $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
