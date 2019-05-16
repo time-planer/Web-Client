@@ -156,8 +156,8 @@ function addNewGroup() {
     });
 }
 function editTask() {
-    tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
     let taskname = $('#name').text();
+    tasking.getGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), function (a,tmp,c) {
         let newconftask = new timeplaner.EditTask();
         newconftask.name = taskname;
         newconftask.planedDate = tmp.planedDate;
@@ -169,7 +169,7 @@ function editTask() {
             'editTask': newconftask
         };
         console.log(JSON.stringify(opts,null,"\t"));
-        tasking.editTask(get_cookie("name"), taskname, opts, calledittask);
+        tasking.editGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), opts, calledittask);
     });
 }
 function aktuImport() {
