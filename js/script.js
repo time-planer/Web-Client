@@ -225,7 +225,11 @@ function receiveAllTasks(a, data, b) {
 function displayStorage() {
     var tlhoch;
     storage.sort(function (a,b) {
-        return a.deadline-b.deadline;
+        if(a.process === 100)
+            return -1;
+        let ddif = ((a.deadline-b.deadline)/1000/60/60/24);
+        let idif = (b.importance-a.importance);
+        return ddif+idif;
     });
     let length = storage.length;
     $("#listbody").empty();
