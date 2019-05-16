@@ -10,6 +10,8 @@ function openTask(data) {
     $('#name').text(elem.find(".name_field").text());
     $('#textarea1').text(elem.attr("description"));
     $('#textarea1').val(elem.attr("description"));
+    $(".donecheck").prop("checked",elem.attr("process") == 100);
+    $(".editgrp").text(elem.attr("group"));
     $('label[for=textarea1]').addClass("active");
 
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
@@ -155,19 +157,20 @@ function addNewGroup() {
     });
 }
 function editTask() {
-    var taskname = $('#name').text();
-    tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
-        var newconftask = new timeplaner.EditTask();
+    let taskname = $('#name').text();
+    tasking.getGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), function (a,tmp,c) {
+        let newconftask = new timeplaner.EditTask();
         newconftask.name = taskname;
         newconftask.planedDate = tmp.planedDate;
         newconftask.deadline = tmp.deadline;
         newconftask.description = $('#textarea1').val();
         newconftask.importance = tmp.importance;
-        var opts = {
+        newconftask.process = $(".donecheck").prop("checked") ? 100 : 0;
+        let opts = {
             'editTask': newconftask
         };
         console.log(JSON.stringify(opts,null,"\t"));
-        tasking.editTask(get_cookie("name"), taskname, opts, calledittask);
+        tasking.editGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), opts, calledittask);
     });
 }
 function aktuImport() {
@@ -349,10 +352,17 @@ function startup() {
     r.addListener("#supp",showSupport);
     r.addListener("#priva",showPrivacy);
     r.addListener("#bug",showBug);
+    r.addListener("#",showHome);
+    r.addListener("#!",showHome);
+    r.addListener("eds/",showHome);
+    r.addListener("EDS/",showHome);
+    r.addListener("time-planer.com",showHome);
+    r.addListener("/time-planer",showHome);
+    r.addListener("/time-planer/",showHome);
     r.apply();
 
     $("#footerinclude").load("views/footer.html");
-    var def = true;
+    let def = true;
     onepage.compPath = "views";
     if(get_cookie("name") === "null" && get_cookie("name") === "undefined") {
         return;
@@ -365,7 +375,7 @@ function startup() {
         return;
     }
     if(get_cookie("scene") !== null && get_cookie("scene")!== undefined) {
-        eval("show"+get_cookie("scene")+"();");
+        //eval("show"+get_cookie("scene")+"();");
     }
     else{
         showHome();
