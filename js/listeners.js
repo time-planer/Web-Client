@@ -393,6 +393,21 @@ function onOpenOwnGroup(e) {
     includeHead("header");
     includeBody("groups/own",function () {
         mygroups.getOwnedGroup(get_cookie("name"),lastUID,reciveOwnedGroup);
+        let inf = $("#member");
+        let instance = M.Autocomplete.getInstance(inf.get(0));
+        inf.keyup(function () {
+            if(inf.val().indexOf("@") !== -1){
+                let recommends = {};
+                instance.updateData(recommends);
+                instance.close();
+                return;
+            }
+            let recommends = {};
+            recommends[inf.val()+"@student.tgm.ac.at"] = null;
+            recommends[inf.val()+"@gmail.com"] = null;
+            instance.updateData(recommends);
+            instance.open();
+        });
     });
 }
 function onAddGrpMember() {
