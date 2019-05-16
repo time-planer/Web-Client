@@ -479,7 +479,7 @@ function newDesignPC() {
         tlhoch = ((-1)*tlhoch)+20;
         task.addClass("firsttask");
         task.css("margin-top",tlhoch+"px");
-
+        task.attr("basemargin",tlhoch);
         times++;
     }
     else{
@@ -615,7 +615,7 @@ function timeline(bis,von){
 
         dates.css("display","inline-block");
         dates.css("width","50px");
-        var spanDates = $("<span><center>" + addOneDayToDate(startdate,i) + "</center></span>");
+        var spanDates = $("<span><center>" + addOneDayToDate(startdate,i-2) + "</center></span>");
         spanDates.css("color","white");
         dates.append(spanDates);
         var vline = $("<div class='vline'></div>");
@@ -654,8 +654,7 @@ function fixedDates(e) {
     var mtoptask;
     var mtop = $("#datesline").attr("pixl");
     mtop = mtop-1+(plus+1);
-    mtoptask = mtop*(-1)+(-810);
-
+    mtoptask = $(".firsttask").attr("basemargin")-mtop;
 
     $("#datesline").attr("pixl",mtop);
     //alert(mwert);
