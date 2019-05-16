@@ -46,7 +46,18 @@ function calllogin(error, response, context) {
         set_cookie("name",$("#username").val());
         set_cookie("api",response.user_key);
         setAPIKey(response.user_key);
-        showHome();
+        memgroup.getGroups($("#username").val(),function (e,data,b) {
+            let sets = [];
+            for (let i = 0; i < data.length; i++) {
+                let ob = {};
+                ob.val = true;
+                ob.uid = data[i].uid;
+                ob.name = data[i].name;
+                sets.push(ob);
+            }
+            set_cookie("view",JSON.stringify(sets));
+            showHome();
+        });
     }
     //var request = context.request; // Get the request. You dont need it but here is how you get it
     //alert(request);
@@ -193,6 +204,7 @@ function callreg (error, data, context) {
 }
 function receiveAllTasks(a, data, b) {
     for(let i = 0;i<data.length;i++) {
+        data[i].group = all[ij].uid;
         storage.push(data[i]);
     }
     ij++;
@@ -256,6 +268,8 @@ function show(task,von,bis,tlhoch) {
     div.attr("deadline", deadline);
     div.attr("priority", priority);
     div.attr("startdat", startdat);
+    div.attr("process",task.process === null ? 0 : task.process);
+    div.attr("group",task.group);
     let span = $("<span></span>");
     span.text(name);
     $("#taskholder").append(div);
