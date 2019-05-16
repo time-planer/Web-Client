@@ -267,8 +267,8 @@ function detectDevice() {
     switch (ret) {
         case 0:
             //alert("pc");
-            $("#listetab").removeClass("active");
-            $("#tasktab").addClass("active");
+            //$("#listetab").removeClass("active");
+            //$("#tasktab").addClass("active");
             newDesignPC();
             break;
         case 1:
@@ -277,8 +277,8 @@ function detectDevice() {
             //$("#tasktab2").css("visibility","hidden");
 
             //$("#tasktab").removeClass("active");
-            $("#listetab").addClass("active");
-            $("#listetab").trigger("click");
+            //$("#listetab").addClass("active");
+            //$("#listetab").trigger("click");
             //$("#listetab2").click();
             $("#tasktab2").addClass("disabled");
 
@@ -288,7 +288,7 @@ function detectDevice() {
             liste();
             break;
         default:
-            alert("blalalala");
+            //alert("blalalala");
     }
 };
 

@@ -34,10 +34,33 @@
         <ul class="tabs tabs-transparent">
             <!-- <li class="tab"><a  href="#home">Home</a></li> -->
             <li id="tasktab2" class="tab"><a id="tasktab" href="#taskholder">Tasks</a></li>
-            <li id="listetab2" class="tab"><a class="active" id="listetab" href="#liste">List</a></li>
+            <li id="listetab2" class="tab"><a id="listetab" href="#liste">List</a></li>
         </ul>
     </div>
 </nav>
+    <script>
+        var ret;
+        ret = 0;
+        if (isMobile.Android() || isMobile.BlackBerry() || isMobile.Opera() || isMobile.Windows()) {
+            ret = 1;
+        }
+        if(isMobile.iOS()){
+            ret = 2;
+        }
+        switch (ret) {
+            case 0:
+                $("#tasktab").addClass("active");
+                break;
+            case 1:
+                $("#listetab").addClass("active");
+                break;
+            case 2:
+                $("#listetab").addClass("active");
+                break;
+            default:
+                $("#tasktab").addClass("active");
+        }
+    </script>
 
     <ul class="sidenav right" id="mobile-demo">
         <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">View</a></li>
