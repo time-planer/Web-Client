@@ -316,8 +316,7 @@ function deleteAllTasks() {
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
 }
 function startup() {
-
-
+    window.scrollTo(0,0);
     // custom 'scrolldelta' event extends 'scroll' event
     jQuery.event.special.scrolldelta = {
         delegateType: "scroll",

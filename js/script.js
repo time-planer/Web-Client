@@ -45,7 +45,7 @@ function calllogin(error, response, context) {
             M.toast({html: 'No email address found'});
         }
         if(context.statusCode === 203) {
-            M.toast({html: 'No passwort in the request'});
+            M.toast({html: 'No password in the request'});
         }
         if(error.status === 400) {
             M.toast({html: 'Parameters not matching'});
@@ -54,7 +54,7 @@ function calllogin(error, response, context) {
             M.toast({html: 'Wrong informations'});
         }
         if(error.status === 402) {
-            M.toast({html: 'Wring informations'});
+            M.toast({html: 'Wrong informations'});
         }
 		if(error.status === 404) {
             M.toast({html: 'User not found'});
@@ -83,16 +83,19 @@ function calllogin(error, response, context) {
 }
 function calladdtask(error, data, context) {
     console.log(context);
-    if (error || context.errorCode === 203) {
+    if (error || context.statusCode === 203) {
         console.error(error);
-        console.log(response);
-        if(context.errorCode === 203) {
+        console.log(context);
+        if(context.statusCode === 203) {
             M.toast({html: 'Something went wrong!\nPlease log in again'});
             showLogin();
             return;
         }
         if(error.status === 404) {
             M.toast({html: 'API key is wrong'});
+        }
+        if(error.status === 400) {
+            M.toast({html: 'Parameters not matching'});
         }
         if(error.status === 401) {
             M.toast({html: 'Something went wrong!\nPlease log in again'});
@@ -112,11 +115,12 @@ function calladdtask(error, data, context) {
 }
 function calledittask(error, data, context) {
     if(!felete) {
-        if (error || context.errorCode === 203) {
+        if (error || context.statusCode === 203) {
             console.error(error);
             console.log(context);
-            if (context.errorCode === 203) {
+            if (context.statusCode === 203) {
                 M.toast({html: 'Something went wrong!\nPlease log in again'});
+                showLogin()
             }
             if (error.status === 400) {
                 M.toast({html: 'Task was not found'});
@@ -141,11 +145,12 @@ function calledittask(error, data, context) {
     }
 }
 function calldeltask(error, data, context) {
-    if (error || context.errorCode === 203) {
+    if (error || context.statusCode === 203) {
         console.error(error);
         console.log(context);
-        if(context.errorCode === 203) {
+        if(context.statusCode === 203) {
             M.toast({html: 'Something went wrong!\nPlease log in again'});
+            showLogin();
         }
         if(error.status === 400) {
             M.toast({html: "Task was not found"});
@@ -170,11 +175,12 @@ function calldeltask(error, data, context) {
     }
 }
 function calldelalltasks(error, data, context) {
-    if (error || context.errorCode === 203) {
+    if (error || context.statusCode === 203) {
         console.error(error);
         console.log(context);
-        if(context.errorCode === 203) {
+        if(context.statusCode === 203) {
             M.toast({html: 'Something went wrong!\nPlease log in again'});
+            showLogin();
         }
         if(error.status === 401) {
             M.toast({html: "API key is wrong"});
@@ -203,7 +209,7 @@ function callreg (error, data, context) {
                 break;
 
             case 400:
-                M.toast({html: 'Parameters don\'t match'});
+                M.toast({html: 'Parameters do not match'});
                 break;
 
             default:
