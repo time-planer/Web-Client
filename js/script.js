@@ -19,6 +19,19 @@ var lastGrp;
 var ij = 0;
 var all = null;
 var storage = [];
+function callmembgroups(error, response, context) {
+    if(error || context.statusCode === 204 || context.statusCode === 203){
+        var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
+        var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
+        if(context.statusCode === 204) {
+            M.toast({html: 'No email address found'});
+        }
+
+    }else{
+        showHome();
+    }
+
+}
 function calllogin(error, response, context) {
     if(error || context.statusCode === 204 || context.statusCode === 203){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
@@ -100,7 +113,7 @@ function calledittask(error, data, context) {
                 M.toast({html: 'Not enough permissions to do that'});
             }
             if (error.status === 404) {
-                M.toast({html: 'The user doesn\'t excist'});
+                M.toast({html: 'The user does not exist'});
             }
         } else {
             console.log('API called successfully. Returned data: ' + data);
@@ -129,7 +142,7 @@ function calldeltask(error, data, context) {
             M.toast({html: 'Not enough permissions to do that'});
         }
         if(error.status === 404) {
-            M.toast({html: "The user doesn\'t excist"});
+            M.toast({html: "The user does not exist"});
             showLogin();
         }
     } else {
@@ -151,7 +164,7 @@ function calldelalltasks(error, data, context) {
             M.toast({html: "API key is wrong"});
         }
         if(error.status === 404) {
-            M.toast({html: "The user doesn\'t excist"});
+            M.toast({html: "The user does not exist"});
             showLogin();
         }
     } else {
