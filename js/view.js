@@ -18,9 +18,11 @@ var b;
 var balk2width = 0;
 var name;
 var span2;
+var times = 1;
 var pruef;
 var balkwidth = 0;
 var faktoli = 0;
+var tlhoch;
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -45,7 +47,8 @@ var zaehler = 0;
 var unt;
 
 
-function styleTask(task1,von1,bis,span, desc, pri) {
+function styleTask(task1,von1,bis,span, desc, pri,tlhoch2) {
+    tlhoch = tlhoch2;
     task = task1;
     priority = pri;
     description = desc;
@@ -374,6 +377,7 @@ function designPC() {
  * @version
  */
 function newDesignPC() {
+
     // Initialisierung der Variablen
     var heute = $("<div></div>");
     var green = $("<div></div>");
@@ -470,8 +474,19 @@ function newDesignPC() {
     task.css("background", "transparent");
     task.css("color","black");
     task.css("border-radius","20px");
-    task.css("margin-top","20px");
+    if(times == 1){
+        tlhoch = ((-1)*tlhoch)+20;
+        task.addClass("firsttask");
+        task.css("margin-top",tlhoch+"px");
+
+        times++;
+    }
+    else{
+        task.css("margin-top","20px");
+    }
+
     task.css("margin-left",setAbstand()+"px");
+    //task.css("position","relative");
     task.addClass("taskclass");
     task.addClass("left-align");
     task.append(titel);
@@ -563,9 +578,11 @@ function liste() {
     $("#listbody").append(a);
 }
 
-function timeline(){
-    var datesline = $("<div style='position: fixed;'></div>");
+function timeline(bis,von){
+    var datesline = $("<div style='position: relative;' id='datesline' pixl='0'></div>");
     var tmp;
+    var startdate = von;
+    unt = bis;
     var bitch = new Date();
     console.log("Von: "+von);
     console.log("Unt: "+unt);
@@ -578,15 +595,28 @@ function timeline(){
     tmp = unt-von;
     console.log(tmp);
     tmp = tmp/1000/60/60/24;
-    var tl = $("<div class='left-align' style='height: "+(-1*h+20)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;margin-top: "+h+"px'></div>");
+    datesline.css("width", tmp*50+"px");
+//margin-top: "+h+"px
+    datesline.css("height","40px");
+    datesline.addClass("teal accent-4");
+    var tl = $("<div class='left-align' style='height: "+(-1*h+20)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;'></div>");
+    tlhoch = -1*h+20;
     console.log(tmp);
     console.log(unt+"-"+von+"="+tmp);
     var abstand = 49;
     var i;
+    var fufzig = 50;
     for(i = 1; i<tmp;i++){
-        var dates = $("<div></div>")
-        var vline = $("<div class='vline'></div>");;
-        if(bitchi+1 != i){
+        console.log(fufzig*i);
+        var dates = $("<div></div>");
+
+        dates.css("display","inline-block");
+        dates.css("width","50px");
+        var spanDates = $("<span><center>" + addOneDayToDate(startdate,i) + "</center></span>");
+        spanDates.css("color","white");
+        dates.append(spanDates);
+        var vline = $("<div class='vline'></div>");
+        if(bitchi != i){
             console.log("drinnenab");
             //vline.css("position","relative");
             vline.css("display","inline-block");
@@ -605,10 +635,31 @@ function timeline(){
             vline.css("margin-left",(abstand+"px"));
             tl.append(vline);
         }
+        datesline.append(dates);
     }
+    console.log(fufzig);
+    $("#taskholder").append(datesline);
     $("#taskholder").css("height",(-h)+"px");
     $("#taskholder").append(tl);
     console.log("fertig");
+    return tlhoch;
+}
+
+function fixedDates(e) {
+    var plus = e.scrollTopDelta;
+    console.log(plus);
+    var mtoptask;
+    var mtop = $("#datesline").attr("pixl");
+    mtop = mtop-1+(plus+1);
+    mtoptask = mtop*(-1)+(-810);
+
+
+    $("#datesline").attr("pixl",mtop);
+    //alert(mwert);
+    $(".firsttask").css("margin-top",mtoptask+"px");
+    $("#datesline").css("margin-top",mtop+"px");
+
+    console.log("triggered");
 }
 
 function datesTimeline() {

@@ -287,20 +287,20 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
-function addOneDayToDate(datum) {
+function addOneDayToDate(datum,i) {
     var monat = datum.getMonth();
-    var tag = datum.getDate()+1;
-    alert(tag+"."+monat);
+    var tag = datum.getDate()+i;
+
     var temp = new Date(datum.getFullYear(),monat,tag);
     monat = temp.getMonth()+1;
     tag = temp.getDate();
-    alert(tag+"."+monat);
+
     if(monat < 10) {
         monat = "0"+monat;
     }
     if(tag < 10) {
         tag = "0"+tag;
     }
-    alert(tag+"."+monat);
+
     return tag+"."+monat;
 }

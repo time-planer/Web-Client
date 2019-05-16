@@ -75,6 +75,7 @@ function showHome() {
         includeBody("home",function () {
             $(".out").click(logout);
             $("#del").click(deleteTask);
+            $(window).on("scrolldelta",fixedDates);
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();
         });
