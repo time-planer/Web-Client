@@ -357,6 +357,7 @@ function startup() {
     r.addListener("#!",showHome);
     r.addListener("eds/",showHome);
     r.addListener("EDS/",showHome);
+    r.addListener("#group/{uid}",onOpenOwnGroup);
     r.addListener("time-planer.com",showHome);
     r.addListener("time-planer",showHome);
     r.addListener("time-planer/",showHome);
@@ -391,18 +392,18 @@ function weiterleit() {
     }
 }
 function onOpenOwnGroup(e) {
-    if($(e.target).hasClass("del-grp"))
+    /**if($(e.target).hasClass("del-grp"))
         return;
     if($(e.target).parent().hasClass("del-grp"))
         return;
-    includeHead("header");
     var root = $(e.target);
     while(!root.hasClass("grp-entry"))
         root = root.parent();
     var uid = root.find(".grp-uid").text();
-    set_cookie("grp_uid",uid);
+    set_cookie("grp_uid",uid);**/
+    includeHead("header");
     includeBody("groups/own",function () {
-        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+        mygroups.getOwnedGroup(get_cookie("name"),e.uid,reciveOwnedGroup);
     });
 }
 function onAddGrpMember() {

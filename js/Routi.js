@@ -106,7 +106,7 @@ class Router {
 
             let vars = Router.match(cuted,route);
             if(vars !== null && vars !== undefined){
-                this.listeners.get(route)();
+                this.listeners.get(route)(vars);
                 return true;
             }
         }

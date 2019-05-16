@@ -239,7 +239,8 @@ function showGroups() {
                     showGroups();
                 });
             });
-            v.$().click(onOpenOwnGroup);
+            //v.$().click(onOpenOwnGroup);
+            v.$().attr("href","#group/"+v.val("grp").uid);
         };
         onepage.getComp("my-grp-list").init = function (v){
             if(v.val("list") === null || v.val("list") === undefined)
@@ -264,9 +265,9 @@ function showGroups() {
 
         memgroup.getGroups(get_cookie("name"),function (a,b,c) {
             temp.val("list",b);
+            temp.get().find('.grp-entry').parent().removeAttr("href");
         });
-        temp.get().find('.grp-entry').off();
-        temp.get().find('.grp-entry').unbind();
+
         /**let membgrplistcomp = onepage.getComp("membgrpholder");
         membgrplistcomp.init = function (v) {
             if(v.val("groups")!=undefined) {
