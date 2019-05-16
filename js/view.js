@@ -18,11 +18,11 @@ var b;
 var balk2width = 0;
 var name;
 var span2;
+var times = 1;
 var pruef;
 var balkwidth = 0;
 var faktoli = 0;
 var tlhoch;
-var times = 1;
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -266,6 +266,7 @@ function newDesignAndroidTask(){
         red.css("background-color","red");
         red.addClass("left");
     }
+    liste();
 
 }
 
@@ -277,7 +278,7 @@ function designAndroid() {
     //$('#login-div').css("width","90%");
     //$('#login-div').css("margin-left","5%");
     //$('#login-div').css("margin-bottom","10%");
-
+    liste();
 }
 
 function designiOS() {
@@ -479,7 +480,6 @@ function newDesignPC() {
         task.addClass("firsttask");
         task.css("margin-top",tlhoch+"px");
         task.attr("basemargin",tlhoch);
-
         times++;
     }
     else{
@@ -650,15 +650,18 @@ function timeline(bis,von){
 
 function fixedDates(e) {
     var plus = e.scrollTopDelta;
+    console.log(plus);
     var mtoptask;
     var mtop = $("#datesline").attr("pixl");
     mtop = mtop-1+(plus+1);
     mtoptask = $(".firsttask").attr("basemargin")-mtop;
 
-
     $("#datesline").attr("pixl",mtop);
+    //alert(mwert);
     $(".firsttask").css("margin-top",mtoptask+"px");
     $("#datesline").css("margin-top",mtop+"px");
+
+    console.log("triggered");
 }
 
 function datesTimeline() {

@@ -21,9 +21,9 @@
         <a href="#home" class="brand-logo headerhover" style="margin-left: 15px">Time Planer</a>
         <a href="#home" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
-            <li><a href="#groups" class="hand">Gruppen</a></li>
-            <li><a href="#addtask" class="hand">Neuer Task</a></li>
+            <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">View</a></li>
+            <li><a href="#groups" class="hand">Groups</a></li>
+            <li><a href="#addtask" class="hand">New User</a></li>
             <li style="width: 120px; z-index: 12" class="center-align"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
         </ul>
         <ul class="right disabled-hide-on-med-and-down ">
@@ -33,30 +33,30 @@
     <div class="nav-content teal accent-4">
         <ul class="tabs tabs-transparent">
             <!-- <li class="tab"><a  href="#home">Home</a></li> -->
-            <li class="tab"><a class="active" href="#taskholder">Tasks</a></li>
-            <li class="tab"><a  href="#liste">Liste</a></li>
+            <li id="tasktab2" class="tab"><a id="tasktab" href="#taskholder">Tasks</a></li>
+            <li id="listetab2" class="tab"><a class="active" id="listetab" href="#liste">List</a></li>
         </ul>
     </div>
 </nav>
 
     <ul class="sidenav right" id="mobile-demo">
-        <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">Ansicht</a></li>
-        <li><a href="#groups" class="hand sidenav-close">Gruppen</a></li>
-        <li><a href="#addtask" class="hand sidenav-close">Neuer Task</a></li>
-        <li><a class="dropdown-trigger" data-target="dropdownuser2">Benutzer</a></li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">View</a></li>
+        <li><a href="#groups" class="hand sidenav-close">Groups</a></li>
+        <li><a href="#addtask" class="hand sidenav-close">New Task</a></li>
+        <li><a class="dropdown-trigger" data-target="dropdownuser2">User</a></li>
     </ul>
 <script>
 
 </script>
     <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px; z-index: 12">
         <!-- <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li> -->
-        <li style="width: 120px"><a class="" href="#settings">Einstellungen</a></li>
-        <li style="width: 120px"><a class="out">Abmelden</a></li>
+        <li style="width: 120px"><a class="" href="#settings">Settings</a></li>
+        <li style="width: 120px"><a class="out">Logout</a></li>
     </ul>
 
     <ul id="dropdownuser2" class="dropdown-content center-align" style="width: 100%; z-index: 12">
-        <li style="width: 100%"><a class="sidenav-close" href="#settings">Einstellungen</a></li>
-        <li style="width: 100%"><a class="out red-text sidenav-close">Abmelden</a></li>
+        <li style="width: 100%"><a class="sidenav-close" href="#settings">Settings</a></li>
+        <li style="width: 100%"><a class="out red-text sidenav-close">Logout</a></li>
     </ul>
 </header>
 <!--
