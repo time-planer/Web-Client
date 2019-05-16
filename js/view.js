@@ -478,6 +478,7 @@ function newDesignPC() {
         tlhoch = ((-1)*tlhoch)+20;
         task.addClass("firsttask");
         task.css("margin-top",tlhoch+"px");
+        task.attr("basemargin",tlhoch);
 
         times++;
     }
@@ -647,19 +648,15 @@ function timeline(bis,von){
 
 function fixedDates(e) {
     var plus = e.scrollTopDelta;
-    console.log(plus);
     var mtoptask;
     var mtop = $("#datesline").attr("pixl");
     mtop = mtop-1+(plus+1);
-    mtoptask = mtop*(-1)+(-810);
+    mtoptask = $(".firsttask").attr("basemargin")-mtop;
 
 
     $("#datesline").attr("pixl",mtop);
-    //alert(mwert);
     $(".firsttask").css("margin-top",mtoptask+"px");
     $("#datesline").css("margin-top",mtop+"px");
-
-    console.log("triggered");
 }
 
 function datesTimeline() {
