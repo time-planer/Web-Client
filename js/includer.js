@@ -69,8 +69,17 @@
         }
     }
 }
+
+function checkState() {
+    if(get_cookie("name") === null || get_cookie("name") === undefined) {
+        showLogin();
+        return true;
+    }
+}
+
 function showHome() {
-    set_cookie("scene", 'Home');
+    if(checkState())
+        return;
     includeHead("header2",function () {
         includeBody("home",function () {
             $(".out").click(logout);
@@ -135,7 +144,6 @@ function showHome() {
     });*/
 }
 function showRegister() {
-    set_cookie("scene", 'Register');
     includeHead("header");
     includeBody("register",function () {
          $("#reg").click(register);
@@ -143,7 +151,6 @@ function showRegister() {
 }
 
 function showLogin() {
-    set_cookie("scene", 'Login');
     includeHead("header");
     includeBody("login",function () {
         $('#load').hide();
@@ -164,7 +171,6 @@ function showLogin() {
     });
 }
 function showSupport() {
-    set_cookie("scene", 'Support');
     includeHead("header");
     includeBody("support");
 }
@@ -173,10 +179,10 @@ function showBug() {
     includeHead("header");
     includeBody("report");
 }
-
 let selectGroupToAddDropdown;
 function showAdd() {
-    set_cookie("scene", 'Add');
+    if(checkState())
+        return;
     includeHead("header");
     includeBody("add/main",function () {
         $("#speichern").click(saveTask);
@@ -214,7 +220,8 @@ function showAdd() {
     });
 }
 function showGroups() {
-    set_cookie("scene", 'Groups');
+    if(checkState())
+        return;
     includeHead("header");
     includeBody("groups/groups",function () {
         onepage.loadComp("groups","new");
@@ -282,24 +289,22 @@ function showGroups() {
     });
 }
 function showSettings(){
-    set_cookie("scene", 'Settings');
+    if(checkState())
+        return;
     includeHead("header");
     includeBody("settings", function () {
         $('#delall').click(deleteAllTasks);
     });
 }
 function showPrivacy() {
-    set_cookie("scene", 'Privacy');
     includeHead("header");
     includeBody("privacy");
 }
 function showAbout() {
-    set_cookie("scene", 'About');
     includeHead("header");
     includeBody("about");
 }
 function showPrivacyEng() {
-    set_cookie("scene", 'PrivacyEng');
     includeHead("header");
     includeBody("privacy_eng");
 }

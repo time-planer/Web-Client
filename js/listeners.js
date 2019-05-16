@@ -362,26 +362,17 @@ function startup() {
     r.addListener("time-planer",showHome);
     r.addListener("time-planer/",showHome);
     r.apply();
-
     $("#footerinclude").load("views/footer.html");
-    let def = true;
     onepage.compPath = "views";
-    if(get_cookie("name") === "null" && get_cookie("name") === "undefined") {
-        return;
-    }
+
+
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
-    }
-    else {
+    }else {
         showLogin();
         return;
     }
-    if(get_cookie("scene") !== null && get_cookie("scene")!== undefined) {
-        //eval("show"+get_cookie("scene")+"();");
-    }
-    else{
-        showHome();
-    }
+    showHome();
 
 }
 function weiterleit() {
