@@ -265,6 +265,8 @@ function showGroups() {
         memgroup.getGroups(get_cookie("name"),function (a,b,c) {
             temp.val("list",b);
         });
+        temp.get().find('.grp-entry').off();
+        temp.get().find('.grp-entry').unbind();
         /**let membgrplistcomp = onepage.getComp("membgrpholder");
         membgrplistcomp.init = function (v) {
             if(v.val("groups")!=undefined) {
