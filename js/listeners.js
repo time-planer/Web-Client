@@ -352,7 +352,7 @@ function startup() {
     r.addListener("#supp",showSupport);
     r.addListener("#priva",showPrivacy);
     r.addListener("#bug",showBug);
-    r.addListener("#",showHome);
+    r.addListener("Client/",showHome);
     r.addListener("/",showHome);
     r.addListener("#!",showHome);
     r.addListener("eds/",showHome);

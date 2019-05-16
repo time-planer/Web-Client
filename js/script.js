@@ -23,12 +23,17 @@ function callmembgroups(error, response, context) {
     if(error || context.statusCode === 204 || context.statusCode === 203){
         var statusCode = (error != null && error != undefined) ? error.errorCode : context.statusCode; // Codes listed on
         var errorMessage = (error != null && error != undefined) ? error.errorMessage : context.res; // The description
-        if(context.statusCode === 204) {
-            M.toast({html: 'No email address found'});
+        if(context.statusCode === 203) {
+            M.toast({html: 'No API key in the header'});
         }
-
+        if(error.status === 401) {
+            M.toast({html: 'API key is wrong'});
+        }
+        if(error.status === 404) {
+            M.toast({html: 'The user does not exist'});
+        }
     }else{
-        showHome();
+        //Keine Ahnung, wenn es funkt
     }
 
 }

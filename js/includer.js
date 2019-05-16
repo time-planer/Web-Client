@@ -256,6 +256,26 @@ function showGroups() {
                 grpList.val("list",b);
             }
         );
+
+        let temp = onepage.getComp("my-grp-list").create();
+        $('#membgrpholder').append(temp.get());
+
+
+
+        memgroup.getGroups(get_cookie("name"),function (a,b,c) {
+            temp.val("list",b);
+        });
+        /**let membgrplistcomp = onepage.getComp("membgrpholder");
+        membgrplistcomp.init = function (v) {
+            if(v.val("groups")!=undefined) {
+                let list = v.val("groups");
+                for(var zzz = 0;zzz<list.length;zzz++) {
+                    let temp = onepage.getComp("entry").create();
+                    temp.val("group",list[zzz]);
+                    v.get().append(temp.get());
+                }
+            }
+        }**/
     });
 }
 function showSettings(){
