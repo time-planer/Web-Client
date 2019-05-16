@@ -368,11 +368,7 @@ function startup() {
 
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
-    }else {
-        showLogin();
-        return;
     }
-    showHome();
 
 }
 function weiterleit() {
@@ -382,7 +378,9 @@ function weiterleit() {
         showLogin();
     }
 }
+let lastUID;
 function onOpenOwnGroup(e) {
+    lastUID = e.uid;
     /**if($(e.target).hasClass("del-grp"))
         return;
     if($(e.target).parent().hasClass("del-grp"))
@@ -394,7 +392,7 @@ function onOpenOwnGroup(e) {
     set_cookie("grp_uid",uid);**/
     includeHead("header");
     includeBody("groups/own",function () {
-        mygroups.getOwnedGroup(get_cookie("name"),e.uid,reciveOwnedGroup);
+        mygroups.getOwnedGroup(get_cookie("name"),lastUID,reciveOwnedGroup);
     });
 }
 function onAddGrpMember() {
@@ -408,7 +406,7 @@ function onAddGrpMember() {
     mem.edit = false;
     grp.members.push(mem);
     mygroups.editGroup(get_cookie("name"),lastGrp.uid,{editGroup:grp},function callback() {
-        mygroups.getOwnedGroup(get_cookie("name"),get_cookie("grp_uid"),reciveOwnedGroup);
+        mygroups.getOwnedGroup(get_cookie("name"),lastUID,reciveOwnedGroup);
     });
 
 }
@@ -416,6 +414,6 @@ function saveChangedPermissions() {
     var grp = new timeplaner.EditGroup();
     grp.members = lastGrp.members;
     mygroups.editGroup(get_cookie("name"), lastGrp.uid, {editGroup: grp}, function callback() {
-        mygroups.getOwnedGroup(get_cookie("name"), get_cookie("grp_uid"), reciveOwnedGroup);
+        mygroups.getOwnedGroup(get_cookie("name"), lastUID, reciveOwnedGroup);
     });
 }

@@ -163,8 +163,7 @@ function calldeltask(error, data, context) {
             M.toast({html: 'Not enough permissions to do that'});
         }
         if(error.status === 404) {
-            M.toast({html: "The user does not exist"});
-            showLogin();
+            M.toast({html: "The task does not exist"});
         }
     } else {
         console.log('API called successfully. Returned data: ' + data);
