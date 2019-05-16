@@ -250,7 +250,7 @@ function displayStorage() {
     var tlhoch;
     storage.sort(function (a,b) {
         if(a.process === 100)
-            return -1;
+            return 1;
         let ddif = ((a.deadline-b.deadline)/1000/60/60/24);
         let idif = (b.importance-a.importance);
         return ddif+idif;
