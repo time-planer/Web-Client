@@ -263,7 +263,7 @@ function deleteTask() {
     var username = get_cookie("name"); // String | The users name
     var taskname = $("#name").text();
     console.log(username,taskname);
-    tasking.deleteTask(username,taskname, calldeltask);
+    memgroup.deleteGroupTask(username,taskname,$(".editgrp").text(), calldeltask);
     loadView();
     M.Modal.getInstance($('#modal1')).close();
 }

@@ -242,6 +242,11 @@ function showGroups() {
             }
             v.$().find(".grp-memcount").text(v.val("grp").members);
             v.$().find(".del-grp").click(function () {
+                for (let i = 0; i < all.length; i++) {
+                    if(all[i].uid == v.val("grp").uid)
+                        all[i].val = false;
+                }
+                set_cookie("view",JSON.stringify(all));
                 mygroups.deleteGroup(get_cookie("name"),v.val("grp").uid,function () {
                     showGroups();
                 });
