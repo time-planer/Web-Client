@@ -596,7 +596,9 @@ function timeline(bis,von){
     tmp = unt-von;
     console.log(tmp);
     tmp = tmp/1000/60/60/24;
+    tmp +=2;
     datesline.css("width", tmp*50+"px");
+    tmp +=0;
 //margin-top: "+h+"px
     datesline.css("height","40px");
     datesline.addClass("teal accent-4");

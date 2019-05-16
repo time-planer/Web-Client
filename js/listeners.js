@@ -352,13 +352,14 @@ function startup() {
     r.addListener("#supp",showSupport);
     r.addListener("#priva",showPrivacy);
     r.addListener("#bug",showBug);
-    r.addListener("#",showHome);
+    r.addListener("Client/",showHome);
+    r.addListener("/",showHome);
     r.addListener("#!",showHome);
     r.addListener("eds/",showHome);
     r.addListener("EDS/",showHome);
     r.addListener("time-planer.com",showHome);
-    r.addListener("/time-planer",showHome);
-    r.addListener("/time-planer/",showHome);
+    r.addListener("time-planer",showHome);
+    r.addListener("time-planer/",showHome);
     r.apply();
 
     $("#footerinclude").load("views/footer.html");
