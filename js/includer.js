@@ -149,6 +149,7 @@ function showLogin() {
         $("#username").on('keypress',function(e) {
             if(e.which == 13) {
                 event.preventDefault();
+                //Hier das Login gif machen
                 login();
             }
         });
