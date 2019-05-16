@@ -107,6 +107,7 @@ function logout() {
     showLogin();
 }
 function login() {
+    $('#load').show();
     if($("#username").val() === "") {
         M.toast({html: 'Please fill in all the Fields'});
         return null;

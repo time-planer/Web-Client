@@ -9,6 +9,7 @@ function set_cookie(name, value) {
 
 function deleteAllCookies() {
     document.cookie="";
+    delete document.cookie;
 }
 
 function kill_cookie(name) {
