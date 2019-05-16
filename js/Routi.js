@@ -19,8 +19,6 @@ class Router {
     /**
      * @param path {string}
      * @param func {function}
-     * @deprecated
-     * not implemented yet
      */
     addListener(path,func){
         this.listeners.put(path,func);

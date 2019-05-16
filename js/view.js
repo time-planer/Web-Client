@@ -18,11 +18,11 @@ var b;
 var balk2width = 0;
 var name;
 var span2;
-var times = 1;
 var pruef;
 var balkwidth = 0;
 var faktoli = 0;
 var tlhoch;
+var times = 1;
 var isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -613,7 +613,7 @@ function timeline(bis,von){
 
         dates.css("display","inline-block");
         dates.css("width","50px");
-        var spanDates = $("<span><center>" + addOneDayToDate(startdate,i) + "</center></span>");
+        var spanDates = $("<span><center>" + addOneDayToDate(startdate,i-2) + "</center></span>");
         spanDates.css("color","white");
         dates.append(spanDates);
         var vline = $("<div class='vline'></div>");

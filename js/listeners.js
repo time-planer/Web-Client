@@ -352,10 +352,17 @@ function startup() {
     r.addListener("#supp",showSupport);
     r.addListener("#priva",showPrivacy);
     r.addListener("#bug",showBug);
+    r.addListener("#",showHome);
+    r.addListener("#!",showHome);
+    r.addListener("eds/",showHome);
+    r.addListener("EDS/",showHome);
+    r.addListener("time-planer.com",showHome);
+    r.addListener("/time-planer",showHome);
+    r.addListener("/time-planer/",showHome);
     r.apply();
 
     $("#footerinclude").load("views/footer.html");
-    var def = true;
+    let def = true;
     onepage.compPath = "views";
     if(get_cookie("name") === "null" && get_cookie("name") === "undefined") {
         return;
@@ -368,7 +375,7 @@ function startup() {
         return;
     }
     if(get_cookie("scene") !== null && get_cookie("scene")!== undefined) {
-        eval("show"+get_cookie("scene")+"();");
+        //eval("show"+get_cookie("scene")+"();");
     }
     else{
         showHome();

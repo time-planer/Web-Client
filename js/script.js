@@ -241,6 +241,7 @@ function displayStorage() {
                 von = storage[i].entererAt;
         }
         tlhoch = timeline(bis,von);
+        times = 1;
         for (let i = 0; i < length; i++) {
             show(storage[i],von,bis,tlhoch);
             //Hier verändern
