@@ -357,8 +357,8 @@ function startup() {
     r.addListener("eds/",showHome);
     r.addListener("EDS/",showHome);
     r.addListener("time-planer.com",showHome);
-    r.addListener("/time-planer",showHome);
-    r.addListener("/time-planer/",showHome);
+    r.addListener("time-planer",showHome);
+    r.addListener("time-planer/",showHome);
     r.apply();
 
     $("#footerinclude").load("views/footer.html");
