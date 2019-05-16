@@ -10,6 +10,8 @@ function openTask(data) {
     $('#name').text(elem.find(".name_field").text());
     $('#textarea1').text(elem.attr("description"));
     $('#textarea1').val(elem.attr("description"));
+    $(".donecheck").prop("checked",elem.attr("process") == 100);
+    $(".editgrp").text(elem.attr("group"));
     $('label[for=textarea1]').addClass("active");
 
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
@@ -154,15 +156,16 @@ function addNewGroup() {
     });
 }
 function editTask() {
-    var taskname = $('#name').text();
     tasking.getTask(get_cookie("name"), taskname, function (a,tmp,c) {
-        var newconftask = new timeplaner.EditTask();
+    let taskname = $('#name').text();
+        let newconftask = new timeplaner.EditTask();
         newconftask.name = taskname;
         newconftask.planedDate = tmp.planedDate;
         newconftask.deadline = tmp.deadline;
         newconftask.description = $('#textarea1').val();
         newconftask.importance = tmp.importance;
-        var opts = {
+        newconftask.process = $(".donecheck").prop("checked") ? 100 : 0;
+        let opts = {
             'editTask': newconftask
         };
         console.log(JSON.stringify(opts,null,"\t"));
