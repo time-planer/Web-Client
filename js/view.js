@@ -5,6 +5,8 @@
 var z = 0;
 var task;
 var von;
+var proc;
+var uid;
 var start;
 let description;
 let priority;
@@ -57,6 +59,8 @@ function styleTask(task1,von1,bis,span, desc, pri,tlhoch2) {
     unt = bis;
     ende = longStringtoDate(task.attr("deadline"));
     start = longStringtoDate(task.attr("startdat"));
+    uid = task1.attr("group");
+    proc = task1.attr("process");
     //var exceedDuration = task.children(".deadlineexceed").attr("duration");
     //var plan2 = task.children(".planexceed").attr("duration");
     plan = longStringtoDate(task.attr("planed"));
@@ -216,7 +220,6 @@ function designAndroidTask() {
     tmp = setAbstand()+"px";
     bw = (ende-start)/1000/60/60/24*50;
     bw = bw+"px";
-    console.log(bw);
     box.css("width","100px");
     box.css("height",bw);
     box.css("background-color","red");
@@ -224,7 +227,6 @@ function designAndroidTask() {
     $("#taskholder").addClass("valign-wrapper");
     task.addClass("left-align");
     task.css("margin-top",tmp);
-    console.log(tmp);
     task.append(box);
 }
 
@@ -550,6 +552,8 @@ function liste() {
     deadline.text(l3);
     var a = $("<tr class='task hand'></tr>");
     a.attr("planed",shortStringDatetoLongStringDate(geplant.text()));
+    a.attr("process",proc);
+    a.attr("group",uid);
     a.attr("deadline",shortStringDatetoLongStringDate(deadline.text()));
     a.attr("startdate",shortStringDatetoLongStringDate(von.text()));
     a.attr("description",description); //Die Infos
@@ -585,16 +589,12 @@ function timeline(bis,von){
     var startdate = von;
     unt = bis;
     var bitch = new Date();
-    console.log("Von: "+von);
-    console.log("Unt: "+unt);
     var bitchi = (bitch-von)/1000/60/60/24;
     bitchi = Math.round(bitchi);
-    console.log(bitchi);
     var h = storage.length;
     h = h*(-90);
     h = h-90;
     tmp = unt-von;
-    console.log(tmp);
     tmp = tmp/1000/60/60/24;
     tmp +=2;
     datesline.css("width", tmp*50+"px");
@@ -604,13 +604,10 @@ function timeline(bis,von){
     datesline.addClass("teal accent-4");
     var tl = $("<div class='left-align' style='height: "+(-1*h+20)+"px;z-index: -5; position: relative; width: "+tmp*50+"px;top: 0; left: 0;'></div>");
     tlhoch = -1*h+20;
-    console.log(tmp);
-    console.log(unt+"-"+von+"="+tmp);
     var abstand = 49;
     var i;
     var fufzig = 50;
     for(i = 1; i<tmp;i++){
-        console.log(fufzig*i);
         var dates = $("<div></div>");
 
         dates.css("display","inline-block");
@@ -620,7 +617,6 @@ function timeline(bis,von){
         dates.append(spanDates);
         var vline = $("<div class='vline'></div>");
         if(bitchi != i){
-            console.log("drinnenab");
             //vline.css("position","relative");
             vline.css("display","inline-block");
             vline.css("width", "1px");
@@ -630,7 +626,6 @@ function timeline(bis,von){
             tl.append(vline);
         }
         else{
-            console.log("tottototoot");
             vline.css("display","inline-block");
             vline.css("width", "50px");
             vline.css("height","100%");
@@ -640,17 +635,14 @@ function timeline(bis,von){
         }
         datesline.append(dates);
     }
-    console.log(fufzig);
     $("#taskholder").append(datesline);
     $("#taskholder").css("height",(-h)+"px");
     $("#taskholder").append(tl);
-    console.log("fertig");
     return tlhoch;
 }
 
 function fixedDates(e) {
     var plus = e.scrollTopDelta;
-    console.log(plus);
     var mtoptask;
     var mtop = $("#datesline").attr("pixl");
     mtop = mtop-1+(plus+1);
@@ -660,8 +652,6 @@ function fixedDates(e) {
     //alert(mwert);
     $(".firsttask").css("margin-top",mtoptask+"px");
     $("#datesline").css("margin-top",mtop+"px");
-
-    console.log("triggered");
 }
 
 function datesTimeline() {

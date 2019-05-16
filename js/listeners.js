@@ -3,7 +3,7 @@
  */
 function openTask(data) {
     //Daten einlesen
-    var elem = $(data.target).parent();
+    var elem = $(data.target);//.parent();
     if(!elem.hasClass("task"))
         elem = elem.parent();
     $("#ablauf").text("Deadline: "+longStringDateToShortStringDate((elem.attr("deadline"))));
@@ -157,8 +157,9 @@ function addNewGroup() {
     });
 }
 function editTask() {
+    var temp = $(".editgrp").text();
     let taskname = $('#name').text();
-    tasking.getGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), function (a,tmp,c) {
+    tasking.getGroupTask(get_cookie("name"), taskname,temp, function (a,tmp,c) {
         let newconftask = new timeplaner.EditTask();
         newconftask.name = taskname;
         newconftask.planedDate = tmp.planedDate;
@@ -170,7 +171,7 @@ function editTask() {
             'editTask': newconftask
         };
         console.log(JSON.stringify(opts,null,"\t"));
-        tasking.editGroupTask(get_cookie("name"), taskname,$(".editgrp").text(), opts, calledittask);
+        tasking.editGroupTask(get_cookie("name"), taskname,temp, opts, calledittask);
     });
 }
 function aktuImport() {
