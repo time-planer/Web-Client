@@ -138,7 +138,7 @@ function calledittask(error, data, context) {
         } else {
             console.log('API called successfully. Returned data: ' + data);
             console.log(JSON.stringify(data));
-            loadView();
+            showHome();
         }
     } else {
         felete = false;
@@ -168,7 +168,7 @@ function calldeltask(error, data, context) {
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        loadView();
+        showHome();
         felete = true;
         M.toast({html: 'Task was successfully deleted'});
     }

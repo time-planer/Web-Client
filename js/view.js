@@ -643,6 +643,10 @@ function timeline(bis,von){
 
 function fixedDates(e) {
     var plus = e.scrollTopDelta;
+    if(plus!=0&&e.scrollLeftDelta!=0){
+        alert("Please notice that we do not support diagonal Touch Pad scrolling!");
+    }
+
     var mtoptask;
     var mtop = $("#datesline").attr("pixl");
     mtop = mtop-1+(plus+1);

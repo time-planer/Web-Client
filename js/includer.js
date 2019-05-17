@@ -88,6 +88,7 @@ function showHome() {
             $("#notify").change(function () {
                 notify.watch($("#name").text(),$(".editgrp").text(),$("#notify").prop("checked"));
             });
+            $('#taskholder').on("scrolldelta",fixedDates);
             $(window).on("scrolldelta",fixedDates);
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();
@@ -137,7 +138,7 @@ function showHome() {
                 settings.push(obj);
             });
             set_cookie("view",JSON.stringify(settings));
-            loadView();
+            showHome();
         });
     });
    /* includeBody("home",function () {
