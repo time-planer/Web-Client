@@ -80,6 +80,7 @@ function checkState() {
 function showHome() {
     if(checkState())
         return;
+    window.scrollTo(0,0);
     includeHead("header2",function () {
         includeBody("home",function () {
             $(".out").click(logout);

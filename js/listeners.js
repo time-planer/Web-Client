@@ -163,6 +163,7 @@ function addNewGroup() {
     });
 }
 function editTask() {
+    window.scrollTo(0,0);
     var temp = $(".editgrp").text();
     let taskname = $('#name').text();
     tasking.getGroupTask(get_cookie("name"), taskname,temp, function (a,tmp,c) {
@@ -325,7 +326,6 @@ function startup() {
     if(window.location.href.indexOf("#")===-1) {
         window.location.href=window.location.href.substring(0,window.location.href.lastIndexOf("/"))+"#";
     }
-    window.scrollTo(0,0);
     // custom 'scrolldelta' event extends 'scroll' event
     jQuery.event.special.scrolldelta = {
         delegateType: "scroll",
