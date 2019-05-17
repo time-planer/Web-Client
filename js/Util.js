@@ -291,6 +291,7 @@ function detectDevice() {
             break;
         case 2:
             //alert("ios");
+            $("#tasktab2").addClass("disabled");
             liste();
             break;
         default:
