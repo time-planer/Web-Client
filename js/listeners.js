@@ -14,6 +14,12 @@ function openTask(data) {
     $(".editgrp").text(elem.attr("group"));
     $('label[for=textarea1]').addClass("active");
 
+    for (let i = 0; i <notify.watched.length; i++) {
+        if(notify.watched[i].name === elem.find(".name_field").text() && notify.watched[i].group === elem.attr("group")) {
+            $("#notify").prop("checked",notify.watched[i].value);
+        }
+    }
+
     if(difDateTag(longStringtoDate(elem.attr("deadline"))) >= 0) {
         document.getElementById('übrig').innerText = "Days left: "+((difDateTag(longStringtoDate(elem.attr("deadline"))))-1);
     } else {
@@ -352,6 +358,7 @@ function startup() {
     r.addListener("#supp",showSupport);
     r.addListener("#priva",showPrivacy);
     r.addListener("#bug",showBug);
+    r.addListener("#offline",showOffline);
     r.addListener("Client/",showHome);
     r.addListener("/",showHome);
     r.addListener("#!",showHome);
@@ -369,6 +376,7 @@ function startup() {
     if (get_cookie("api") !== null && get_cookie("api") !== undefined) {
         setAPIKey(get_cookie("api"));
     }
+    notify.startup();
 
 }
 function weiterleit() {

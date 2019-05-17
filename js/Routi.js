@@ -177,6 +177,7 @@ class Map {
         return keys;
     }
 }
+window.MyMap = Map;
 class Pair {
     value;
     key;

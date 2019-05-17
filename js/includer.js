@@ -84,6 +84,9 @@ function showHome() {
         includeBody("home",function () {
             $(".out").click(logout);
             $("#del").click(deleteTask);
+            $("#notify").change(function () {
+                notify.watch($("#name").text(),$(".editgrp").text(),$("#notify").prop("checked"));
+            });
             $(window).on("scrolldelta",fixedDates);
             M.Modal.getInstance($('#modal1')).options.onCloseStart = editTask;
             loadView();
@@ -312,4 +315,8 @@ function showAbout() {
 function showPrivacyEng() {
     includeHead("header");
     includeBody("privacy_eng");
+}
+function showOffline() {
+    includeHead("header");
+    includeBody("offline");
 }
