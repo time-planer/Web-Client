@@ -301,6 +301,7 @@ function showSettings(){
         return;
     includeHead("header");
     includeBody("settings", function () {
+        $(".out").click(logout);
         $('#delall').click(deleteAllTasks);
     });
 }
