@@ -117,7 +117,7 @@ function stringtoDate(text) {
                     monat = 10;
                     break;
 
-                case "Dez":
+                case "Dec":
                     monat = 11;
                     break;
                 default:
@@ -231,7 +231,7 @@ function difDateTag(date) {
 
 function checkDates(plan, dead) {
     if(dead-plan < 1) {
-        M.toast({html: 'The deadline must be before the planned date!'})
+        M.toast({html: 'Wrong inputs!'})
         return 1;
     } else {
         return 0;
