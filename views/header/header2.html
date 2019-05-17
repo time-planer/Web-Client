@@ -24,7 +24,7 @@
             <li><a class="waves-effect waves-light modal-trigger" href="#displayGrps">View</a></li>
             <li><a href="#groups" class="hand waves-effect waves-light">Groups</a></li>
             <li><a href="#addtask" class="hand waves-effect waves-light">New Task</a></li>
-            <li style="width: 120px; z-index: 12" class="center-align waves-effect waves-light"><a class="dropdown-trigger" data-target="dropdownuser"><i class="material-icons">account_circle</i></a></li>
+            <li style="z-index: 12;" class="center-align waves-effect waves-light"><a href="#settings"><i class="material-icons">account_circle</i></a></li>
         </ul>
         <ul class="right disabled-hide-on-med-and-down ">
 
@@ -71,21 +71,26 @@
 <script>
 
 </script>
-    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px; z-index: 12">
+    <!--
+    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 120px;height: 200px!important; z-index: 12"> -->
         <!-- <li style="width: 120px"><a class="" onclick="showGroups()">Gruppen</a></li> -->
-        <li style="width: 120px"><a class="" href="#settings">Settings</a></li>
+        <!--<li style="width: 120px"><a class="" href="#settings">Settings</a></li>
         <li style="width: 120px"><a class="out">Logout</a></li>
     </ul>
 
+    <ul id="dropdownuser" class="dropdown-content center-align" style="width: 100%; z-index: 999999999999; min-height: 150px!important; max-height: 300px!important;">
+        <li style="width: 100%; height: 50%"><a class="" href="#settings">Settings</a></li>
+        <li style="width: 100%; height: 50%"><a class="out red-text">Logout</a></li>
+    </ul>
+    -->
     <ul id="dropdownuser2" class="dropdown-content center-align" style="width: 100%; z-index: 12">
         <li style="width: 100%"><a class="sidenav-close" href="#settings">Settings</a></li>
         <li style="width: 100%"><a class="out red-text sidenav-close">Logout</a></li>
     </ul>
 </header>
-<!--
 
+<!--
 <i class="material-icons">power_settings_new</i>
 <i class="material-icons">settings</i>
 <i class="material-icons">group</i>
-
 -->

@@ -1,3 +1,17 @@
+<center><h1 id="ueberschrift"></h1></center>
+<script>
+    var today = new Date()
+    var curHr = today.getHours()
+    var nachricht = get_cookie("name").split("@")[0];
+    if (curHr < 12) {
+        nachricht = "Good morning!";
+    } else if (curHr < 18) {
+        nachricht = "Good afternoon!";
+    } else {
+        nachricht = "Good evening!";
+    }
+    $("#ueberschrift").text(nachricht);
+</script>
 <div class="container">
     <ul class="collapsible row m8 s10 center-align">
         <li>
@@ -8,6 +22,17 @@
             </div>
             <div class="collapsible-body">
                 <a class="waves-effect waves-light btn-large modal-trigger red z-depth-3" href="#modaldelete" id=""><i class="material-icons right">delete_sweep</i>Delete all tasks</a>
+            </div>
+        </li>
+
+        <li>
+            <div class="collapsible-header">
+                <!--<i class="material-icons">filter_drama</i>-->
+                <span id="usname"></span><script>$("#usname").text("Not " + get_cookie("name").split("@")[0])</script>? Logout!
+                <!--<span class="new badge">4</span>-->
+            </div>
+            <div class="collapsible-body">
+                <a id="dropdownuser" class="waves-effect waves-light btn-large out z-depth-3 red">Logout</a>
             </div>
         </li>
         <!--
