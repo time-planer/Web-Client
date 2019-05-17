@@ -322,6 +322,9 @@ function deleteAllTasks() {
     tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
 }
 function startup() {
+    if(!window.location.href.endsWith("#")) {
+        window.location.href=window.location.href.substring(0,window.location.href.indexOf("/"))+"#";
+    }
     window.scrollTo(0,0);
     // custom 'scrolldelta' event extends 'scroll' event
     jQuery.event.special.scrolldelta = {
