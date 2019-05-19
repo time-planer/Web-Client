@@ -271,8 +271,6 @@ function deleteTask() {
     var taskname = $("#name").text();
     console.log(username,taskname);
     memgroup.deleteGroupTask(username,taskname,$(".editgrp").text(), calldeltask);
-    showHome();
-    M.Modal.getInstance($('#modal1')).close();
 }
 function register() {
     var mach = 0;

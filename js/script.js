@@ -142,6 +142,7 @@ function calledittask(error, data, context) {
         }
     } else {
         felete = false;
+		showHome();
     }
 }
 function calldeltask(error, data, context) {
@@ -168,8 +169,7 @@ function calldeltask(error, data, context) {
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        showHome();
-        felete = true;
+		showHome();
         M.toast({html: 'Task was successfully deleted'});
     }
 }
@@ -191,7 +191,7 @@ function calldelalltasks(error, data, context) {
     } else {
         console.log('API called successfully. Returned data: ' + data);
         console.log(JSON.stringify(data));
-        tasking.getAllTasks(get_cookie("name"),receiveAllTasks);
+        showHome();
         M.toast({html: 'All tasks were successfully deleted'});
     }
 }
@@ -250,6 +250,9 @@ function displayStorage() {
     storage.sort(function (a,b) {
         if(a.process === 100)
             return 1;
+		else
+			if(b.process === 100)
+				return -1;
         let ddif = ((a.deadline-b.deadline)/1000/60/60/24);
         let idif = (b.importance-a.importance);
         return ddif+idif;
