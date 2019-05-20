@@ -1,11 +1,13 @@
 class Router {
-    listeners = new Map();
-    redirects = new Map();
-    /**
-     * @type {string}
-     */
-    defaultRoute = "#home";
+    
     constructor(){
+		this.listeners = new Map();
+		this.redirects = new Map();
+		
+		/**
+		 * @type {string}
+		 */
+		this.defaultRoute = "#home";
     }
 
     /**
@@ -116,6 +118,8 @@ class Router {
 
 class Map {
     constructor(name = undefined){
+		this.usePermanentCaching = false;
+		this.data = [];
         if(name !== undefined){
             this.usePermanentCaching = true;
             this.name = name;
@@ -123,9 +127,6 @@ class Map {
                 this.data = JSON.parse(localStorage.getItem(name));
         }
     }
-    usePermanentCaching = false;
-    data = [];
-    name;
     put(key,value){
         let p = new Pair();
         p.key = key;
@@ -179,6 +180,8 @@ class Map {
 }
 window.MyMap = Map;
 class Pair {
-    value;
-    key;
+	constructor(){
+    this.value = null;
+    this.key = null;
+	}
 }
