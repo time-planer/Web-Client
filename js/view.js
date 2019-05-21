@@ -590,7 +590,9 @@ function timeline(bis,von){
     unt = bis;
     var bitch = new Date();
     var bitchi = (bitch-von)/1000/60/60/24;
-    bitchi = Math.round(bitchi);
+    //bitchi = Math.round(bitchi);
+    if(bitchi%1>0)
+        bitchi += 1-bitchi%1;
     var h = storage.length;
     h = h*(-90);
     h = h-90;
