@@ -9,13 +9,16 @@ notify.start = function () {
             if(obj.value){
                 memgroup.getGroupTask(get_cookie("name"),obj.name,obj.group,function (error,data,s) {
                     if(!error){
-                        let opts = {};
-                        if(data.deadline<new Date() && !data.process<100){
-                            opts.body = "Die Deadline vom Task "+data.name+" ist überschritten, erledige den Task!";
-                        }else if(data.planedDate<new Date()&& !data.process<100){
-                            opts.body = "Dein Zeitplan vom Task "+data.name+" ist überschritten, erledige den Task!";
+                        if(data.process < 100) {
+                            let opts = {};
+                            if (data.deadline < new Date() && !data.process < 100) {
+                                opts.body = "Die Deadline vom Task " + data.name + " ist überschritten, erledige den Task!";
+                            } else if (data.planedDate < new Date() && !data.process < 100) {
+                                opts.body = "Dein Zeitplan vom Task " + data.name + " ist überschritten, erledige den Task!";
+                            }
+                            if(opts.body !== undefined)
+                                new Notification(data.name + " Task (Time Planer)", opts);
                         }
-                        new Notification(data.name+" Task (Time Planer)", opts);
                     }
                 });
             }
